@@ -121,9 +121,11 @@ module.exports = function (grunt) {
         },
 
         // generateSources task
+        // FIX: https://github.com/jshint/jshint/issues/2922
         jshint: {
             options: {
-                jshintrc: '.jshintrc'
+                jshintrc: '.jshintrc',
+                reporterOutput: ''
             },
             all: [
                 '<%= src %>/scripts/{,*/}*.js'

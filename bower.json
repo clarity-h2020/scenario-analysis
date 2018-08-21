@@ -27,14 +27,14 @@
     "bootstrap": "3.3.0",
     "icmm_js": "1.1.2",
     "dynatree": "1.2.5",
-    "crisma-worldstate-tree-widget-angular": "1.0.8",
+    "crisma-worldstate-tree-widget-angular": "1.0.10",
     "d3": "3.3.6",
     "nvd3": "1.1.15-beta",
     "angularjs-nvd3-directives": "0.0.7",
     "angular-strap": "2.1.3",
     "jquery-knob": "1.2.9",
     "ngDialog": "0.2.14",
-    "radar-chart-d3": "#d5944759c30f073f21c0860a1f71351d370149d8",
+    "radar-chart-d3": "1.2.1",
     "angular-bootstrap": "0.11.2"
   },
   "devDependencies": {

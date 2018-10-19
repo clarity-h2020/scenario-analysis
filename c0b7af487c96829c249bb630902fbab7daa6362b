@@ -1,0 +1,11 @@
+{
+  "built_on": "master",
+  "duration": 45.869999981,
+  "full_display_name": "scenario-analysis #1",
+  "id": "1",
+  "number": 1,
+  "result": "FAILURE",
+  "status_message": "?",
+  "time": "2018-10-19 08:44:04 +0000",
+  "url": "job/scenario-analysis/1/"
+}

@@ -1,0 +1,24 @@
+{
+  "sample": {
+    "displayName": "Example",
+    "iconResource": "http://crisma.cismet.de/resources/pilotE/todo_24.png",
+    "deads": {
+      "displayName": "Deads",
+      "iconResource": "http://crisma.cismet.de/resources/pilotE/todo_16.png",
+      "value": 12,
+      "unit": "people"
+    },
+    "cost": {
+      "displayName": "Cost",
+      "iconResource": "http://crisma.cismet.de/resources/pilotE/todo_16.png",
+      "value": 54902843,
+      "unit": "Euro"
+    },
+    "buildings": {
+      "displayName": "Buildings",
+      "iconResource": "http://crisma.cismet.de/resources/pilotE/todo_16.png",
+      "value": 764,
+      "unit": "buildings"
+    }
+  }
+}

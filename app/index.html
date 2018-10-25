@@ -23,7 +23,9 @@
         <!-- build:css() -->
         <link rel="stylesheet" href="styles/indicatorCriteriaTableDirective.css">
         <!-- endbuild -->
-
+        
+        <!-- seamless.js -->
+        <script src="bower_components/seamless/build/seamless.child.js" type="text/javascript"></script>
     </head>
     <body ng-app="eu.crismaproject.worldstateAnalysis.demoApp">
         <!--[if lt IE 7]>
@@ -544,17 +546,26 @@
 
         <!-- demo only -->
         <script>
-                                                                        angular.module('eu.crismaproject.worldstateAnalysis.demoApp').config(
-                                                                        [
-                                                                                '$provide',
-                                                                                function ($provide) {
-                                                                                'use strict';
-                                                                                $provide.constant('CRISMA_DOMAIN', 'CRISMA');
+            angular.module('eu.crismaproject.worldstateAnalysis.demoApp').config(
+            [
+                    '$provide',
+                    function ($provide) {
+                    'use strict';
+                    $provide.constant('CRISMA_DOMAIN', 'CRISMA');
 //                                                                                    $provide.constant('CRISMA_ICMM_API', 'http://localhost:8890');
-                                                                                $provide.constant('CRISMA_ICMM_API', 'http://crisma.cismet.de/icmm_api');
+                    $provide.constant('CRISMA_ICMM_API', 'http://crisma.cismet.de/icmm_api');
 //                                                                                            $provide.constant('CRISMA_ICMM_API', 'sadfg');
-                                                                                }
-                                                                        ]
-                                                                                );</script>
+                    }
+            ]
+                    );
+        </script>
+        
+        <!-- seamless.js -->
+        <script type="text/javascript">
+
+        // Connect to the parent page.
+        // https://github.com/travist/seamless.js?files=1#connect-child-page-to-parent-page
+        window.seamless.connect();
+      </script>
     </body>
 </html>

@@ -15,8 +15,8 @@
     "karma*",
     "package.json"
   ],
-  "dependencies": {
-    "angular-strap":"2.1.6",
+  "dependencies": {"seamless.js":"1.3.0",
+    "angular-strap": "2.1.3",
     "angular": "1.2.29",
     "angular-resource": "1.2.29",
     "angular-commons": "0.2.0",
@@ -32,11 +32,11 @@
     "d3": "3.3.13",
     "nvd3": "1.1.15-beta",
     "angularjs-nvd3-directives": "0.0.7",
-    "angular-strap": "2.1.3",
     "jquery-knob": "1.2.13",
     "ngDialog": "0.2.14",
     "radar-chart-d3": "1.2.1",
-    "angular-bootstrap": "0.11.2"
+    "angular-bootstrap": "0.11.2",
+    "seamless": "seamless.js#1.3.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.29",

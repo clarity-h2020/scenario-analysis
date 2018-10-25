@@ -26,26 +26,26 @@ angular.module(
             $scope.treeSelection = [];
             $scope.selectedWorldstates = [];
 
-            Worldstates.query({level: 3, fields: 'id,name,key,iccdata,actualaccessinfo, actualaccessinfocontenttype, categories', deduplicate: false}, function (data) {
-                data.forEach(function (ws) {
-                    ws = Icmm.convertToCorrectIccDataFormat(ws);
-                });
-                $scope.worldstates = data;
-            });
+//            Worldstates.query({level: 3, fields: 'id,name,key,iccdata,actualaccessinfo, actualaccessinfocontenttype, categories', deduplicate: false}, function (data) {
+//                data.forEach(function (ws) {
+//                    ws = Icmm.convertToCorrectIccDataFormat(ws);
+//                });
+//                $scope.worldstates = data;
+//            });
 
             $scope.criteriaFunctions = [];
-            CF.query(function (data) {
-                if (data.length > 0) {
-                    $scope.criteriaFunctions = data;
-                }
-            });
-            $scope.selectedCriteriaFunction = $scope.criteriaFunctions[0];
+//            CF.query(function (data) {
+//                if (data.length > 0) {
+//                    $scope.criteriaFunctions = data;
+//                }
+//            });
+//            $scope.selectedCriteriaFunction = $scope.criteriaFunctions[0];
             $scope.showDsPersistSpinner = false;
             $scope.showDsPersistDone = false;
             $scope.decisionStrategies = [];
-            DS.query(function (data) {
-                $scope.decisionStrategies = data || [];
-            });
+//            DS.query(function (data) {
+//                $scope.decisionStrategies = data || [];
+//            });
 
             // every time the treeSelection changes, we need to determine the
             // corresponding worldstates to the selected nodes. 
@@ -100,8 +100,8 @@ angular.module(
             });
 
             // Retrieve the top level nodes from the icmm api
-            $scope.treeNodes = Nodes.query(function () {
-            });
+//            $scope.treeNodes = Nodes.query(function () {
+//            });
 
 
             $scope.backendUrls = [{

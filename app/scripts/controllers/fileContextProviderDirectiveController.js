@@ -153,6 +153,7 @@ angular.module(
                     try {
                         fileObj = JSON.parse(e.target.result);
                         /*
+                         * 
                          * accept two differnt kind of files. 
                          * 1. A plain icc data object.
                          * In that case we apply a standard name to this object
@@ -230,12 +231,15 @@ angular.module(
                             return;
                         }
 
-                        // we need an id to distinc the icc objects. eg. the ranking table use this id
+                        // we need an id to distinct the icc objects. eg. the ranking table use this id
                         // to keep track of the indicator objects
                         if (!worldstateDummy.id) {
                             worldstateDummy.id = Math.floor((Math.random() * 1000000) + 1);
                         }
 
+                        // an excellent example on technical debt and accidental complexity:
+                        // instead of adressing the root cause of the problem, we
+                        // introduce additional inadequateness and ambiguity
                         Icmm.convertToCorrectIccDataFormat(worldstateDummy);
 
                         if ($scope.worldstates) {
@@ -379,7 +383,7 @@ angular.module(
             };
 
             /*
-             * When the newFile property has changed the User want's to add a new list of files..
+             * When the newFile property has changed the User want's to add a new list of files.
              */
             $scope.$watch('iccObjects', function (newVal, oldVal) {
                 var i, file, reader;
@@ -403,7 +407,7 @@ angular.module(
                     }
 
                 }
-            });
+            }, true); // 
 
             $scope.$watch('cfConfigFile', function () {
                 var file;

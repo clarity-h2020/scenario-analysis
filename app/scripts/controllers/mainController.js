@@ -18,6 +18,14 @@ angular.module(
         'ngDialog',
         function ($scope, $timeout, IcmmPersistanceService, FilesPersistanceService, ngDialog) {
             'use strict';
+            
+            var parent = window.seamless.connect();
+            // Receive a message
+            parent.receive(function(data, event) {
+
+              // Print out the data that was received.
+              console.log("child recieved: " + data);
+            });
 
             var createChartModels;
             // we bind to the container object since the provider directives are nested in angular-bootstrap tabs
@@ -214,6 +222,14 @@ angular.module(
 
 
                 $scope.icmmLastViewed = true;
+                
+                if(!parent || parent === null) {
+                    parent = window.seamless.connect();
+                }
+                // Send a message
+                parent.send({
+                  myparam: 'child -> parent'
+                });
             };
 
 

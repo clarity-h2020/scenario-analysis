@@ -36,6 +36,8 @@ angular.module(
             $scope.container.chartModels = [];
             $scope.icmmTabCollapsed = false;
             $scope.filesTabCollapsed = false;
+            $scope.icmmTabActive = false;
+            $scope.filesTabActive = true;
 
             $scope.openRadarModal = function (index) {
                 var childScope;

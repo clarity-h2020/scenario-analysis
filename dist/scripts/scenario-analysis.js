@@ -821,6 +821,7 @@ angular.module(
                     try {
                         fileObj = JSON.parse(e.target.result);
                         /*
+                         * 
                          * accept two differnt kind of files. 
                          * 1. A plain icc data object.
                          * In that case we apply a standard name to this object
@@ -898,12 +899,15 @@ angular.module(
                             return;
                         }
 
-                        // we need an id to distinc the icc objects. eg. the ranking table use this id
+                        // we need an id to distinct the icc objects. eg. the ranking table use this id
                         // to keep track of the indicator objects
                         if (!worldstateDummy.id) {
                             worldstateDummy.id = Math.floor((Math.random() * 1000000) + 1);
                         }
 
+                        // an excellent example on technical debt and accidental complexity:
+                        // instead of adressing the root cause of the problem, we
+                        // introduce additional inadequateness and ambiguity
                         Icmm.convertToCorrectIccDataFormat(worldstateDummy);
 
                         if ($scope.worldstates) {
@@ -1047,7 +1051,7 @@ angular.module(
             };
 
             /*
-             * When the newFile property has changed the User want's to add a new list of files..
+             * When the newFile property has changed the User want's to add a new list of files.
              */
             $scope.$watch('iccObjects', function (newVal, oldVal) {
                 var i, file, reader;
@@ -1071,7 +1075,7 @@ angular.module(
                     }
 
                 }
-            });
+            }, true); // 
 
             $scope.$watch('cfConfigFile', function () {
                 var file;
@@ -1153,26 +1157,26 @@ angular.module(
             $scope.treeSelection = [];
             $scope.selectedWorldstates = [];
 
-            Worldstates.query({level: 3, fields: 'id,name,key,iccdata,actualaccessinfo, actualaccessinfocontenttype, categories', deduplicate: false}, function (data) {
-                data.forEach(function (ws) {
-                    ws = Icmm.convertToCorrectIccDataFormat(ws);
-                });
-                $scope.worldstates = data;
-            });
+//            Worldstates.query({level: 3, fields: 'id,name,key,iccdata,actualaccessinfo, actualaccessinfocontenttype, categories', deduplicate: false}, function (data) {
+//                data.forEach(function (ws) {
+//                    ws = Icmm.convertToCorrectIccDataFormat(ws);
+//                });
+//                $scope.worldstates = data;
+//            });
 
             $scope.criteriaFunctions = [];
-            CF.query(function (data) {
-                if (data.length > 0) {
-                    $scope.criteriaFunctions = data;
-                }
-            });
-            $scope.selectedCriteriaFunction = $scope.criteriaFunctions[0];
+//            CF.query(function (data) {
+//                if (data.length > 0) {
+//                    $scope.criteriaFunctions = data;
+//                }
+//            });
+//            $scope.selectedCriteriaFunction = $scope.criteriaFunctions[0];
             $scope.showDsPersistSpinner = false;
             $scope.showDsPersistDone = false;
             $scope.decisionStrategies = [];
-            DS.query(function (data) {
-                $scope.decisionStrategies = data || [];
-            });
+//            DS.query(function (data) {
+//                $scope.decisionStrategies = data || [];
+//            });
 
             // every time the treeSelection changes, we need to determine the
             // corresponding worldstates to the selected nodes. 
@@ -1227,8 +1231,8 @@ angular.module(
             });
 
             // Retrieve the top level nodes from the icmm api
-            $scope.treeNodes = Nodes.query(function () {
-            });
+//            $scope.treeNodes = Nodes.query(function () {
+//            });
 
 
             $scope.backendUrls = [{
@@ -2056,6 +2060,14 @@ angular.module(
         'ngDialog',
         function ($scope, $timeout, IcmmPersistanceService, FilesPersistanceService, ngDialog) {
             'use strict';
+            
+            var parent = window.seamless.connect();
+            // Receive a message
+            parent.receive(function(data, event) {
+
+              // Print out the data that was received.
+              console.log("child recieved: " + data);
+            });
 
             var createChartModels;
             // we bind to the container object since the provider directives are nested in angular-bootstrap tabs
@@ -2066,6 +2078,8 @@ angular.module(
             $scope.container.chartModels = [];
             $scope.icmmTabCollapsed = false;
             $scope.filesTabCollapsed = false;
+            $scope.icmmTabActive = false;
+            $scope.filesTabActive = true;
 
             $scope.openRadarModal = function (index) {
                 var childScope;
@@ -2252,6 +2266,14 @@ angular.module(
 
 
                 $scope.icmmLastViewed = true;
+                
+                if(!parent || parent === null) {
+                    parent = window.seamless.connect();
+                }
+                // Send a message
+                parent.send({
+                  myparam: 'child -> parent'
+                });
             };
 
 

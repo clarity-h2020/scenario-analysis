@@ -735,11 +735,11 @@ describe('AnalysisService Test Suite', function () {
     ];
 
     beforeEach(function () {
-        module('eu.crismaproject.worldstateAnalysis.services');
+        module('eu.myclimateservice.csis.scenario-analysis.services');
     });
 
     beforeEach(inject([
-        'eu.crismaproject.worldstateAnalysis.services.AnalysisService',
+        'eu.myclimateservice.csis.scenario-analysis.services.AnalysisService',
         function (as) {
             analysisService = as;
         }

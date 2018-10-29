@@ -10,8 +10,8 @@ describe('IndicatorBandDirective Test Suite', function () {
         module('de.cismet.crisma.ICMM.Worldstates');
         module('ngTable');
         module('mgcrea.ngStrap.popover');
-        module('eu.crismaproject.worldstateAnalysis.directives');
-        module('eu.crismaproject.worldstateAnalysis.controllers');
+        module('eu.myclimateservice.csis.scenario-analysis.directives');
+        module('eu.myclimateservice.csis.scenario-analysis.controllers');
     });
 
     describe('IndiciatorBand Directive Tests', function () {
@@ -71,7 +71,7 @@ describe('IndicatorBandDirective Test Suite', function () {
                 indicatorValue: 0
             };
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandItemDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandItemDirectiveController',
                 {
                     $scope: scope,
                     $filter: filter,
@@ -109,7 +109,7 @@ describe('IndicatorBandDirective Test Suite', function () {
         it('calculates the correct percantage of the progress element', function () {
 
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandItemDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandItemDirectiveController',
                 {
                     $scope: scope,
                     $filter: filter,
@@ -170,7 +170,7 @@ describe('IndicatorBandDirective Test Suite', function () {
                 indicatorValue: 0
             };
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandItemDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandItemDirectiveController',
                 {
                     $scope: scope,
                     $filter: filter,
@@ -201,7 +201,7 @@ describe('IndicatorBandDirective Test Suite', function () {
                 indicatorValue: 0
             };
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandItemDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandItemDirectiveController',
                 {
                     $scope: scope,
                     $filter: filter,
@@ -234,7 +234,7 @@ describe('IndicatorBandDirective Test Suite', function () {
 
         it('creates a default criteriaFunction if no criteriaFunction is provided', function () {
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
                 {
                     $scope: scope
                 }
@@ -277,7 +277,7 @@ describe('IndicatorBandDirective Test Suite', function () {
                 }]
             };
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
                 {
                     $scope: scope
                 }
@@ -329,7 +329,7 @@ describe('IndicatorBandDirective Test Suite', function () {
 
         it('broadcasts an event when adding a new interval', function () {
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
                 {
                     $scope: scope
                 }
@@ -342,7 +342,7 @@ describe('IndicatorBandDirective Test Suite', function () {
 
         it('listens to band-item-removed events when an interval is deleted', function () {
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
                 {
                     $scope: scope
                 }
@@ -366,7 +366,7 @@ describe('IndicatorBandDirective Test Suite', function () {
 
         it('broadcasts band-item-removed event when an interval is deleted', function () {
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
                 {
                     $scope: scope
                 }
@@ -410,7 +410,7 @@ describe('IndicatorBandDirective Test Suite', function () {
 
         it('creates a default criteriaFunction if no criteriaFunction is provided', function () {
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
                 {
                     $scope: scope
                 }
@@ -453,7 +453,7 @@ describe('IndicatorBandDirective Test Suite', function () {
                 }]
             };
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
                 {
                     $scope: scope
                 }
@@ -505,7 +505,7 @@ describe('IndicatorBandDirective Test Suite', function () {
 
         it('broadcasts an event when adding a new interval', function () {
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
                 {
                     $scope: scope
                 }
@@ -518,7 +518,7 @@ describe('IndicatorBandDirective Test Suite', function () {
 
         it('listens to band-item-removed events when an interval is deleted', function () {
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
                 {
                     $scope: scope
                 }
@@ -542,7 +542,7 @@ describe('IndicatorBandDirective Test Suite', function () {
 
         it('broadcasts band-item-removed event when an interval is deleted', function () {
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
                 {
                     $scope: scope
                 }

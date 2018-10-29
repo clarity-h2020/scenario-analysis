@@ -617,7 +617,7 @@ describe('RelationAnalysisChartDirective Test Suite', function () {
                 $provide.constant('CRISMA_ICMM_API', 'http://localhost:8890');
             });
             module('de.cismet.crisma.ICMM.Worldstates');
-            module('eu.crismaproject.worldstateAnalysis.directives');
+            module('eu.myclimateservice.csis.scenario-analysis.directives');
             module('templates/relationAnalysisChartTemplate.html', 'templates/indicatorCriteriaAxisChooserTemplate.html');
         });
 
@@ -650,7 +650,7 @@ describe('RelationAnalysisChartDirective Test Suite', function () {
                     '$controller',
                     '$rootScope',
                     'de.cismet.crisma.ICMM.Worldstates',
-                    'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
+                    'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
                     function (c, r, wsService,criteriaService) {
                         scope = r.$new();
                         controller = c;
@@ -684,7 +684,7 @@ describe('RelationAnalysisChartDirective Test Suite', function () {
             });
             module('de.cismet.crisma.ICMM.Worldstates');
             module('ngTable');
-            module('eu.crismaproject.worldstateAnalysis.controllers');
+            module('eu.myclimateservice.csis.scenario-analysis.controllers');
         });
 
         beforeEach(inject(
@@ -710,7 +710,7 @@ describe('RelationAnalysisChartDirective Test Suite', function () {
             xAxis = {"name": "Number of dead", "icon": "images/flower_dead_16.png", "isGroup": false};
             yAxis = {"name": "Number of dead", "icon": "images/flower_dead_16.png", "isGroup": false};
             myController = controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.RelationAnalysisChartDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.RelationAnalysisChartDirectiveController',
                 {
                     $scope: scope,
                     WorldstateService: WorldstateService
@@ -735,7 +735,7 @@ describe('RelationAnalysisChartDirective Test Suite', function () {
             xAxis = {"name": "Number of dead", "icon": "images/flower_dead_16.png", "isGroup": false};
             yAxis = {"name": "Number of dead", "icon": "images/flower_dead_16.png", "isGroup": false};
             myController = controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.RelationAnalysisChartDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.RelationAnalysisChartDirectiveController',
                 {
                     $scope: scope,
                     WorldstateService: WorldstateService
@@ -760,7 +760,7 @@ describe('RelationAnalysisChartDirective Test Suite', function () {
             xAxis = {"name": "Number of dead", "icon": "images/flower_dead_16.png", "isGroup": false};
             yAxis = {"name": "Lost buildings", "icon": "images/flower_dead_16.png", "isGroup": false};
             myController = controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.RelationAnalysisChartDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.RelationAnalysisChartDirectiveController',
                 {
                     $scope: scope,
                     WorldstateService: WorldstateService
@@ -785,7 +785,7 @@ describe('RelationAnalysisChartDirective Test Suite', function () {
             xAxis = {"name": "Number of dead", "icon": "images/flower_dead_16.png", "isGroup": false};
             yAxis = {"name": "Lost buildings", "icon": "images/flower_dead_16.png", "isGroup": false};
             myController = controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.RelationAnalysisChartDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.RelationAnalysisChartDirectiveController',
                 {
                     $scope: scope,
                     WorldstateService: WorldstateService
@@ -815,7 +815,7 @@ describe('RelationAnalysisChartDirective Test Suite', function () {
             xAxis = {"name": "Number of dead", "icon": "images/flower_dead_16.png", "isGroup": false};
             yAxis = {"name": "Lost buildings", "icon": "images/flower_dead_16.png", "isGroup": false};
             myController = controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.RelationAnalysisChartDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.RelationAnalysisChartDirectiveController',
                 {
                     $scope: scope,
                     WorldstateService: WorldstateService

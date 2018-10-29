@@ -255,8 +255,8 @@ describe('Indicator Bar Chart Test Suite', function () {
                 $provide.constant('CRISMA_ICMM_API', 'http://localhost:8890');
             });
             module('de.cismet.crisma.ICMM.Worldstates');
-            module('eu.crismaproject.worldstateAnalysis.controllers');
-            module('eu.crismaproject.worldstateAnalysis.services');
+            module('eu.myclimateservice.csis.scenario-analysis.controllers');
+            module('eu.myclimateservice.csis.scenario-analysis.services');
         });
         beforeEach(inject(
             [
@@ -277,7 +277,7 @@ describe('Indicator Bar Chart Test Suite', function () {
             var chartModels;
             scope.worldstates = ws;
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.indicatorBarChartDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.indicatorBarChartDirectiveController',
                 {
                     $scope: scope,
                     WorldstateService: WorldstateService,
@@ -373,7 +373,7 @@ describe('Indicator Bar Chart Test Suite', function () {
             var chartModels;
             scope.worldstates = ws2;
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.indicatorBarChartDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.indicatorBarChartDirectiveController',
                 {
                     $scope: scope,
                     WorldstateService: WorldstateService,

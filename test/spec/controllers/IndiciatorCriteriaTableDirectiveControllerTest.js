@@ -619,8 +619,8 @@ describe('IndiciatorCriteriaTableDirective Test Suite', function () {
             });
             module('de.cismet.crisma.ICMM.Worldstates');
             module('ngTable');
-            module('eu.crismaproject.worldstateAnalysis.directives');
-            module('eu.crismaproject.worldstateAnalysis.services');
+            module('eu.myclimateservice.csis.scenario-analysis.directives');
+            module('eu.myclimateservice.csis.scenario-analysis.services');
             module('templates/indicatorCriteriaTableTemplate.html', 'templates/nopager.html', 'templates/indicatorCriteriaTableHeader.html');
         });
 
@@ -699,8 +699,8 @@ describe('IndiciatorCriteriaTableDirective Test Suite', function () {
             });
             module('de.cismet.crisma.ICMM.Worldstates');
             module('ngTable');
-            module('eu.crismaproject.worldstateAnalysis.controllers');
-            module('eu.crismaproject.worldstateAnalysis.services');
+            module('eu.myclimateservice.csis.scenario-analysis.controllers');
+            module('eu.myclimateservice.csis.scenario-analysis.services');
         });
 
         beforeEach(inject(
@@ -710,7 +710,7 @@ describe('IndiciatorCriteriaTableDirective Test Suite', function () {
                 '$filter',
                 'de.cismet.crisma.ICMM.Worldstates',
                 'ngTableParams',
-                'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
+                'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
                 function (c, r, f, wsService, tp, criteriaCalculator) {
                     scope = r.$new();
                     controller = c;
@@ -731,7 +731,7 @@ describe('IndiciatorCriteriaTableDirective Test Suite', function () {
             scope.criteriaFunction = cf;
 
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorCriteriaTableDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorCriteriaTableDirectiveController',
                 {
                     $scope: scope,
                     $ilter: filter,
@@ -776,7 +776,7 @@ describe('IndiciatorCriteriaTableDirective Test Suite', function () {
             scope.criteriaFunction = cf;
 
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.IndicatorCriteriaTableDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorCriteriaTableDirectiveController',
                 {
                     $scope: scope,
                     $ilter: filter,

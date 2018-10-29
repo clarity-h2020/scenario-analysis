@@ -1,7 +1,7 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
     ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.FileContextProviderDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.FileContextProviderDirectiveController',
     [
         '$scope',
         'de.cismet.crisma.ICMM.services.icmm',

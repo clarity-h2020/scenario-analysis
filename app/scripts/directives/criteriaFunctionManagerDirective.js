@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.directives'
+    'eu.myclimateservice.csis.scenario-analysis.directives'
 ).directive(
     'criteriaFunctionManager',
     [
@@ -16,7 +16,7 @@ angular.module(
                 scope: scope,
                 restrict: 'E',
                 templateUrl: 'templates/criteriaFunctionManagerTemplate.html',
-                controller: 'eu.crismaproject.worldstateAnalysis.controllers.CriteriaFunctionManagerDirectiveController'
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.CriteriaFunctionManagerDirectiveController'
             };
         }
     ]

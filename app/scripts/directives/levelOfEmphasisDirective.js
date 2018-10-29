@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.directives'
+    'eu.myclimateservice.csis.scenario-analysis.directives'
 ).directive(
     'levelOfEmphasis',
     [
@@ -20,7 +20,7 @@ angular.module(
                 scope: scope,
                 restrict: 'E',
                 templateUrl: 'templates/levelOfEmphasisTemplate.html',
-                controller: 'eu.crismaproject.worldstateAnalysis.controllers.levelOfEmphasisDirectiveController'
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.levelOfEmphasisDirectiveController'
             };
         }
     ]

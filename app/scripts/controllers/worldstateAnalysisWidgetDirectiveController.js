@@ -1,7 +1,7 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
     ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.WorldstateAnalysisWidgetDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.WorldstateAnalysisWidgetDirectiveController',
     [
         '$scope',
         'de.cismet.crisma.ICMM.Worldstates',

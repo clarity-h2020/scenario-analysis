@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.directives'
+    'eu.myclimateservice.csis.scenario-analysis.directives'
 ).directive(
     'worldstateRankingTable',
     [
@@ -19,7 +19,7 @@ angular.module(
                 scope: scope,
                 restrict: 'E',
                 templateUrl:'templates/worldstateRankingTableTemplate.html',
-                controller: 'eu.crismaproject.worldstateAnalysis.controllers.worldstateRankingTableDirectiveController'
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.worldstateRankingTableDirectiveController'
             };
         }
     ]

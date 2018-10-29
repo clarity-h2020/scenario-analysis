@@ -1,11 +1,11 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
     ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController',
     [
         '$scope',
         '$timeout',
-        'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
+        'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
         function ($scope, $timeout, ccs) {
             'use strict';
             var initData, criteriaSortFunction;

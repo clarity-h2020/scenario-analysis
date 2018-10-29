@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.demoApp.controllers',
+    'eu.myclimateservice.csis.scenario-analysis.demoApp.controllers',
     [
         'de.cismet.crisma.ICMM.Worldstates',
         'de.cismet.cids.rest.collidngNames.Nodes',
@@ -9,15 +9,16 @@ angular.module(
         'ui.bootstrap.tpls'
     ]
     ).controller(
-    'eu.crismaproject.worldstateAnalysis.demoApp.controllers.MainController',
+    'eu.myclimateservice.csis.scenario-analysis.demoApp.controllers.MainController',
     [
         '$window',
         '$scope',
+        '$resource',
         '$timeout',
-        'eu.crismaproject.worldstateAnalysis.services.IcmmPersistanceService',
-        'eu.crismaproject.worldstateAnalysis.services.FilesPersistanceService',
+        'eu.myclimateservice.csis.scenario-analysis.services.IcmmPersistanceService',
+        'eu.myclimateservice.csis.scenario-analysis.services.FilesPersistanceService',
         'ngDialog',
-        function ($window, $scope, $timeout, IcmmPersistanceService, FilesPersistanceService, ngDialog) {
+        function ($window, $scope, $resource, $timeout, IcmmPersistanceService, FilesPersistanceService, ngDialog) {
             'use strict';
             
             var parent = window.seamless.connect();
@@ -238,6 +239,21 @@ angular.module(
                 });
             };
             
+//                $scope.screenshot = function (elementId, foreignObjectRendering = true) {
+//                    $window.html2canvas(document.getElementById(elementId), {async: true, allowTaint: true, logging: true, useCORS: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
+//                        document.body.appendChild(canvas);
+//                    });
+//                };
+                
+                $scope.screenshot = function (elementId, foreignObjectRendering = false) {
+                    $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
+                        //document.body.appendChild(canvas);
+                        var dataURL = canvas.toDataURL();
+                        
+                    });
+                };
+
+
             $scope.switchToFilesTab = function () {
                 console.log("switchToFilesTab");
                 $scope.icmmTabVisible = false;

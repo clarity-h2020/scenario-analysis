@@ -690,8 +690,8 @@ describe('Worldstate Ranking Table Test Suite', function () {
             module('de.cismet.crisma.ICMM.Worldstates');
             module('ngTable');
             module('ngDialog');
-            module('eu.crismaproject.worldstateAnalysis.directives');
-            module('eu.crismaproject.worldstateAnalysis.services');
+            module('eu.myclimateservice.csis.scenario-analysis.directives');
+            module('eu.myclimateservice.csis.scenario-analysis.services');
             module('templates/worldstateRankingTableTemplate.html','templates/rankingTableHeader.html');
         });
         // Store references to $rootScope and $compile
@@ -765,8 +765,8 @@ describe('Worldstate Ranking Table Test Suite', function () {
             });
             module('de.cismet.crisma.ICMM.Worldstates');
             module('ngTable');
-            module('eu.crismaproject.worldstateAnalysis.controllers');
-            module('eu.crismaproject.worldstateAnalysis.services');
+            module('eu.myclimateservice.csis.scenario-analysis.controllers');
+            module('eu.myclimateservice.csis.scenario-analysis.services');
         });
         beforeEach(inject(
             [
@@ -775,8 +775,8 @@ describe('Worldstate Ranking Table Test Suite', function () {
                 '$filter',
                 'ngTableParams',
                 'de.cismet.crisma.ICMM.Worldstates',
-                'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
-                'eu.crismaproject.worldstateAnalysis.services.AnalysisService',
+                'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
+                'eu.myclimateservice.csis.scenario-analysis.services.AnalysisService',
                 'ngDialog',
                 function (c, r, f, wsService, tp, criteriaCalculator, as, dialog) {
                     scope = r.$new();
@@ -795,7 +795,7 @@ describe('Worldstate Ranking Table Test Suite', function () {
             var columns, rows;
             scope.worldstates = [];
             controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.worldstateRankingTableDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.worldstateRankingTableDirectiveController',
                 {
                     $scope: scope,
                     $ilter: filter,
@@ -914,7 +914,7 @@ describe('Worldstate Ranking Table Test Suite', function () {
             scope.criteriaFunction = cf;
             scope.showIndicators = true;
             ctrl = controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.worldstateRankingTableDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.worldstateRankingTableDirectiveController',
                 {
                     $scope: scope,
                     $ilter: filter,
@@ -986,7 +986,7 @@ describe('Worldstate Ranking Table Test Suite', function () {
             scope.criteriaFunction = cf;
             scope.showIndicators = true;
             ctrl = controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.worldstateRankingTableDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.worldstateRankingTableDirectiveController',
                 {
                     $scope: scope,
                     $ilter: filter,
@@ -1109,7 +1109,7 @@ describe('Worldstate Ranking Table Test Suite', function () {
                 }];
 
             ctrl = controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.worldstateRankingTableDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.worldstateRankingTableDirectiveController',
                 {
                     $scope: scope,
                     $ilter: filter,
@@ -1165,7 +1165,7 @@ describe('Worldstate Ranking Table Test Suite', function () {
 
 
             ctrl = controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.worldstateRankingTableDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.worldstateRankingTableDirectiveController',
                 {
                     $scope: scope,
                     $ilter: filter,
@@ -1222,7 +1222,7 @@ describe('Worldstate Ranking Table Test Suite', function () {
 
 
             ctrl = controller(
-                'eu.crismaproject.worldstateAnalysis.controllers.worldstateRankingTableDirectiveController',
+                'eu.myclimateservice.csis.scenario-analysis.controllers.worldstateRankingTableDirectiveController',
                 {
                     $scope: scope,
                     $ilter: filter,

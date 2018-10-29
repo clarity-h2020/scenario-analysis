@@ -566,13 +566,13 @@ describe('CriteriaRadarChartDirective Test Suite', function () {
             });
             module('de.cismet.crisma.ICMM.Worldstates');
             
-            module('eu.crismaproject.worldstateAnalysis.directives',function($provide){
+            module('eu.myclimateservice.csis.scenario-analysis.directives',function($provide){
               var CriteriaCalculationMock = {
                   calculateCriteria : function(){
                       return 100;
                   }
               };  
-              $provide.value('eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',CriteriaCalculationMock);
+              $provide.value('eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',CriteriaCalculationMock);
             });
 
         });
@@ -583,7 +583,7 @@ describe('CriteriaRadarChartDirective Test Suite', function () {
             [
                 '$compile',
                 '$rootScope',
-                'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
+                'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
                 function (compile, rootScope, criteriaService) {
                     $compile = compile;
                     $rootScope = rootScope;
@@ -665,7 +665,7 @@ describe('CriteriaRadarChartDirective Test Suite', function () {
                         value: 100
                     }].sort(compare)];
 
-            $controller('eu.crismaproject.worldstateAnalysis.controllers.CriteriaRadarChartDirectiveController', {
+            $controller('eu.myclimateservice.csis.scenario-analysis.controllers.CriteriaRadarChartDirectiveController', {
                 $scope: scope,
                 ccs: critCalcService
             });
@@ -731,7 +731,7 @@ describe('CriteriaRadarChartDirective Test Suite', function () {
 
             chartModelRef = [chartModelRef, chartModelRef, chartModelRef];
 
-            $controller('eu.crismaproject.worldstateAnalysis.controllers.CriteriaRadarChartDirectiveController', {
+            $controller('eu.myclimateservice.csis.scenario-analysis.controllers.CriteriaRadarChartDirectiveController', {
                 $scope: scope,
                 ccs: critCalcService
             });

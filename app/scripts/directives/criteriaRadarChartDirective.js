@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.directives'
+    'eu.myclimateservice.csis.scenario-analysis.directives'
 ).directive(
     'criteriaRadar',
     [
@@ -183,7 +183,7 @@ angular.module(
                 scope: scope,
                 restrict: 'AE',
                 link: linkFunction,
-                controller: 'eu.crismaproject.worldstateAnalysis.controllers.CriteriaRadarChartDirectiveController'
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.CriteriaRadarChartDirectiveController'
             };
         }
     ]

@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.directives'
+    'eu.myclimateservice.csis.scenario-analysis.directives'
 ).directive(
     'decisionStrategy',
     [
@@ -17,7 +17,7 @@ angular.module(
                 scope: scope,
                 restrict: 'E',
                 templateUrl: 'templates/decisionStrategyTemplate.html',
-                controller: 'eu.crismaproject.worldstateAnalysis.controllers.DecisionStrategyDirectiveController'
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.DecisionStrategyDirectiveController'
             };
         }
     ]

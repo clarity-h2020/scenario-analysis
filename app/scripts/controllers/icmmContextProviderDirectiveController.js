@@ -1,14 +1,14 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
     ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.IcmmContextProviderDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.IcmmContextProviderDirectiveController',
     [
         '$scope',
         'de.cismet.collidingNameService.Nodes',
         'de.cismet.crisma.ICMM.Worldstates',
         'de.cismet.crisma.ICMM.services.icmm',
-        'eu.crismaproject.worldstateAnalysis.services.CriteriaFunction',
-        'eu.crismaproject.worldstateAnalysis.services.DecisionStrategies',
+        'eu.myclimateservice.csis.scenario-analysis.services.CriteriaFunction',
+        'eu.myclimateservice.csis.scenario-analysis.services.DecisionStrategies',
         'de.cismet.crisma.ICMM.config.IcmmSettings',
         function ($scope, Nodes, Worldstates, Icmm, CF, DS, IcmmSettings) {
             'use strict';

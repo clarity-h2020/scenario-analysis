@@ -1,14 +1,14 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
     ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.worldstateRankingTableDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.worldstateRankingTableDirectiveController',
     [
         '$scope',
         '$filter',
         'ngTableParams',
         'de.cismet.crisma.ICMM.Worldstates',
-        'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
-        'eu.crismaproject.worldstateAnalysis.services.AnalysisService',
+        'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
+        'eu.myclimateservice.csis.scenario-analysis.services.AnalysisService',
         'ngDialog',
         function ($scope, $filter, NgTableParams, Worldstates, ccs, as, ngDialog) {
             'use strict';

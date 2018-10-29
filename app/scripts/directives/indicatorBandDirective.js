@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.directives'
+    'eu.myclimateservice.csis.scenario-analysis.directives'
     ).directive(
     'indicatorBand',
     [
@@ -15,7 +15,7 @@ angular.module(
                 scope: scope,
                 restrict: 'E',
                 templateUrl: 'templates/indicatorBandTemplate.html',
-                controller: 'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandDirectiveController'
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandDirectiveController'
             };
         }
     ]
@@ -40,7 +40,7 @@ angular.module(
                 scope: scope,
                 restrict: 'E',
                 templateUrl: 'templates/indicatorBandItemTemplate.html',
-                controller: 'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandItemDirectiveController',
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandItemDirectiveController',
                 replace: true,
                 link: function (scope, elem, attrs) {
                     var popover = $popover(elem.find('#popover-target'), {

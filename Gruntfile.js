@@ -15,7 +15,7 @@ module.exports = function (grunt) {
      * ===========================================================================================================
      */
     // TODO: find a way for more convenient configuration
-    directivesMainModuleName = 'eu.crismaproject.worldstateAnalysis.directives';
+    directivesMainModuleName = 'eu.myclimateservice.csis.scenario-analysis.directives';
 
     customCopy = {
         preserveTimestamp: true,

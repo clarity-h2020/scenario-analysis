@@ -1,4 +1,4 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.services',
+    'eu.myclimateservice.csis.scenario-analysis.services',
     ['de.cismet.crisma.ICMM.config']
 );

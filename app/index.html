@@ -27,14 +27,14 @@
         <!-- seamless.js -->
         <script src="bower_components/seamless/build/seamless.child.js" type="text/javascript"></script>
     </head>
-    <body ng-app="eu.crismaproject.worldstateAnalysis.demoApp">
+    <body ng-app="eu.myclimateservice.csis.scenario-analysis.demoApp">
         <!--[if lt IE 7]>
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div class="container" ng-controller="eu.crismaproject.worldstateAnalysis.demoApp.controllers.MainController">
-            <div class="row" style="margin-bottom: 20px;">
+        <div class="container" name="application" ng-controller="eu.myclimateservice.csis.scenario-analysis.demoApp.controllers.MainController">
+            <div class="row" name= "row" style="margin-bottom: 20px;">
                 <div class="col-lg-12">
                     <tabset>
                         <tab select="switchToIcmmTab();filesTabCollapsed=false" active="icmmTabActive">
@@ -232,13 +232,18 @@
                                                             'padding-left'
                                                                 : forCriteriaTable? '0px': '19px'}">Criteria</span></a></li>
                                                             </ul>
+                                                            <!--ng-disabled="!container.worldstates || !container.worldstates.length" -->
+                                                            <button type="button" class="btn btn-sm btn-primary" 
+                                                                    ng-click="screenshot('indicator-criteria-table');">
+                                                                Include in Report</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div collapse="indicatorCriteriaTableCollapsed"
                                                  class="panel-body">
-                                                <indicator-criteria-table worldstates='container.worldstates' 
+                                                <indicator-criteria-table id="indicator-criteria-table"
+                                                                          worldstates='container.worldstates' 
                                                                           for-criteria='forCriteriaTable'
                                                                           criteria-function="container.selectedCriteriaFunction"
                                                                           >
@@ -248,8 +253,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h3 style="display:inline" class="panel-title"> 
+                                            <div class="panel-heading"
+                                                 style="display:table;width:100%">
+                                                <h3 style="display:table-cell;vertical-align: middle" class="panel-title"> 
                                                     <a style="color:#000" 
                                                        ng-click="indicatorBarChartsCollapsed = !indicatorBarChartsCollapsed">
                                                         <i ng-if="!indicatorBarChartsCollapsed" class="glyphicon glyphicon-chevron-up"></i>
@@ -257,10 +263,16 @@
                                                         Indicator bar charts
                                                     </a>
                                                 </h3>
+                                                <div class="btn-group pull-right">
+                                                    <button type="button" class="btn btn-sm btn-primary" 
+                                                            ng-disabled="!container.worldstates || !container.worldstates.length"
+                                                            ng-click="screenshot('indicator-bar-charts');">
+                                                        Include in Report</button>
+                                                </div>
                                             </div>
                                             <div collapse="indicatorBarChartsCollapsed"
                                                  class="panel-body" >
-                                                <indicator-bar-charts
+                                                <indicator-bar-charts id="indicator-bar-charts"
                                                     worldstates="container.worldstates">
                                                 </indicator-bar-charts>
                                             </div>
@@ -290,11 +302,16 @@
                                                             'padding-left'
                                                                 : isCriteria? '0px': '19px'}">Criteria</span></a></li>
                                                     </ul>
+                                                    <button type="button" class="btn btn-sm btn-primary" 
+                                                            ng-disabled="!container.worldstates || !container.worldstates.length"
+                                                            ng-click="screenshot('relation-analysis-chart-diagram');">
+                                                        Include in Report</button>
                                                 </div>
                                             </div>
                                             <div collapse="relationAnalysisChartCollapsed"
                                                  class="panel-body">
-                                                <relation-analysis-chart style="padding-left:50px" height="350" 
+                                                <relation-analysis-chart id="relation-analysis-chart-diagram"
+                                                                         style="padding-left:50px" height="350" 
                                                                          for-criteria='isCriteria' 
                                                                          worldstates="container.worldstates"
                                                                          criteria-function="container.selectedCriteriaFunction"
@@ -496,6 +513,7 @@
         <script src="bower_components/nvd3/nv.d3.js"></script>
         <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
         <script src="bower_components/ngDialog/js/ngDialog.js"></script>
+        <script src="bower_components/html2canvas/index.js" type="text/javascript"></script>
 
         <!-- build:js() -->
         <script src="scripts/app.js"></script>
@@ -546,7 +564,7 @@
 
         <!-- demo only -->
         <script>
-            angular.module('eu.crismaproject.worldstateAnalysis.demoApp').config(
+            angular.module('eu.myclimateservice.csis.scenario-analysis.demoApp').config(
             [
                     '$provide',
                     function ($provide) {

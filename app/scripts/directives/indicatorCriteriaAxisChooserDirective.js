@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.directives'
+    'eu.myclimateservice.csis.scenario-analysis.directives'
 ).directive(
     'indicatorCriteriaAxisChooser',
     [
@@ -18,7 +18,7 @@ angular.module(
                 scope: scope,
                 restrict: 'E',
                 templateUrl: 'templates/indicatorCriteriaAxisChooserTemplate.html',
-                controller: 'eu.crismaproject.worldstateAnalysis.controllers.IndicatorCriteriaAxisChooserDirectiveController'
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorCriteriaAxisChooserDirectiveController'
             };
         }
     ]

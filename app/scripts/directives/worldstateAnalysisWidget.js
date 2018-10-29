@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.directives'
+    'eu.myclimateservice.csis.scenario-analysis.directives'
     ).directive(
     'worldstateAnalysisWidget',
     [
@@ -19,7 +19,7 @@ angular.module(
                 scope: scope,
                 restrict: 'E',
                 templateUrl:'templates/worldstateAnalysisWidgetTemplate.html',
-                controller: 'eu.crismaproject.worldstateAnalysis.controllers.WorldstateAnalysisWidgetDirectiveController'
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.WorldstateAnalysisWidgetDirectiveController'
             };
         }
     ]

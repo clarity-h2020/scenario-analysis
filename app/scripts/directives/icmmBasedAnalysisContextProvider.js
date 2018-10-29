@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.directives'
+    'eu.myclimateservice.csis.scenario-analysis.directives'
     ).directive(
     'icmmContextProvider',
     [
@@ -19,7 +19,7 @@ angular.module(
                 scope: scope,
                 restrict: 'E',
                 templateUrl: 'templates/icmmContextProviderTemplate.html',
-                controller: 'eu.crismaproject.worldstateAnalysis.controllers.IcmmContextProviderDirectiveController'
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.IcmmContextProviderDirectiveController'
             };
         }
     ]

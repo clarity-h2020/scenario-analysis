@@ -1,11 +1,11 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
 ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.RelationAnalysisChartDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.RelationAnalysisChartDirectiveController',
     [
         '$scope',
         'de.cismet.crisma.ICMM.Worldstates',
-        'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
+        'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
         function ($scope, WorldstateService, ccs) {
             'use strict';
 

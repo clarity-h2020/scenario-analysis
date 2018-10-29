@@ -26,11 +26,11 @@ describe('CriteriaCalculationService Test Suite', function () {
     }
 
     beforeEach(function () {
-        module('eu.crismaproject.worldstateAnalysis.services');
+        module('eu.myclimateservice.csis.scenario-analysis.services');
     });
 
     beforeEach(inject([
-        'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
+        'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
         function (ccs) {
             criteriaCalcService = ccs;
         }

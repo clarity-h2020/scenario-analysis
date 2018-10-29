@@ -11,12 +11,13 @@ angular.module(
     ).controller(
     'eu.crismaproject.worldstateAnalysis.demoApp.controllers.MainController',
     [
+        '$window',
         '$scope',
         '$timeout',
         'eu.crismaproject.worldstateAnalysis.services.IcmmPersistanceService',
         'eu.crismaproject.worldstateAnalysis.services.FilesPersistanceService',
         'ngDialog',
-        function ($scope, $timeout, IcmmPersistanceService, FilesPersistanceService, ngDialog) {
+        function ($window, $scope, $timeout, IcmmPersistanceService, FilesPersistanceService, ngDialog) {
             'use strict';
             
             var parent = window.seamless.connect();
@@ -143,7 +144,9 @@ angular.module(
                 });
             }
 
-            $scope.derigsterIcmmWsWatch = watchIcmmWs();
+            // $watch returns a deregistration function!!!!!!!
+            // call this function when switching to new tab!
+            $scope.deregisterIcmmWsWatch = watchIcmmWs();
 
             function watchFilesWs () {
                 return $scope.$watch('container.worldstatesFiles', function () {
@@ -158,7 +161,7 @@ angular.module(
                 });
             }
 
-            $scope.derigsterRefWsIcmmWatch = watchRefWsIcmm();
+            $scope.deregisterRefWsIcmmWatch = watchRefWsIcmm();
 
             function watchRefWsFiles () {
                 return $scope.$watch('container.refWorldstatesFiles', function () {
@@ -174,7 +177,7 @@ angular.module(
                 });
             }
 
-            $scope.derigsterCfIcmm = watchCfIcmm();
+            $scope.deregisterCfIcmm = watchCfIcmm();
 
             function watchCfFiles () {
                 return $scope.$watch('container.criteriaFunctionsFiles', function () {
@@ -191,7 +194,7 @@ angular.module(
                 });
             }
 
-            $scope.derigsterDsIcmm = watchDsIcmm();
+            $scope.deregisterDsIcmm = watchDsIcmm();
 
             function watchDsFiles () {
                 return $scope.$watch('container.decisionStrategiesFiles', function () {
@@ -203,24 +206,25 @@ angular.module(
 
             $scope.icmmTabVisible = true;
             $scope.switchToIcmmTab = function () {
+                console.log("switchToIcmmTab");
                 $scope.icmmTabVisible = true;
-                if ($scope.derigsterFilesWsWatch) {
-                    $scope.derigsterFilesWsWatch();
+                if ($scope.deregisterFilesWsWatch) {
+                    $scope.deregisterFilesWsWatch();
                 }
-                $scope.derigsterIcmmWsWatch = watchIcmmWs();
-                if ($scope.derigsterRefWsFilesWatch) {
-                    $scope.derigsterRefWsFilesWatch();
+                $scope.deregisterIcmmWsWatch = watchIcmmWs();
+                if ($scope.deregisterRefWsFilesWatch) {
+                    $scope.deregisterRefWsFilesWatch();
                 }
-                $scope.derigsterRefWsIcmmWatch = watchRefWsIcmm();
+                $scope.deregisterRefWsIcmmWatch = watchRefWsIcmm();
 
-                if ($scope.derigsterCfFilesWatch) {
-                    $scope.derigsterCfFilesWatch();
+                if ($scope.deregisterCfFilesWatch) {
+                    $scope.deregisterCfFilesWatch();
                 }
-                $scope.derigsterCfIcmm = watchCfIcmm();
-                if ($scope.derigsterDsFilesWatch) {
-                    $scope.derigsterDsFilesWatch();
+                $scope.deregisterCfIcmm = watchCfIcmm();
+                if ($scope.deregisterDsFilesWatch) {
+                    $scope.deregisterDsFilesWatch();
                 }
-                $scope.derigsterDsIcmm = watchDsIcmm();
+                $scope.deregisterDsIcmm = watchDsIcmm();
 
 
                 $scope.icmmLastViewed = true;
@@ -233,22 +237,23 @@ angular.module(
                   myparam: 'child -> parent'
                 });
             };
-
-
+            
             $scope.switchToFilesTab = function () {
+                console.log("switchToFilesTab");
                 $scope.icmmTabVisible = false;
 
-                $scope.derigsterIcmmWsWatch();
-                $scope.derigsterFilesWsWatch = watchFilesWs();
+                console.log("$scope.deregisterIcmmWsWatch();");
+                $scope.deregisterIcmmWsWatch();
+                $scope.deregisterFilesWsWatch = watchFilesWs();
 
-                $scope.derigsterRefWsIcmmWatch();
-                $scope.derigsterRefWsFilesWatch = watchRefWsFiles();
+                $scope.deregisterRefWsIcmmWatch();
+                $scope.deregisterRefWsFilesWatch = watchRefWsFiles();
 
-                $scope.derigsterCfIcmm();
-                $scope.derigsterCfFilesWatch = watchCfFiles();
+                $scope.deregisterCfIcmm();
+                $scope.deregisterCfFilesWatch = watchCfFiles();
 
-                $scope.derigsterDsIcmm();
-                $scope.derigsterDsFilesWatch = watchDsFiles();
+                $scope.deregisterDsIcmm();
+                $scope.deregisterDsFilesWatch = watchDsFiles();
 
                 $scope.icmmLastViewed = true;
             };

@@ -15,7 +15,8 @@
     "karma*",
     "package.json"
   ],
-  "dependencies": {"seamless.js":"1.3.0",
+  "dependencies": {
+    "seamless.js": "1.3.0",
     "angular-strap": "2.1.3",
     "angular": "1.2.29",
     "angular-resource": "1.2.29",
@@ -36,7 +37,8 @@
     "ngDialog": "0.2.14",
     "radar-chart-d3": "1.2.1",
     "angular-bootstrap": "0.11.2",
-    "seamless": "seamless.js#1.3.0"
+    "seamless": "seamless.js#1.3.0",
+    "html2canvas": "https://github.com/niklasvh/html2canvas/releases/download/v1.0.0-alpha.12/html2canvas.js"
   },
   "devDependencies": {
     "angular-mocks": "1.2.29",
@@ -49,6 +51,7 @@
     "angular": "1.2.29",
     "jquery": "2.1.4",
     "angular-resource": "1.2.29",
-    "dynatree": "1.2.8"
+    "dynatree": "1.2.8",
+    "html2canvas": "v1.0.0-alpha.12"
   }
 }

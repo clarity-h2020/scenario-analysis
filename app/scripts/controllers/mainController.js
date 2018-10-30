@@ -30,6 +30,8 @@ angular.module(
                     // Print out the data that was received.
                     console.log('child recieved: ' + data + event);
                 });
+                
+                var drupal = 'http://roberto:8080';
 
                 var createChartModels;
                 // we bind to the container object since the provider directives are nested in angular-bootstrap tabs
@@ -264,20 +266,21 @@ angular.module(
 //                    });
 //                };
 
-                $scope.screenshot = function (elementId, foreignObjectRendering = false) {
+                $scope.screenshot = function (elementId, imageName = elementId, foreignObjectRendering = false) {
                     $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
                         document.body.appendChild(canvas);
-                        var dataURL = canvas.toDataURL();
+                        var imageBlob = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, '');
+                        
                         //console.log(dataURL);
                         var payload = {
                             '_links': {
                                 'type': {
-                                    'href': 'http://roberto:8080/rest/type/file/image'
+                                    'href': drupal + '/rest/type/file/image'
                                 }
                             },
                             'filename': [
                                 {
-                                    'value': 'imagename.png'
+                                    'value': imageName
                                 }
                             ],
                             'filemime': [
@@ -287,17 +290,18 @@ angular.module(
                             ],
                             'data': [
                                 {
-                                    'value': dataURL
+                                    'value': imageBlob
                                 }
                             ]
                         };
 
-
-
-                        $http({method: 'GET', url: 'http://roberto:8080/rest/session/token'})
+                        /**
+                         * 1) get the X-CSRF-Token
+                         */
+                        $http({method: 'GET', url: drupal + '/rest/session/token'})
                                 .then(function tokenSuccessCallback(response) {
-                                    
-                                    var uploadImage = $resource('http://roberto:8080/entity/file',
+
+                                    var uploadImage = $resource(drupal + '/entity/file',
                                             {
                                                 _format: 'hal_json'
                                             }, {
@@ -312,11 +316,14 @@ angular.module(
 
                                     });
 
+                                    /**
+                                     * 2) POST the image and return the image id
+                                     */
                                     return uploadImage.store(payload)
                                             .$promise.then(function uploadImageSuccess(response) {
                                                 console.log('uploadImage finished');
                                                 // return the image id
-                                                return response.fid;
+                                                return response.fid[0];
                                             }, function uploadImageError(response) {
                                                 console.log('error uploading Image: ' + response);
                                                 $q.reject(response);
@@ -324,29 +331,36 @@ angular.module(
                                 }, function tokenErrorCallback(response) {
                                     console.log('error retrieving X-CSRF-Token: ' + response);
                                     $q.reject(response);
-                                }).then(function successCallback(response) {
-                                    console.log('image id: ' + response);
-                                }, 
-                                function errorCallback(response){
-                                    console.log('ERROR: ' + response);
-                                });
+                                }).then(
+                                /**
+                                 * 3) PATCH the report resource and add the image id
+                                 * @param {int} response the image id 
+                                 */
+                                        function successCallback(response) {
+                                            console.log('image id: ' + response);
+                                            
+                                            // TODO UPDATE Resource
+                                        },
+                                        function errorCallback(response) {
+                                            console.log('ERROR: ' + response);
+                                        });
 
-                        /*$http({
-                         url: 'http://roberto:8080/entity/file?_format=hal_json',
-                         method: "POST",
-                         data: payload
-                         })
-                         .then(function(response) {
-                         console.log('http uploadImage finished');
-                         console.log(response);
-                         }, 
-                         function(response) { // optional
-                         console.log('http uploadImage failed');
-                         console.log(response);
-                         });*/
-                    });
+                                /*$http({
+                                 url: 'http://roberto:8080/entity/file?_format=hal_json',
+                                 method: "POST",
+                                 data: payload
+                                 })
+                                 .then(function(response) {
+                                 console.log('http uploadImage finished');
+                                 console.log(response);
+                                 }, 
+                                 function(response) { // optional
+                                 console.log('http uploadImage failed');
+                                 console.log(response);
+                                 });*/
+                            });
                 };
 
             }
         ]
-        );
+                );

@@ -1,11 +1,11 @@
 <div class="row">
-    <div ng-show="!fileAPIAvailable" class="col-lg-12">
+    <div ng-show="!fileAPIAvailable" class="col-lg-12 col-md-12 col-sm-12">
         <div class="alert alert-danger">
             HTML 5 File APi is not available in your Browser. Please use a Browser that supports this.
             see also http://caniuse.com/#search=file%20api
         </div>
     </div>
-    <div ng-show="fileAPIAvailable" class="col-lg-12">
+    <div ng-show="fileAPIAvailable" class="col-lg-12 col-md-12 col-sm-12">
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel-group">
@@ -13,8 +13,8 @@
                         <div class="panel-heading" role="tab" >
                             <h4 class="panel-title">
                                 <a ng-click="indicatorFileCollapsed = !indicatorFileCollapsed">
-                                    <i ng-if="!indicatorFileCollapsed" class="glyphicon glyphicon-circle-arrow-up"></i>
-                                    <i ng-if="indicatorFileCollapsed" class="glyphicon glyphicon-circle-arrow-down"></i>
+                                    <i ng-if="!indicatorFileCollapsed" class="glyphicon glyphicon-chevron-up"></i>
+                                    <i ng-if="indicatorFileCollapsed" class="glyphicon glyphicon-chevron-down"></i>
                                     Indicator files
                                 </a>
                                 <span style="font-size: 14px" 
@@ -93,9 +93,9 @@
             </div>
         </div>
         <div ng-show="fileLoadError" class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="alert alert-danger">
-                    Something went wrong loading file: {{errorFile.name}}
+                    {{errorMessage}}
                 </div>
             </div>
         </div>
@@ -105,13 +105,13 @@
             </div>
         </div>
         <div class="row" style="margin-bottom: 20px;">
-            <div class="col-lg-2 col-md-2">
-                <span class="btn btn-default btn-file" ng-disabled="noIndicatorsLoaded">
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <span class="btn btn-default btn-file"  ng-disabled="noIndicatorsLoaded">
                     Choose a file
                     <input type="file" ng-disabled="noIndicatorsLoaded" file-input="cfConfigFile">
                 </span>
             </div>
-            <div class="col-lg-10 col-md-10">
+            <div class="col-lg-10 col-md-10 col-sm-10">
                 <div ng-if="noIndicatorsLoaded" 
                      class="alert alert-warning">
                     <i class="glyphicon glyphicon-info-sign"></i> 
@@ -135,13 +135,13 @@
 
         </div>
         <div class="row">
-            <div class="col-lg-2 col-md-2">
+            <div class="col-lg-2 col-md-2 col-sm-2">
                 <span class="btn btn-default btn-file" ng-disabled="noIndicatorsLoaded">
                     Choose a file
                     <input type="file" file-input="dsConfigFile" ng-disabled="noIndicatorsLoaded">
                 </span>
             </div>
-            <div class="col-lg-10 col-md-10">
+            <div class="col-lg-10 col-md-10 col-sm-10">
                 <div ng-if="noIndicatorsLoaded" 
                      class="alert alert-warning">
                     <i class="glyphicon glyphicon-info-sign"></i> 

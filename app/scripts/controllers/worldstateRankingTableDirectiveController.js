@@ -1,14 +1,14 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
     ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.worldstateRankingTableDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.worldstateRankingTableDirectiveController',
     [
         '$scope',
         '$filter',
         'ngTableParams',
         'de.cismet.crisma.ICMM.Worldstates',
-        'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
-        'eu.crismaproject.worldstateAnalysis.services.AnalysisService',
+        'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
+        'eu.myclimateservice.csis.scenario-analysis.services.AnalysisService',
         'ngDialog',
         function ($scope, $filter, NgTableParams, Worldstates, ccs, as, ngDialog) {
             'use strict';
@@ -182,19 +182,21 @@ angular.module(
 
             ctrl.removeWorldstateFromTableData = function (ws) {
                 var i, isRemoved = -1;
-                $scope.tableData.forEach(function (item, index) {
-                    if (angular.equals(item.ws, ws) && isRemoved === -1) {
-                        isRemoved = index;
-                    }
-                });
-                if (isRemoved !== -1) {
-                    $scope.tableData.splice(isRemoved, 1);
-                    for (i = isRemoved; i < $scope.tableData.length; i++) {
-                        $scope.tableData[i].rank--;
-                    }
+                if ($scope.tableData) {
+                    $scope.tableData.forEach(function (item, index) {
+                        if (angular.equals(item.ws, ws) && isRemoved === -1) {
+                            isRemoved = index;
+                        }
+                    });
+                    if (isRemoved !== -1) {
+                        $scope.tableData.splice(isRemoved, 1);
+                        for (i = isRemoved; i < $scope.tableData.length; i++) {
+                            $scope.tableData[i].rank--;
+                        }
 //                    ctrl.refreshTable();
-                } else {
-                    console.error('Could not remove worldstate ' + ws + ' from ranking table');
+                    } else {
+                        console.error('Could not remove worldstate ' + ws + ' from ranking table');
+                    }
                 }
             };
 
@@ -281,7 +283,7 @@ angular.module(
                     return;
                 }
                 ctrl.removeMissingWorldstatesFromTable(oldVal);
-                
+
                 if ($scope.worldstates && $scope.worldstates.length > 0 && $scope.criteriaFunction && $scope.decisionStrategy) {
                     ctrl.addMissingWoldstatesToTable(oldVal);
                     ctrl.refreshTable();
@@ -292,7 +294,7 @@ angular.module(
                 var ws, newTableItem, i = 0, newTableData = [];
                 if (!angular.equals(newVal, oldVal) && $scope.worldstates && $scope.worldstates.length > 0) {
                     if ($scope.criteriaFunction && $scope.decisionStrategy) {
-                        if (!$scope.tableData || $scope.tableData.length===0) {
+                        if (!$scope.tableData || $scope.tableData.length === 0) {
                             for (i = 0; i < $scope.worldstates.length; i++) {
                                 ctrl.addWorldstateToTableData($scope.worldstates[i]);
                             }

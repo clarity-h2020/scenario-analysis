@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.directives'
+    'eu.myclimateservice.csis.scenario-analysis.directives'
 ).directive(
     'fileInput',
     [

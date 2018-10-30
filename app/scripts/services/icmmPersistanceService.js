@@ -1,10 +1,10 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.services'
+    'eu.myclimateservice.csis.scenario-analysis.services'
     ).factory(
-    'eu.crismaproject.worldstateAnalysis.services.IcmmPersistanceService',
+    'eu.myclimateservice.csis.scenario-analysis.services.IcmmPersistanceService',
     [
-        'eu.crismaproject.worldstateAnalysis.services.CriteriaFunction',
-        'eu.crismaproject.worldstateAnalysis.services.DecisionStrategies',
+        'eu.myclimateservice.csis.scenario-analysis.services.CriteriaFunction',
+        'eu.myclimateservice.csis.scenario-analysis.services.DecisionStrategies',
         function (CF, DS) {
             'use strict';
             var persistCriteriaFunctions, persistDecisionStrategies;

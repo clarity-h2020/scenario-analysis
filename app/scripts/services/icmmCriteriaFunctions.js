@@ -1,7 +1,7 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.services'
+    'eu.myclimateservice.csis.scenario-analysis.services'
     ).factory(
-    'eu.crismaproject.worldstateAnalysis.services.CriteriaFunction',
+    'eu.myclimateservice.csis.scenario-analysis.services.CriteriaFunction',
     [
         '$resource',
         'de.cismet.crisma.ICMM.config.IcmmSettings',

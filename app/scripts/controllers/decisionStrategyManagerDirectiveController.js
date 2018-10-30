@@ -1,11 +1,11 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
     ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.decisionStrategyManagerDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.decisionStrategyManagerDirectiveController',
     [
         '$scope',
         'de.cismet.crisma.ICMM.Worldstates',
-        'eu.crismaproject.worldstateAnalysis.services.AnalysisService',
+        'eu.myclimateservice.csis.scenario-analysis.services.AnalysisService',
         function ($scope, Worldstates, AnalysisService) {
             'use strict';
             var onloadDsFile;

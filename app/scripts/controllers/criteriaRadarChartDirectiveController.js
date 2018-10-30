@@ -1,10 +1,10 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
 ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.CriteriaRadarChartDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.CriteriaRadarChartDirectiveController',
     [
         '$scope',
-        'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
+        'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
         function ($scope,ccs) {
             'use strict';
             $scope.legendItems = [];

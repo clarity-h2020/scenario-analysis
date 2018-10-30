@@ -1,10 +1,10 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
 ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.levelOfEmphasisDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.levelOfEmphasisDirectiveController',
     [
         '$scope',
-        'eu.crismaproject.worldstateAnalysis.services.AnalysisService',
+        'eu.myclimateservice.csis.scenario-analysis.services.AnalysisService',
         function ($scope, AnalysisService) {
             'use strict';
             var controller, owa, i;

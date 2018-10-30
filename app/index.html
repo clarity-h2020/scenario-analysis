@@ -23,16 +23,18 @@
         <!-- build:css() -->
         <link rel="stylesheet" href="styles/indicatorCriteriaTableDirective.css">
         <!-- endbuild -->
-
+        
+        <!-- seamless.js -->
+        <script src="bower_components/seamless/build/seamless.child.js" type="text/javascript"></script>
     </head>
-    <body ng-app="eu.crismaproject.worldstateAnalysis.demoApp">
+    <body ng-app="eu.myclimateservice.csis.scenario-analysis.demoApp">
         <!--[if lt IE 7]>
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div class="container" ng-controller="eu.crismaproject.worldstateAnalysis.demoApp.controllers.MainController">
-            <div class="row" style="margin-bottom: 20px;">
+        <div class="container" name="application" ng-controller="eu.myclimateservice.csis.scenario-analysis.demoApp.controllers.MainController">
+            <div class="row" name= "row" style="margin-bottom: 20px;">
                 <div class="col-lg-12">
                     <tabset>
                         <tab select="switchToIcmmTab();filesTabCollapsed=false" active="icmmTabActive">
@@ -176,7 +178,7 @@
                                                 </h3>
                                                 <div class="pull-right">
                                                     <div class="input-group">
-                                                        <div class="input-group-btn " style="display: block" ng-click="persistDecisionStrategies()">
+                                                        <div class="input-group-btn " style="display: block">
                                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="disabled">
                                                                 Change Mode <span class="caret"></span>
                                                             </button>
@@ -230,13 +232,18 @@
                                                             'padding-left'
                                                                 : forCriteriaTable? '0px': '19px'}">Criteria</span></a></li>
                                                             </ul>
+                                                            <button type="button" class="btn btn-sm btn-primary" 
+                                                                    ng-disabled="!container.worldstates || !container.worldstates.length"
+                                                                    ng-click="screenshot('indicator-criteria-table');">
+                                                                Include in Report</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div collapse="indicatorCriteriaTableCollapsed"
                                                  class="panel-body">
-                                                <indicator-criteria-table worldstates='container.worldstates' 
+                                                <indicator-criteria-table id="indicator-criteria-table"
+                                                                          worldstates='container.worldstates' 
                                                                           for-criteria='forCriteriaTable'
                                                                           criteria-function="container.selectedCriteriaFunction"
                                                                           >
@@ -246,8 +253,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h3 style="display:inline" class="panel-title"> 
+                                            <div class="panel-heading"
+                                                 style="display:table;width:100%">
+                                                <h3 style="display:table-cell;vertical-align: middle" class="panel-title"> 
                                                     <a style="color:#000" 
                                                        ng-click="indicatorBarChartsCollapsed = !indicatorBarChartsCollapsed">
                                                         <i ng-if="!indicatorBarChartsCollapsed" class="glyphicon glyphicon-chevron-up"></i>
@@ -255,10 +263,17 @@
                                                         Indicator bar charts
                                                     </a>
                                                 </h3>
+                                                <div class="btn-group pull-right">
+                                                    <button type="button" class="btn btn-sm btn-primary" 
+                                                            ng-disabled="!container.worldstates || !container.worldstates.length"
+                                                            ng-click="screenshot('indicator-bar-charts');">
+                                                        Include in Report</button>
+                                                </div>
                                             </div>
                                             <div collapse="indicatorBarChartsCollapsed"
                                                  class="panel-body" >
-                                                <indicator-bar-charts
+                                                <indicator-bar-charts 
+                                                    id="indicator-bar-charts"
                                                     worldstates="container.worldstates">
                                                 </indicator-bar-charts>
                                             </div>
@@ -266,6 +281,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="panel panel-default">
+                                            
                                             <div class="panel-heading"
                                                  style="display:table;width:100%">
                                                 <h3 style="display:table-cell;vertical-align: middle" class="panel-title"> 
@@ -288,11 +304,16 @@
                                                             'padding-left'
                                                                 : isCriteria? '0px': '19px'}">Criteria</span></a></li>
                                                     </ul>
+                                                    <button type="button" class="btn btn-sm btn-primary" 
+                                                            ng-disabled="!container.worldstates || !container.worldstates.length"
+                                                            ng-click="screenshot('relation-analysis-chart');">
+                                                        Include in Report</button>
                                                 </div>
                                             </div>
                                             <div collapse="relationAnalysisChartCollapsed"
                                                  class="panel-body">
-                                                <relation-analysis-chart style="padding-left:50px" height="350" 
+                                                <relation-analysis-chart id="relation-analysis-chart"
+                                                                         style="padding-left:50px" height="350" 
                                                                          for-criteria='isCriteria' 
                                                                          worldstates="container.worldstates"
                                                                          criteria-function="container.selectedCriteriaFunction"
@@ -304,9 +325,9 @@
 
                                     <div class="row">
                                         <div class="panel panel-default">
-                                            <div class="panel-heading" >
-                                                <span class="pull-left">
-                                                    <h3 style="display:inline" class="panel-title"> 
+                                            <div class="panel-heading"
+                                                 style="display:table;width:100%">
+                                                <h3 style="display:table-cell;vertical-align: middle" class="panel-title"> 
                                                         <a style="color:#000" 
                                                            ng-click="criteriaRadaCollapsed = !criteriaRadaCollapsed">
                                                             <i ng-if="!criteriaRadaCollapsed" class="glyphicon glyphicon-chevron-up"></i>
@@ -314,11 +335,12 @@
                                                             Criteria radar chart comparison
                                                         </a>
                                                     </h3>
-                                                </span>
-                                                <span class="pull-right">
-
-                                                </span>
-                                                <span class="clearfix"></span>
+                                                <div class="btn-group pull-right">
+                                                    <button type="button" class="btn btn-sm btn-primary" 
+                                                            ng-disabled="!container.worldstates || !container.worldstates.length"
+                                                            ng-click="screenshot('indicator-bar-charts');">
+                                                        Include in Report</button>
+                                                </div>
                                             </div>
                                             <div collapse="criteriaRadaCollapsed"
                                                  class="panel-body">
@@ -347,7 +369,7 @@
                                                      ng-if="container.worldstates.length > 0 && !container.selectedCriteriaFunction">
                                                     <div class="alert alert-warning" role="alert"><b>Warning:</b> No criteria function selected</div>
                                                 </div>
-                                                <div class="col-lg-3 col-md-4"
+                                                <div class="col-lg-3 col-md-4 col-sm-6"
                                                      style="margin-top:25px;"
                                                      ng-if="container.worldstates.length > 0 && container.selectedCriteriaFunction"
                                                      ng-repeat="chartModel in container.chartModels">
@@ -494,6 +516,7 @@
         <script src="bower_components/nvd3/nv.d3.js"></script>
         <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
         <script src="bower_components/ngDialog/js/ngDialog.js"></script>
+        <script src="bower_components/html2canvas/index.js" type="text/javascript"></script>
 
         <!-- build:js() -->
         <script src="scripts/app.js"></script>
@@ -544,16 +567,26 @@
 
         <!-- demo only -->
         <script>
-                                                                                angular.module('eu.crismaproject.worldstateAnalysis.demoApp').config(
-                                                                                    [
-                                                                                        '$provide',
-                                                                                        function ($provide) {
-                                                                                            'use strict';
-                                                                                            $provide.constant('CRISMA_DOMAIN', 'CRISMA');
+            angular.module('eu.myclimateservice.csis.scenario-analysis.demoApp').config(
+            [
+                    '$provide',
+                    function ($provide) {
+                    'use strict';
+                    $provide.constant('CRISMA_DOMAIN', 'CRISMA');
 //                                                                                    $provide.constant('CRISMA_ICMM_API', 'http://localhost:8890');
-                                                                                            $provide.constant('CRISMA_ICMM_API', 'http://crisma.cismet.de/icmm_api');
-                                                                                        }
-                                                                                    ]
-                                                                                    );</script>
+                    $provide.constant('CRISMA_ICMM_API', 'http://crisma.cismet.de/icmm_api');
+//                                                                                            $provide.constant('CRISMA_ICMM_API', 'sadfg');
+                    }
+            ]
+                    );
+        </script>
+        
+        <!-- seamless.js -->
+        <script type="text/javascript">
+
+        // Connect to the parent page.
+        // https://github.com/travist/seamless.js?files=1#connect-child-page-to-parent-page
+        window.seamless.connect();
+      </script>
     </body>
 </html>

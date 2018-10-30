@@ -1,13 +1,13 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
 ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.IndicatorCriteriaTableDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorCriteriaTableDirectiveController',
     [
         '$scope',
         '$filter',
         'de.cismet.crisma.ICMM.Worldstates',
         'ngTableParams',
-        'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
+        'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
         function ($scope, $filter, WorldstateService, NgTableParams, ccs) {
             'use strict';
             var getOrderedProperties = function (obj) {

@@ -1,10 +1,10 @@
 // this is only used for demo/testing purposes
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.demoApp',
+    'eu.myclimateservice.csis.scenario-analysis.demoApp',
     [
-        'eu.crismaproject.worldstateAnalysis.demoApp.controllers',
-        'eu.crismaproject.worldstateAnalysis.directives',
-        'eu.crismaproject.worldstateAnalysis.services',
+        'eu.myclimateservice.csis.scenario-analysis.demoApp.controllers',
+        'eu.myclimateservice.csis.scenario-analysis.directives',
+        'eu.myclimateservice.csis.scenario-analysis.services',
         'de.cismet.crisma.widgets.worldstateTreeWidget',
         'ui.bootstrap.tabs',
         'ui.bootstrap.collapse',

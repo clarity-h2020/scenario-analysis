@@ -1,7 +1,7 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
 ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.IndicatorBandItemDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.IndicatorBandItemDirectiveController',
     [
         '$scope',
         '$filter',

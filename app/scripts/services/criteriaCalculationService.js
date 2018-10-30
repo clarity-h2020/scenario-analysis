@@ -1,7 +1,7 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.services'
+    'eu.myclimateservice.csis.scenario-analysis.services'
     ).factory(
-    'eu.crismaproject.worldstateAnalysis.services.CriteriaCalculationService',
+    'eu.myclimateservice.csis.scenario-analysis.services.CriteriaCalculationService',
     [
         function () {
             'use strict';

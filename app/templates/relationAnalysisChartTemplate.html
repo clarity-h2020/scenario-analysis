@@ -13,6 +13,7 @@
     <div  ng-hide="!(worldstates() && worldstates().length > 0)" class="row">
         <!--two dropdowns for x and y axis-->
         <div style="float: right;margin-bottom: 10px;">
+            urg
             <indicator-criteria-axis-chooser is-x-axis="false" icc-object="iccObject" selected-axis="yAxis"></indicator-criteria-axis-chooser>
             <indicator-criteria-axis-chooser is-x-axis="true" icc-object="iccObject" selected-axis="xAxis"></indicator-criteria-axis-chooser>
         </div>
@@ -20,7 +21,8 @@
     <div  ng-hide="!(worldstates() && worldstates().length > 0)" class="row"> 
         <!--chart-->
         <div class="col-lg-12" ng-hide="forCriteria && !(yAxisCriteriaFunction && xAxisCriteriaFunction)">
-            <div nvd3-scatter-chart
+            <div id="relation-analysis-chart-diagram" 
+                 nvd3-scatter-chart
                  data="chartdata"
                  showLegend="true"
                  interactive="true"
@@ -36,7 +38,7 @@
                  xAxisTickFormat="xAxisTickFormatFunction()"
                  height="{{chartHeight}}"
                  >
-                <svg></svg>
+                <svg version="1.1" style="font-family:Verdana, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg"></svg>
             </div>
         </div>
         <div class="col-lg-12" ng-hide="!forCriteria || (yAxisCriteriaFunction && xAxisCriteriaFunction)" >

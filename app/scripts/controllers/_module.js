@@ -1,5 +1,5 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.demoApp.controllers',
+    'eu.myclimateservice.csis.scenario-analysis.demoApp.controllers',
     [
         'de.cismet.crisma.ICMM.config',
         'de.cismet.crisma.ICMM.Worldstates',
@@ -8,10 +8,10 @@ angular.module(
     ]
     );
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers',
+    'eu.myclimateservice.csis.scenario-analysis.controllers',
     [
         'nvd3ChartDirectives',
-        'eu.crismaproject.worldstateAnalysis.services',
+        'eu.myclimateservice.csis.scenario-analysis.services',
         'ngDialog',
         'de.cismet.crisma.ICMM.config',
     ]

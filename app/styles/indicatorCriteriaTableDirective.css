@@ -140,12 +140,21 @@
     line-height:1.5em;
 }
 
+@media (min-width: 768px) {
+    #importCf{
+        margin-left: 575px;
+    }
+    #importDs{
+        margin-left: 575px;
+    }
+}
+
 @media (min-width: 992px) {
     #importCf{
         margin-left: 795px;
     }
     #importDs{
-        margin-left: 795;
+        margin-left: 795px;
     }
 }
 

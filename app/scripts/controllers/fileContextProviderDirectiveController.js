@@ -1,13 +1,14 @@
 angular.module(
-    'eu.crismaproject.worldstateAnalysis.controllers'
+    'eu.myclimateservice.csis.scenario-analysis.controllers'
     ).controller(
-    'eu.crismaproject.worldstateAnalysis.controllers.FileContextProviderDirectiveController',
+    'eu.myclimateservice.csis.scenario-analysis.controllers.FileContextProviderDirectiveController',
     [
         '$scope',
         'de.cismet.crisma.ICMM.services.icmm',
-        function ($scope, Icmm) {
+        'de.cismet.crisma.ICMM.Worldstates',
+        function ($scope, Icmm, Worldstates) {
             'use strict';
-            var showFileLoadingError, showFileLoading, onloadIccObjects, onloadCfFile, onloadDsFile;
+            var showIndicatorFileLoadingError, showFileLoading, onloadIccObjects, onloadCfFile, onloadDsFile;
 
             //initialize the bindings
             $scope.selectedWorldstates = [];
@@ -119,10 +120,9 @@ angular.module(
              * @param {type} file that could not be loaded properly...
              * @returns {undefined}
              */
-            showFileLoadingError = function (file, err) {
-                $scope.errorFile = file;
+            showIndicatorFileLoadingError = function (message) {
                 $scope.fileLoadError = true;
-                $scope.errorMessage = err.message;
+                $scope.errorMessage = message;
                 $scope.$apply();
             };
 
@@ -149,10 +149,11 @@ angular.module(
             onloadIccObjects = function (file) {
                 return function (e) {
                     var fileObj, worldstateDummy, indicatorProp, indicator, origLoadedIndicators, indicatorGroup,
-                        loadedIndicatorLength, indicatorMapLength, containsIndicator;
+                        loadedIndicatorLength, indicatorMapLength, containsIndicator, msg;
                     try {
                         fileObj = JSON.parse(e.target.result);
                         /*
+                         * 
                          * accept two differnt kind of files. 
                          * 1. A plain icc data object.
                          * In that case we apply a standard name to this object
@@ -176,57 +177,69 @@ angular.module(
                                 }
                             };
                         }
-                        if (!$scope.indicatorMap) {
-                            $scope.indicatorMap = {};
-                            for (indicatorGroup in origLoadedIndicators) {
-                                if (origLoadedIndicators.hasOwnProperty(indicatorGroup)) {
-                                    for (indicatorProp in origLoadedIndicators[indicatorGroup]) {
-                                        if (origLoadedIndicators[indicatorGroup].hasOwnProperty(indicatorProp)) {
-                                            if (indicatorProp !== 'displayName' && indicatorProp !== 'iconResource') {
-                                                $scope.indicatorMap[indicatorProp] = origLoadedIndicators[indicatorGroup][indicatorProp];
-                                            }
+                        var tmp;
+                        if ($scope.worldstates && $scope.worldstates.length > 0) {
+                            tmp = Worldstates.utils.stripIccData([$scope.worldstates[0]])[0].data;
+                        } else {
+                            tmp = origLoadedIndicators;
+                        }
+                        $scope.indicatorMap = {};
+                        for (indicatorGroup in tmp) {
+                            if (tmp.hasOwnProperty(indicatorGroup)) {
+                                for (indicatorProp in tmp[indicatorGroup]) {
+                                    if (tmp[indicatorGroup].hasOwnProperty(indicatorProp)) {
+                                        if (indicatorProp !== 'displayName' && indicatorProp !== 'iconResource') {
+                                            $scope.indicatorMap[indicatorProp] = tmp[indicatorGroup][indicatorProp];
                                         }
                                     }
                                 }
                             }
-                        } else {
-                            loadedIndicatorLength = 0;
-                            indicatorMapLength = 0;
-                            for (indicator in $scope.indicatorMap) {
-                                if ($scope.indicatorMap.hasOwnProperty(indicator)) {
-                                    containsIndicator = false;
-                                    indicatorMapLength++;
-                                    for (indicatorGroup in origLoadedIndicators) {
-                                        if (origLoadedIndicators.hasOwnProperty(indicatorGroup)) {
-                                            for (indicatorProp in origLoadedIndicators[indicatorGroup]) {
-                                                if (origLoadedIndicators[indicatorGroup].hasOwnProperty(indicatorProp)) {
-                                                    loadedIndicatorLength++;
-                                                    if (indicatorProp !== 'displayName' && indicatorProp !== 'iconResource') {
-                                                        if ($scope.indicatorMap[indicator].displayName === origLoadedIndicators[indicatorGroup][indicatorProp].displayName) {
-                                                            containsIndicator = true;
-                                                            break;
-                                                        }
+                        }
+                        loadedIndicatorLength = 0;
+                        indicatorMapLength = 0;
+                        for (indicator in $scope.indicatorMap) {
+                            if ($scope.indicatorMap.hasOwnProperty(indicator)) {
+                                containsIndicator = false;
+                                indicatorMapLength++;
+                                for (indicatorGroup in origLoadedIndicators) {
+                                    if (origLoadedIndicators.hasOwnProperty(indicatorGroup)) {
+                                        for (indicatorProp in origLoadedIndicators[indicatorGroup]) {
+                                            if (origLoadedIndicators[indicatorGroup].hasOwnProperty(indicatorProp)) {
+                                                if (indicatorProp !== 'displayName' && indicatorProp !== 'iconResource') {
+                                                    if ($scope.indicatorMap[indicator].displayName === origLoadedIndicators[indicatorGroup][indicatorProp].displayName) {
+                                                        loadedIndicatorLength++;
+                                                        containsIndicator = true;
+                                                        break;
                                                     }
                                                 }
                                             }
                                         }
                                     }
-                                    if (!containsIndicator) {
-                                        console.error('loaded indicator data does not match to the first loaded indicator set');
-                                    }
+                                }
+                                if (!containsIndicator) {
+                                    msg = 'Could not load indicator file ' + file.name + '. It contains no indicator data for ' + indicator;
+                                    console.error(msg);
+                                    showIndicatorFileLoadingError(msg);
+                                    return;
                                 }
                             }
-                            if (loadedIndicatorLength !== indicatorMapLength) {
-                                console.error('indicator data in file ' + file.name + ' has more indicators defined that the first loaded indicator set.');
-                            }
+                        }
+                        if (loadedIndicatorLength !== indicatorMapLength) {
+                            msg = 'indicator data in file ' + file.name + ' has more indicators defined that the first loaded indicator set.';
+                            console.error(msg);
+                            showIndicatorFileLoadingError(msg);
+                            return;
                         }
 
-                        // we need an id to distinc the icc objects. eg. the ranking table use this id
+                        // we need an id to distinct the icc objects. eg. the ranking table use this id
                         // to keep track of the indicator objects
                         if (!worldstateDummy.id) {
                             worldstateDummy.id = Math.floor((Math.random() * 1000000) + 1);
                         }
 
+                        // an excellent example on technical debt and accidental complexity:
+                        // instead of adressing the root cause of the problem, we
+                        // introduce additional inadequateness and ambiguity
                         Icmm.convertToCorrectIccDataFormat(worldstateDummy);
 
                         if ($scope.worldstates) {
@@ -248,7 +261,7 @@ angular.module(
 
                     } catch (err) {
                         // show an error in the gui...
-                        showFileLoadingError(file);
+                        showIndicatorFileLoadingError(err.toString());
                     }
                 };
             };
@@ -370,7 +383,7 @@ angular.module(
             };
 
             /*
-             * When the newFile property has changed the User want's to add a new list of files..
+             * When the newFile property has changed the User want's to add a new list of files.
              */
             $scope.$watch('iccObjects', function (newVal, oldVal) {
                 var i, file, reader;
@@ -388,17 +401,19 @@ angular.module(
                             reader.readAsText(file);
                         } catch (err) {
                             // show an error in the gui...
-                            showFileLoadingError(file);
+                            showIndicatorFileLoadingError(err.toString());
                         }
 
                     }
 
                 }
-            });
+            }, true); // 
 
-            $scope.$watch('cfConfigFile', function (newVal, oldVal) {
+            $scope.$watch('cfConfigFile', function () {
                 var file;
-                if (!angular.equals(newVal, oldVal) && newVal) {
+                $scope.cfFileLoadError = false;
+                $scope.loadedCfFile = false;
+                if ($scope.cfConfigFile) {
                     showFileLoading();
 
                     file = $scope.cfConfigFile[0];
@@ -413,14 +428,15 @@ angular.module(
                         // show an error in the gui...
                         console.error('Could not read Criteria Function Config File: ' + file.name);
                     }
-
                 }
 
-            });
+            }, true);
 
-            $scope.$watch('dsConfigFile', function (newVal, oldVal) {
+            $scope.$watch('dsConfigFile', function () {
                 var file;
-                if (!angular.equals(newVal, oldVal) && newVal) {
+                $scope.dsFileLoadError = false;
+                $scope.loadedDsfFile = false;
+                if ($scope.dsConfigFile) {
                     showFileLoading();
 
                     file = $scope.dsConfigFile[0];
@@ -438,7 +454,7 @@ angular.module(
 
                 }
 
-            });
+            }, true);
         }
     ]
     );

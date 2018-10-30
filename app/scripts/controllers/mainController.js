@@ -14,11 +14,13 @@ angular.module(
             '$window',
             '$scope',
             '$resource',
+            '$http',
             '$timeout',
+            '$q',
             'eu.myclimateservice.csis.scenario-analysis.services.IcmmPersistanceService',
             'eu.myclimateservice.csis.scenario-analysis.services.FilesPersistanceService',
             'ngDialog',
-            function ($window, $scope, $resource, $timeout, IcmmPersistanceService, FilesPersistanceService, ngDialog) {
+            function ($window, $scope, $resource, $http, $timeout, $q, IcmmPersistanceService, FilesPersistanceService, ngDialog) {
                 'use strict';
 
                 var parent = window.seamless.connect();
@@ -26,7 +28,7 @@ angular.module(
                 parent.receive(function (data, event) {
 
                     // Print out the data that was received.
-                    console.log("child recieved: " + data);
+                    console.log('child recieved: ' + data + event);
                 });
 
                 var createChartModels;
@@ -207,7 +209,6 @@ angular.module(
 
                 $scope.icmmTabVisible = true;
                 $scope.switchToIcmmTab = function () {
-                    console.log("switchToIcmmTab");
                     $scope.icmmTabVisible = true;
                     if ($scope.deregisterFilesWsWatch) {
                         $scope.deregisterFilesWsWatch();
@@ -256,7 +257,7 @@ angular.module(
 
                     $scope.icmmLastViewed = true;
                 };
-                
+
                 //                $scope.screenshot = function (elementId, foreignObjectRendering = true) {
 //                    $window.html2canvas(document.getElementById(elementId), {async: true, allowTaint: true, logging: true, useCORS: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
 //                        document.body.appendChild(canvas);
@@ -267,47 +268,82 @@ angular.module(
                     $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
                         document.body.appendChild(canvas);
                         var dataURL = canvas.toDataURL();
-                        console.log(dataURL);
+                        //console.log(dataURL);
                         var payload = {
-                            "_links": {
-                                "type": {
-                                    "href": "http://roberto:8080/rest/type/file/image"
+                            '_links': {
+                                'type': {
+                                    'href': 'http://roberto:8080/rest/type/file/image'
                                 }
                             },
-                            "filename": [
+                            'filename': [
                                 {
-                                    "value": "imagename.png"
+                                    'value': 'imagename.png'
                                 }
                             ],
-                            "filemime": [
+                            'filemime': [
                                 {
-                                    "value": "image/png"
+                                    'value': 'image/png'
                                 }
                             ],
-                            "data": [
+                            'data': [
                                 {
-                                    "value": dataURL
+                                    'value': dataURL
                                 }
                             ]
                         };
 
-                        var uploadImage = $resource('http://roberto:8080/entity/file',
-                                {
-                                    _format: 'hal_json'
-                                }, {
-                            store: {
-                                method: 'POST',
-                                isArray: false
-                            }
-                        });
 
-                        uploadImage.store(payload)
-                                .then(function uploadImageSuccess(result) {
-                                    console.log(result);
-                                })
-                                .catch(function (error) {
-                                    console.error()(error);
+
+                        $http({method: 'GET', url: 'http://roberto:8080/rest/session/token'})
+                                .then(function tokenSuccessCallback(response) {
+                                    
+                                    var uploadImage = $resource('http://roberto:8080/entity/file',
+                                            {
+                                                _format: 'hal_json'
+                                            }, {
+                                        store: {
+                                            method: 'POST',
+                                            isArray: false,
+                                            headers: {
+                                                'Content-Type': 'application/hal+json',
+                                                'X-CSRF-Token': response.data
+                                            }
+                                        }
+
+                                    });
+
+                                    return uploadImage.store(payload)
+                                            .$promise.then(function uploadImageSuccess(response) {
+                                                console.log('uploadImage finished');
+                                                // return the image id
+                                                return response.fid;
+                                            }, function uploadImageError(response) {
+                                                console.log('error uploading Image: ' + response);
+                                                $q.reject(response);
+                                            });
+                                }, function tokenErrorCallback(response) {
+                                    console.log('error retrieving X-CSRF-Token: ' + response);
+                                    $q.reject(response);
+                                }).then(function successCallback(response) {
+                                    console.log('image id: ' + response);
+                                }, 
+                                function errorCallback(response){
+                                    console.log('ERROR: ' + response);
                                 });
+
+                        /*$http({
+                         url: 'http://roberto:8080/entity/file?_format=hal_json',
+                         method: "POST",
+                         data: payload
+                         })
+                         .then(function(response) {
+                         console.log('http uploadImage finished');
+                         console.log(response);
+                         }, 
+                         function(response) { // optional
+                         console.log('http uploadImage failed');
+                         console.log(response);
+                         });*/
                     });
                 };
 

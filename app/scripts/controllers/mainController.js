@@ -19,8 +19,9 @@ angular.module(
             '$q',
             'eu.myclimateservice.csis.scenario-analysis.services.IcmmPersistanceService',
             'eu.myclimateservice.csis.scenario-analysis.services.FilesPersistanceService',
+            'eu.myclimateservice.csis.scenario-analysis.services.drupalService',
             'ngDialog',
-            function ($window, $scope, $resource, $http, $timeout, $q, IcmmPersistanceService, FilesPersistanceService, ngDialog) {
+            function ($window, $scope, $resource, $http, $timeout, $q, IcmmPersistanceService, FilesPersistanceService, drupalService, ngDialog) {
                 'use strict';
 
                 var parent = window.seamless.connect();
@@ -30,8 +31,9 @@ angular.module(
                     // Print out the data that was received.
                     console.log('child recieved: ' + data + event);
                 });
-                
-                var drupal = 'http://roberto:8080';
+
+                var restApi = drupalService.restApi;
+
 
                 var createChartModels;
                 // we bind to the container object since the provider directives are nested in angular-bootstrap tabs
@@ -270,12 +272,12 @@ angular.module(
                     $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
                         document.body.appendChild(canvas);
                         var imageBlob = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, '');
-                        
+
                         //console.log(dataURL);
                         var payload = {
                             '_links': {
                                 'type': {
-                                    'href': drupal + '/rest/type/file/image'
+                                    'href': restApi.host + '/rest/type/file/image'
                                 }
                             },
                             'filename': [
@@ -298,10 +300,10 @@ angular.module(
                         /**
                          * 1) get the X-CSRF-Token
                          */
-                        $http({method: 'GET', url: drupal + '/rest/session/token'})
+                        $http({method: 'GET', url: restApi.host + '/rest/session/token'})
                                 .then(function tokenSuccessCallback(response) {
 
-                                    var uploadImage = $resource(drupal + '/entity/file',
+                                    var uploadImage = $resource(restApi.host + '/entity/file',
                                             {
                                                 _format: 'hal_json'
                                             }, {
@@ -325,8 +327,8 @@ angular.module(
                                                 // return the image id
                                                 return response.fid[0];
                                             }, function uploadImageError(response) {
-                                                console.log('error uploading Image: ' + response);
-                                                $q.reject(response);
+                                                console.log('error uploading Image: ' + response.data.message);
+                                                $q.reject(response.data);
                                             });
                                 }, function tokenErrorCallback(response) {
                                     console.log('error retrieving X-CSRF-Token: ' + response);
@@ -338,7 +340,7 @@ angular.module(
                                  */
                                         function successCallback(response) {
                                             console.log('image id: ' + response);
-                                            
+
                                             // TODO UPDATE Resource
                                         },
                                         function errorCallback(response) {
@@ -360,7 +362,5 @@ angular.module(
                                  });*/
                             });
                 };
-
             }
-        ]
-                );
+        ]);

@@ -19,7 +19,8 @@ angular.module(
                 scope: scope,
                 restrict: 'E',
                 templateUrl: 'templates/fileContextProviderTemplate.html',
-                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.FileContextProviderDirectiveController'
+                //controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.FileContextProviderDirectiveController'
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.drupalContextProviderDirectiveController'
             };
         }
     ]

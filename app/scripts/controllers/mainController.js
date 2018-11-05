@@ -24,13 +24,13 @@ angular.module(
             function ($window, $scope, $resource, $http, $timeout, $q, IcmmPersistanceService, FilesPersistanceService, drupalService, ngDialog) {
                 'use strict';
 
-                var parent = window.seamless.connect();
-                // Receive a message
-                parent.receive(function (data, event) {
-
-                    // Print out the data that was received.
-                    console.log('child recieved: ' + data + event);
-                });
+//                var parent = window.seamless.connect();
+//                // Receive a message
+//                parent.receive(function (data, event) {
+//
+//                    // Print out the data that was received.
+//                    console.log('child recieved: ' + data.nodeId);
+//                });
 
                 var restApi = drupalService.restApi;
 
@@ -234,14 +234,6 @@ angular.module(
 
 
                     $scope.icmmLastViewed = true;
-
-                    if (!parent || parent === null) {
-                        parent = window.seamless.connect();
-                    }
-                    // Send a message
-                    parent.send({
-                        myparam: 'child -> parent'
-                    });
                 };
 
                 $scope.switchToFilesTab = function () {

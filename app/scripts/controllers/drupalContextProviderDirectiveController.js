@@ -10,8 +10,18 @@ angular.module(
             'eu.myclimateservice.csis.scenario-analysis.services.drupalService',
             function ($scope, $timeout, Icmm, Worldstates, drupalService) {
                 'use strict';
-                var showIndicatorFileLoadingError, showFileLoading, loadIndicatorObjects, loadIndicatorObject, onloadCfFile, onloadDsFile;
+                var showIndicatorFileLoadingError, showFileLoading, loadIndicatorObjects, loadIndicatorObject, onloadCfFile, onloadDsFile, onSeamlessEvent, onloadIccObjects;
                 var restApi = drupalService.restApi;
+                
+               console.log('window.seamless.connect()');
+               var parent = window.seamless.connect();
+                // Receive a message, this only works when the parent window calls send(...) 
+                // inside the onConnect() method, otherwise the event is not recieved (race condition?)
+                // strangley, the onConnect callback is called twice. See comment in nodeConncetor.js
+                parent.receive(function (data) {
+                    console.log('  parent.receive:' + data);
+                    onSeamlessEvent(data);
+                });
 
                 //initialize the bindings
                 $scope.selectedWorldstates = [];
@@ -126,7 +136,7 @@ angular.module(
                 showIndicatorFileLoadingError = function (message) {
                     $scope.fileLoadError = true;
                     $scope.errorMessage = message;
-                    $scope.$apply();
+                    //$scope.$apply();
                 };
 
                 showFileLoading = function () {
@@ -140,13 +150,13 @@ angular.module(
                 $scope.showCfFileLoadingError = function (message) {
                     $scope.cfFileLoadError = true;
                     $scope.cfFileLoadErrorMsg = 'Criteria functions not loaded. ' + message;
-                    $scope.$apply();
+                    //$scope.$apply();
                 };
 
                 $scope.showDsFileLoadingError = function (message) {
                     $scope.dsFileLoadError = true;
                     $scope.dsFileLoadErrorMsg = 'Decision strategies not loaded. ' + message;
-                    $scope.$apply();
+                    //$scope.$apply();
                 };
 
                 loadIndicatorObjects = function (indicatorObjects) {
@@ -275,6 +285,126 @@ angular.module(
                         showIndicatorFileLoadingError(err.toString());
                     }
                 };
+                
+                onloadIccObjects = function (file) {
+                return function (e) {
+                    var fileObj, worldstateDummy, indicatorProp, indicator, origLoadedIndicators, indicatorGroup,
+                        loadedIndicatorLength, indicatorMapLength, containsIndicator, msg;
+                    try {
+                        fileObj = JSON.parse(e.target.result);
+                        /*
+                         * 
+                         * accept two differnt kind of files. 
+                         * 1. A plain icc data object.
+                         * In that case we apply a standard name to this object
+                         * 
+                         * 2. A worldstate Dummy object that already has a name
+                         */
+
+                        if (fileObj.name && fileObj.iccdata) {
+                            worldstateDummy = fileObj;
+                            origLoadedIndicators = fileObj.iccdata;
+                            worldstateDummy.iccdata = {
+                                actualaccessinfo: JSON.stringify(worldstateDummy.iccdata)
+                            };
+                        } else {
+                            //generate a uniqe id...
+                            origLoadedIndicators = fileObj;
+                            worldstateDummy = {
+                                name: 'Nonamed indicator data ' + '(filename: ' + file.name + ' )',
+                                iccdata: {
+                                    actualaccessinfo: JSON.stringify(fileObj)
+                                }
+                            };
+                        }
+                        var tmp;
+                        if ($scope.worldstates && $scope.worldstates.length > 0) {
+                            tmp = Worldstates.utils.stripIccData([$scope.worldstates[0]])[0].data;
+                        } else {
+                            tmp = origLoadedIndicators;
+                        }
+                        $scope.indicatorMap = {};
+                        for (indicatorGroup in tmp) {
+                            if (tmp.hasOwnProperty(indicatorGroup)) {
+                                for (indicatorProp in tmp[indicatorGroup]) {
+                                    if (tmp[indicatorGroup].hasOwnProperty(indicatorProp)) {
+                                        if (indicatorProp !== 'displayName' && indicatorProp !== 'iconResource') {
+                                            $scope.indicatorMap[indicatorProp] = tmp[indicatorGroup][indicatorProp];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        loadedIndicatorLength = 0;
+                        indicatorMapLength = 0;
+                        for (indicator in $scope.indicatorMap) {
+                            if ($scope.indicatorMap.hasOwnProperty(indicator)) {
+                                containsIndicator = false;
+                                indicatorMapLength++;
+                                for (indicatorGroup in origLoadedIndicators) {
+                                    if (origLoadedIndicators.hasOwnProperty(indicatorGroup)) {
+                                        for (indicatorProp in origLoadedIndicators[indicatorGroup]) {
+                                            if (origLoadedIndicators[indicatorGroup].hasOwnProperty(indicatorProp)) {
+                                                if (indicatorProp !== 'displayName' && indicatorProp !== 'iconResource') {
+                                                    if ($scope.indicatorMap[indicator].displayName === origLoadedIndicators[indicatorGroup][indicatorProp].displayName) {
+                                                        loadedIndicatorLength++;
+                                                        containsIndicator = true;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                if (!containsIndicator) {
+                                    msg = 'Could not load indicator file ' + file.name + '. It contains no indicator data for ' + indicator;
+                                    console.error(msg);
+                                    showIndicatorFileLoadingError(msg);
+                                    return;
+                                }
+                            }
+                        }
+                        if (loadedIndicatorLength !== indicatorMapLength) {
+                            msg = 'indicator data in file ' + file.name + ' has more indicators defined that the first loaded indicator set.';
+                            console.error(msg);
+                            showIndicatorFileLoadingError(msg);
+                            return;
+                        }
+
+                        // we need an id to distinct the icc objects. eg. the ranking table use this id
+                        // to keep track of the indicator objects
+                        if (!worldstateDummy.id) {
+                            worldstateDummy.id = Math.floor((Math.random() * 1000000) + 1);
+                        }
+
+                        // an excellent example on technical debt and accidental complexity:
+                        // instead of adressing the root cause of the problem, we
+                        // introduce additional inadequateness and ambiguity
+                        Icmm.convertToCorrectIccDataFormat(worldstateDummy);
+
+                        if ($scope.worldstates) {
+                            $scope.worldstates.push(worldstateDummy);
+                            $scope.editable.push(false);
+                        } else {
+                            $scope.editable.push(false);
+                            $scope.worldstates = [worldstateDummy];
+                        }
+                        $scope.showDummyListItem = false;
+                        $scope.noIndicatorsLoaded = false;
+                        // when indicator objects are added we want them to be selected by default
+                        $scope.selectedWorldstates.splice(0, $scope.selectedWorldstates.length);
+                        $scope.worldstates.forEach(function (object, index) {
+                            $scope.toggleSelection(index);
+                        });
+
+                        $scope.$apply();
+
+                    } catch (err) {
+                        // show an error in the gui...
+                        showIndicatorFileLoadingError(err.toString());
+                    }
+                };
+            };
 
                 onloadCfFile = function (theFile) {
                     return function (e) {
@@ -391,32 +521,43 @@ angular.module(
                         }
                     };
                 };
+                
+                onSeamlessEvent = function(eventData) {
+                    console.log('load study from node id: ' + eventData.nodeId);
+                    
+                    restApi.getStudy(eventData.nodeId).then(function (study) {
+                            var indicatorArray = drupalService.studyHelper.getIndicatorArray(study);
+                            loadIndicatorObjects(indicatorArray);
+                        }, function (error) {
+                            console.log(error.data.message);
+                            showIndicatorFileLoadingError(error.data.message.toString());
+                        });
+                    };
 
                 /*
                  * When the newFile property has changed the User want's to add a new list of files.
                  */
                 $scope.$watch('iccObjects', function (newVal, oldVal) {
-                    /*var i, file, reader;
-                     if (!angular.equals(newVal, oldVal) && newVal) {
-                     showFileLoading();
-                     
-                     for (i = 0; i < $scope.iccObjects.length; i++) {
-                     
-                     file = $scope.iccObjects[i];
-                     
-                     reader = new FileReader();
-                     reader.onload = onloadIccObjects(file);
-                     try {
-                     //we assume that the file is utf-8 encoded
-                     reader.readAsText(file);
-                     } catch (err) {
-                     // show an error in the gui...
-                     showIndicatorFileLoadingError(err.toString());
-                     }
-                     
-                     }
-                     
-                     }*/
+                    var i, file, reader;
+                    if (!angular.equals(newVal, oldVal) && newVal) {
+                        showFileLoading();
+
+                        for (i = 0; i < $scope.iccObjects.length; i++) {
+
+                            file = $scope.iccObjects[i];
+
+                            reader = new FileReader();
+                            reader.onload = onloadIccObjects(file);
+                            try {
+                                //we assume that the file is utf-8 encoded
+                                reader.readAsText(file);
+                            } catch (err) {
+                                // show an error in the gui...
+                                showIndicatorFileLoadingError(err.toString());
+                            }
+
+                        }
+                    }
                 }, true);
 
                 $scope.$watch('cfConfigFile', function () {
@@ -466,17 +607,14 @@ angular.module(
 
                 }, true);
 
+                
 
-                $timeout(function () {
-                    restApi.getStudy(1).then(function (study) {
-                        var indicatorArray = drupalService.studyHelper.getIndicatorArray(study);
-                        loadIndicatorObjects(indicatorArray);
-                    }, function (error) {
-                        console.log(error.data.message);
-                        showIndicatorFileLoadingError(error.data.message.toString());
-                    });
-                }, 1000);
 
+                // TODO: get study / EU-GL Step Entity id from Drpal API, e.g. 
+                // via request parameter passed to iFrame or via seamless.js parent.receive callback
+//                $timeout(function () {
+//                    onSeamlessEvent({nodeId:2})
+//                }, 1000);
 
 
             }

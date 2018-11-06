@@ -24,14 +24,6 @@ angular.module(
             function ($window, $scope, $resource, $http, $timeout, $q, IcmmPersistanceService, FilesPersistanceService, drupalService, ngDialog) {
                 'use strict';
 
-//                var parent = window.seamless.connect();
-//                // Receive a message
-//                parent.receive(function (data, event) {
-//
-//                    // Print out the data that was received.
-//                    console.log('child recieved: ' + data.nodeId);
-//                });
-
                 var restApi = drupalService.restApi;
 
 
@@ -138,53 +130,17 @@ angular.module(
 
                 $scope.indicatorVector = [];
 
-                /*
-                 * Since we want to showcase the icmm based context provider as well as the file based context provider
-                 * we need to update the bindings for the analysis widgets everyt time the user switches between 
-                 * the icmm and the file tab.
-                 * The following code is not needed if only one of both context providers is used.
-                 */
-
-                function watchIcmmWs() {
-                    return $scope.$watch('container.worldstatesIcmm', function () {
-                        $scope.container.worldstates = $scope.container.worldstatesIcmm;
-                    });
-                }
-
-                // $watch returns a deregistration function!!!!!!!
-                // call this function when switching to new tab!
-                $scope.deregisterIcmmWsWatch = watchIcmmWs();
-
                 function watchFilesWs() {
                     return $scope.$watch('container.worldstatesFiles', function () {
                         $scope.container.worldstates = $scope.container.worldstatesFiles;
                     });
                 }
 
-                // refWorldstate watches
-                function watchRefWsIcmm() {
-                    return $scope.$watch('container.refWorldstatesIcmm', function () {
-                        $scope.container.refWorldstates = $scope.container.refWorldstatesIcmm;
-                    });
-                }
-
-                $scope.deregisterRefWsIcmmWatch = watchRefWsIcmm();
-
                 function watchRefWsFiles() {
                     return $scope.$watch('container.refWorldstatesFiles', function () {
                         $scope.container.refWorldstates = $scope.container.refWorldstatesFiles;
                     });
                 }
-
-                // criteriaFunctions watches
-                function watchCfIcmm() {
-                    return $scope.$watch('container.criteriaFunctionsIcmm', function () {
-                        $scope.container.criteriaFunctions = $scope.container.criteriaFunctionsIcmm;
-                        $scope.container.selectedCriteriaFunction = $scope.container.criteriaFunctions ? $scope.container.criteriaFunctions[0] : false;
-                    });
-                }
-
-                $scope.deregisterCfIcmm = watchCfIcmm();
 
                 function watchCfFiles() {
                     return $scope.$watch('container.criteriaFunctionsFiles', function () {
@@ -193,16 +149,6 @@ angular.module(
                     });
                 }
 
-                //decision strategy watches
-                function watchDsIcmm() {
-                    return $scope.$watch('container.decisionStrategiesIcmm', function () {
-                        $scope.container.decisionStrategies = $scope.container.decisionStrategiesIcmm;
-                        $scope.container.selectedDecisionStrategy = $scope.container.decisionStrategies ? $scope.container.decisionStrategies[0] : false;
-                    });
-                }
-
-                $scope.deregisterDsIcmm = watchDsIcmm();
-
                 function watchDsFiles() {
                     return $scope.$watch('container.decisionStrategiesFiles', function () {
                         $scope.container.decisionStrategies = $scope.container.decisionStrategiesFiles;
@@ -210,49 +156,10 @@ angular.module(
                     });
                 }
 
-
-                $scope.icmmTabVisible = true;
-                $scope.switchToIcmmTab = function () {
-                    $scope.icmmTabVisible = true;
-                    if ($scope.deregisterFilesWsWatch) {
-                        $scope.deregisterFilesWsWatch();
-                    }
-                    $scope.deregisterIcmmWsWatch = watchIcmmWs();
-                    if ($scope.deregisterRefWsFilesWatch) {
-                        $scope.deregisterRefWsFilesWatch();
-                    }
-                    $scope.deregisterRefWsIcmmWatch = watchRefWsIcmm();
-
-                    if ($scope.deregisterCfFilesWatch) {
-                        $scope.deregisterCfFilesWatch();
-                    }
-                    $scope.deregisterCfIcmm = watchCfIcmm();
-                    if ($scope.deregisterDsFilesWatch) {
-                        $scope.deregisterDsFilesWatch();
-                    }
-                    $scope.deregisterDsIcmm = watchDsIcmm();
-
-
-                    $scope.icmmLastViewed = true;
-                };
-
-                $scope.switchToFilesTab = function () {
-                    $scope.icmmTabVisible = false;
-
-                    $scope.deregisterIcmmWsWatch();
-                    $scope.deregisterFilesWsWatch = watchFilesWs();
-
-                    $scope.deregisterRefWsIcmmWatch();
-                    $scope.deregisterRefWsFilesWatch = watchRefWsFiles();
-
-                    $scope.deregisterCfIcmm();
-                    $scope.deregisterCfFilesWatch = watchCfFiles();
-
-                    $scope.deregisterDsIcmm();
-                    $scope.deregisterDsFilesWatch = watchDsFiles();
-
-                    $scope.icmmLastViewed = true;
-                };
+                watchFilesWs();
+                watchRefWsFiles();
+                watchCfFiles();
+                watchDsFiles();
 
                 //                $scope.screenshot = function (elementId, foreignObjectRendering = true) {
 //                    $window.html2canvas(document.getElementById(elementId), {async: true, allowTaint: true, logging: true, useCORS: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {

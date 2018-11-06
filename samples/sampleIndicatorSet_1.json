@@ -1,24 +1,85 @@
 {
-  "sample": {
-    "displayName": "Example",
-    "iconResource": "http://crisma.cismet.de/resources/pilotE/todo_24.png",
-    "deads": {
-      "displayName": "Deads",
-      "iconResource": "http://crisma.cismet.de/resources/pilotE/todo_16.png",
-      "value": 156,
-      "unit": "people"
-    },
-    "cost": {
-      "displayName": "Cost",
-      "iconResource": "http://crisma.cismet.de/resources/pilotE/todo_16.png",
-      "value": 19384729,
-      "unit": "Euro"
-    },
-    "buildings": {
-      "displayName": "Buildings",
-      "iconResource": "http://crisma.cismet.de/resources/pilotE/todo_16.png",
-      "value": 2091,
-      "unit": "buildings"
+    "name": "Baseline Scenario",
+    "iccdata": {
+        "casualties": {
+            "displayName": "Casualties",
+            "iconResource": "flower_16.png",
+            "noOfDead": {
+                "displayName": "Number of dead",
+                "iconResource": "flower_dead_16.png",
+                "value": 189,
+                "unit": "People"
+            },
+            "noOfInjured": {
+                "displayName": "Number of injured",
+                "iconResource": "flower_injured_16.png",
+                "value": 2840,
+                "unit": "People"
+            },
+            "noOfHomeless": {
+                "displayName": "Number of homeless",
+                "iconResource": "flower_homeless_16.png",
+                "value": 10416,
+                "unit": "People"
+            }
+        },
+        "cost": {
+            "directDamageCost": {
+                "displayName": "Direct damage cost",
+                "iconResource": "dollar_direct_16.png",
+                "value": 32547532,
+                "unit": "Euro"
+            },
+            "displayName": "Economic cost",
+            "iconResource": "dollar_16.png",
+            "indirectDamageCost": {
+                "displayName": "Indirect damage cost",
+                "iconResource": "dollar_indirect_16.png",
+                "value": 78453689,
+                "unit": "Euro"
+            },
+            "restorationCost": {
+                "displayName": "Direct restoration cost",
+                "iconResource": "dollar_restoration_16.png",
+                "value": 113657772,
+                "unit": "Euro"
+            }
+        },
+        "damagedBuildings": {
+            "displayName": "Damaged buildings",
+            "iconResource": "home_16.png",
+            "lostBuildings": {
+                "displayName": "Lost buildings",
+                "iconResource": "home_lost_16.png",
+                "value": 251,
+                "unit": "Buildings"
+            },
+            "unsafeBuildings": {
+                "displayName": "Unsafe buildings",
+                "iconResource": "home_unsafe_16.png",
+                "value": 637,
+                "unit": "Buildings"
+            }
+        },
+        "damagedInfrastructure": {
+            "damagedRoadSegments": {
+                "displayName": "Number of damaged road segments",
+                "iconResource": "road_damaged_16.png",
+                "value": 1416,
+                "unit": "Road seqments"
+            },
+            "displayName": "Damaged Infrastructure",
+            "iconResource": "road_16.png"
+        },
+        "evacuationCost": {
+            "displayName": "Evacuation cost",
+            "iconResource": "money_evac_16.png",
+            "totalEvacuationCost": {
+                "displayName": "Total evacuation cost",
+                "iconResource": "money_total_evac_16.png",
+                "value": 13067094,
+                "unit": "Euro"
+            }
+        }
     }
-  }
 }

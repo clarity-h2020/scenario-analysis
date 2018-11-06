@@ -1,0 +1,125 @@
+{
+    "name": "CLARITY Criteria Function #1",
+    "criteriaFunctions": [
+        {
+            "indicator": "Number of dead",
+            "lowerBoundary": {
+                "criteriaValue": 0,
+                "indicatorValue": 0
+            },
+            "upperBoundary": {
+                "criteriaValue": 100,
+                "indicatorValue": 0
+            },
+            "intervals": []
+        },
+        {
+            "indicator": "Number of injured",
+            "lowerBoundary": {
+                "criteriaValue": 0,
+                "indicatorValue": 0
+            },
+            "upperBoundary": {
+                "criteriaValue": 100,
+                "indicatorValue": 0
+            },
+            "intervals": []
+        },
+        {
+            "indicator": "Number of homeless",
+            "lowerBoundary": {
+                "criteriaValue": 0,
+                "indicatorValue": 0
+            },
+            "upperBoundary": {
+                "criteriaValue": 100,
+                "indicatorValue": 0
+            },
+            "intervals": []
+        },
+        {
+            "indicator": "Direct damage cost",
+            "lowerBoundary": {
+                "criteriaValue": 0,
+                "indicatorValue": 0
+            },
+            "upperBoundary": {
+                "criteriaValue": 100,
+                "indicatorValue": 0
+            },
+            "intervals": []
+        },
+        {
+            "indicator": "Indirect damage cost",
+            "lowerBoundary": {
+                "criteriaValue": 0,
+                "indicatorValue": 0
+            },
+            "upperBoundary": {
+                "criteriaValue": 100,
+                "indicatorValue": 0
+            },
+            "intervals": []
+        },
+        {
+            "indicator": "Direct restoration cost",
+            "lowerBoundary": {
+                "criteriaValue": 0,
+                "indicatorValue": 0
+            },
+            "upperBoundary": {
+                "criteriaValue": 100,
+                "indicatorValue": 0
+            },
+            "intervals": []
+        },
+        {
+            "indicator": "Lost buildings",
+            "lowerBoundary": {
+                "criteriaValue": 0,
+                "indicatorValue": 0
+            },
+            "upperBoundary": {
+                "criteriaValue": 100,
+                "indicatorValue": 0
+            },
+            "intervals": []
+        },
+        {
+            "indicator": "Unsafe buildings",
+            "lowerBoundary": {
+                "criteriaValue": 0,
+                "indicatorValue": 0
+            },
+            "upperBoundary": {
+                "criteriaValue": 100,
+                "indicatorValue": 0
+            },
+            "intervals": []
+        },
+        {
+            "indicator": "Number of damaged road segments",
+            "lowerBoundary": {
+                "criteriaValue": 0,
+                "indicatorValue": 0
+            },
+            "upperBoundary": {
+                "criteriaValue": 100,
+                "indicatorValue": 0
+            },
+            "intervals": []
+        },
+        {
+            "indicator": "Total evacuation cost",
+            "lowerBoundary": {
+                "criteriaValue": 0,
+                "indicatorValue": 0
+            },
+            "upperBoundary": {
+                "criteriaValue": 100,
+                "indicatorValue": 0
+            },
+            "intervals": []
+        }
+    ]
+}

@@ -1,0 +1,107 @@
+{
+    "name": "CLARTIY Decision Strategy #1",
+    "criteriaEmphases": [
+        {
+            "indicator": {
+                "displayName": "Number of dead",
+                "iconResource": "flower_dead_16.png",
+                "value": "0",
+                "unit": "People"
+            },
+            "criteriaEmphasis": 100
+        },
+        {
+            "indicator": {
+                "displayName": "Number of injured",
+                "iconResource": "flower_injured_16.png",
+                "value": "0",
+                "unit": "People"
+            },
+            "criteriaEmphasis": 100
+        },
+        {
+            "indicator": {
+                "displayName": "Number of homeless",
+                "iconResource": "flower_homeless_16.png",
+                "value": "0",
+                "unit": "People"
+            },
+            "criteriaEmphasis": 100
+        },
+        {
+            "indicator": {
+                "displayName": "Direct damage cost",
+                "iconResource": "dollar_direct_16.png",
+                "value": "0",
+                "unit": "Dollar"
+            },
+            "criteriaEmphasis": 100
+        },
+        {
+            "indicator": {
+                "displayName": "Indirect damage cost",
+                "iconResource": "dollar_indirect_16.png",
+                "value": "0",
+                "unit": "Dollar"
+            },
+            "criteriaEmphasis": 100
+        },
+        {
+            "indicator": {
+                "displayName": "Direct restoration cost",
+                "iconResource": "dollar_restoration_16.png",
+                "value": "0",
+                "unit": "Dollar"
+            },
+            "criteriaEmphasis": 100
+        },
+        {
+            "indicator": {
+                "displayName": "Lost buildings",
+                "iconResource": "home_lost_16.png",
+                "value": "0",
+                "unit": "Buildings"
+            },
+            "criteriaEmphasis": 100
+        },
+        {
+            "indicator": {
+                "displayName": "Unsafe buildings",
+                "iconResource": "home_unsafe_16.png",
+                "value": "0",
+                "unit": "Buildings"
+            },
+            "criteriaEmphasis": 95
+        },
+        {
+            "indicator": {
+                "displayName": "Number of damaged road segments",
+                "iconResource": "road_damaged_16.png",
+                "value": "0",
+                "unit": "Road seqments"
+            },
+            "criteriaEmphasis": 100
+        },
+        {
+            "indicator": {
+                "displayName": "Total evacuation cost",
+                "iconResource": "money_total_evac_16.png",
+                "value": "0",
+                "unit": "Dollar"
+            },
+            "criteriaEmphasis": 100
+        }
+    ],
+    "satisfactionEmphasis": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+    ]
+}

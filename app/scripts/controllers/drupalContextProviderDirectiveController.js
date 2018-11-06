@@ -10,16 +10,18 @@ angular.module(
             'eu.myclimateservice.csis.scenario-analysis.services.drupalService',
             function ($scope, $timeout, Icmm, Worldstates, drupalService) {
                 'use strict';
-                var showIndicatorFileLoadingError, showFileLoading, loadIndicatorObjects, loadIndicatorObject, onloadCfFile, onloadDsFile, onSeamlessEvent, onloadIccObjects;
+                var showIndicatorFileLoadingError, showFileLoading, loadIndicatorObjects,
+                        loadIndicatorObject, onloadCfFile, onloadDsFile, onSeamlessEvent,
+                        onloadIccObjects, loadCriteriaFunctions, loadDecisionStrategies;
                 var restApi = drupalService.restApi;
-                
-               console.log('window.seamless.connect()');
-               var parent = window.seamless.connect();
+
+                console.log('window.seamless.connect()');
+                var parent = window.seamless.connect();
                 // Receive a message, this only works when the parent window calls send(...) 
                 // inside the onConnect() method, otherwise the event is not recieved (race condition?)
                 // strangley, the onConnect callback is called twice. See comment in nodeConncetor.js
                 parent.receive(function (data) {
-                    console.log('  parent.receive:' + data);
+                    //console.log('  parent.receive:' + data);
                     onSeamlessEvent(data);
                 });
 
@@ -36,7 +38,7 @@ angular.module(
                 $scope.noIndicatorsLoaded = true;
                 /*
                  * the indicator maps keeps track of the indicators that each object  
-                 * (e.g. indicator object, criteriaFunction and decisionStrategy) that are loaded by this directive
+                 * (e.g. indicator object, criteriaFunctionContainer and decisionStrategyContainer) that are loaded by this directive
                  *  must provide
                  */
                 $scope.tooltipRename = {
@@ -157,6 +159,22 @@ angular.module(
                     $scope.dsFileLoadError = true;
                     $scope.dsFileLoadErrorMsg = 'Decision strategies not loaded. ' + message;
                     //$scope.$apply();
+                };
+
+                onloadIccObjects = function (file) {
+                    return function (e) {
+                        var fileObj;
+                        try {
+                            fileObj = JSON.parse(e.target.result);
+                            loadIndicatorObjects(fileObj);
+
+                            $scope.$apply();
+                        } catch (err) {
+                            console.log(err.toString());
+                            // show an error in the gui...
+                            showIndicatorFileLoadingError(err.toString());
+                        }
+                    };
                 };
 
                 loadIndicatorObjects = function (indicatorObjects) {
@@ -283,207 +301,55 @@ angular.module(
                     } catch (err) {
                         // show an error in the gui...
                         showIndicatorFileLoadingError(err.toString());
+                        console.error(err.toString());
                     }
                 };
-                
-                onloadIccObjects = function (file) {
-                return function (e) {
-                    var fileObj, worldstateDummy, indicatorProp, indicator, origLoadedIndicators, indicatorGroup,
-                        loadedIndicatorLength, indicatorMapLength, containsIndicator, msg;
-                    try {
-                        fileObj = JSON.parse(e.target.result);
-                        /*
-                         * 
-                         * accept two differnt kind of files. 
-                         * 1. A plain icc data object.
-                         * In that case we apply a standard name to this object
-                         * 
-                         * 2. A worldstate Dummy object that already has a name
-                         */
-
-                        if (fileObj.name && fileObj.iccdata) {
-                            worldstateDummy = fileObj;
-                            origLoadedIndicators = fileObj.iccdata;
-                            worldstateDummy.iccdata = {
-                                actualaccessinfo: JSON.stringify(worldstateDummy.iccdata)
-                            };
-                        } else {
-                            //generate a uniqe id...
-                            origLoadedIndicators = fileObj;
-                            worldstateDummy = {
-                                name: 'Nonamed indicator data ' + '(filename: ' + file.name + ' )',
-                                iccdata: {
-                                    actualaccessinfo: JSON.stringify(fileObj)
-                                }
-                            };
-                        }
-                        var tmp;
-                        if ($scope.worldstates && $scope.worldstates.length > 0) {
-                            tmp = Worldstates.utils.stripIccData([$scope.worldstates[0]])[0].data;
-                        } else {
-                            tmp = origLoadedIndicators;
-                        }
-                        $scope.indicatorMap = {};
-                        for (indicatorGroup in tmp) {
-                            if (tmp.hasOwnProperty(indicatorGroup)) {
-                                for (indicatorProp in tmp[indicatorGroup]) {
-                                    if (tmp[indicatorGroup].hasOwnProperty(indicatorProp)) {
-                                        if (indicatorProp !== 'displayName' && indicatorProp !== 'iconResource') {
-                                            $scope.indicatorMap[indicatorProp] = tmp[indicatorGroup][indicatorProp];
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        loadedIndicatorLength = 0;
-                        indicatorMapLength = 0;
-                        for (indicator in $scope.indicatorMap) {
-                            if ($scope.indicatorMap.hasOwnProperty(indicator)) {
-                                containsIndicator = false;
-                                indicatorMapLength++;
-                                for (indicatorGroup in origLoadedIndicators) {
-                                    if (origLoadedIndicators.hasOwnProperty(indicatorGroup)) {
-                                        for (indicatorProp in origLoadedIndicators[indicatorGroup]) {
-                                            if (origLoadedIndicators[indicatorGroup].hasOwnProperty(indicatorProp)) {
-                                                if (indicatorProp !== 'displayName' && indicatorProp !== 'iconResource') {
-                                                    if ($scope.indicatorMap[indicator].displayName === origLoadedIndicators[indicatorGroup][indicatorProp].displayName) {
-                                                        loadedIndicatorLength++;
-                                                        containsIndicator = true;
-                                                        break;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                if (!containsIndicator) {
-                                    msg = 'Could not load indicator file ' + file.name + '. It contains no indicator data for ' + indicator;
-                                    console.error(msg);
-                                    showIndicatorFileLoadingError(msg);
-                                    return;
-                                }
-                            }
-                        }
-                        if (loadedIndicatorLength !== indicatorMapLength) {
-                            msg = 'indicator data in file ' + file.name + ' has more indicators defined that the first loaded indicator set.';
-                            console.error(msg);
-                            showIndicatorFileLoadingError(msg);
-                            return;
-                        }
-
-                        // we need an id to distinct the icc objects. eg. the ranking table use this id
-                        // to keep track of the indicator objects
-                        if (!worldstateDummy.id) {
-                            worldstateDummy.id = Math.floor((Math.random() * 1000000) + 1);
-                        }
-
-                        // an excellent example on technical debt and accidental complexity:
-                        // instead of adressing the root cause of the problem, we
-                        // introduce additional inadequateness and ambiguity
-                        Icmm.convertToCorrectIccDataFormat(worldstateDummy);
-
-                        if ($scope.worldstates) {
-                            $scope.worldstates.push(worldstateDummy);
-                            $scope.editable.push(false);
-                        } else {
-                            $scope.editable.push(false);
-                            $scope.worldstates = [worldstateDummy];
-                        }
-                        $scope.showDummyListItem = false;
-                        $scope.noIndicatorsLoaded = false;
-                        // when indicator objects are added we want them to be selected by default
-                        $scope.selectedWorldstates.splice(0, $scope.selectedWorldstates.length);
-                        $scope.worldstates.forEach(function (object, index) {
-                            $scope.toggleSelection(index);
-                        });
-
-                        $scope.$apply();
-
-                    } catch (err) {
-                        // show an error in the gui...
-                        showIndicatorFileLoadingError(err.toString());
-                    }
-                };
-            };
 
                 onloadCfFile = function (theFile) {
                     return function (e) {
-                        var cfSet, cf, i, j, indicatorProp, indicatorFound, cfIndicator, msg, indicatorMapLength,
-                                cfIndicatorLength;
+                        var criteriaFunctionArray;
                         try {
-                            cfSet = JSON.parse(e.target.result);
-
-                            if (Object.prototype.toString.call(cfSet) === '[object Array]') {
-                                indicatorMapLength = 0;
-                                for (indicatorProp in $scope.indicatorMap) {
-                                    if ($scope.indicatorMap.hasOwnProperty(indicatorProp)) {
-                                        indicatorMapLength++;
-                                    }
-                                }
-                                // we need to check if the criteria Functions defined in the file
-                                // match to the indicators of the loaded indicator files...
-                                for (indicatorProp in $scope.indicatorMap) {
-                                    if ($scope.indicatorMap.hasOwnProperty(indicatorProp)) {
-                                        for (i = 0; i < cfSet.length; i++) {
-                                            cf = cfSet[i];
-                                            cfIndicatorLength = cf.criteriaFunctions.length;
-                                            for (j = 0; j < cf.criteriaFunctions.length; j++) {
-                                                cfIndicator = cf.criteriaFunctions[j].indicator;
-                                                indicatorFound = false;
-
-                                                if ($scope.indicatorMap[indicatorProp].displayName === cfIndicator) {
-                                                    indicatorFound = true;
-                                                    break;
-                                                }
-                                            }
-                                            if (!indicatorFound) {
-                                                msg = 'Could not find indicator "' + $scope.indicatorMap[indicatorProp].displayName + '" in criteria function "' + cf.name + '"';
-                                                console.error(msg);
-                                                $scope.showCfFileLoadingError(msg);
-                                                return;
-                                            }
-                                            if (cfIndicatorLength !== indicatorMapLength) {
-                                                msg = 'Criteria Function :"' + cf.name + '" contains more indicators than the loaded indicator files.';
-                                                console.error(msg);
-                                                $scope.showCfFileLoadingError(msg);
-                                                return;
-                                            }
-                                        }
-                                    }
-                                }
-                                $scope.criteriaFunctions = cfSet;
-                                $scope.loadedCfFile = theFile.name;
-
-                            }
+                            criteriaFunctionArray = JSON.parse(e.target.result);
+                            loadCriteriaFunctions(criteriaFunctionArray);
+                            $scope.loadedCfFile = theFile.name;
                             $scope.$apply();
                         } catch (err) {
                             // show an error in the gui...
                             console.error('Could not read Criteria Function Config File: ' + theFile.name);
+                            console.error(err.toString());
                         }
                     };
                 };
 
-                onloadDsFile = function (theFile) {
-                    return function (e) {
-                        var ds, s, i, j, indicatorProp, indicatorFound, cfIndicator, msg, indicatorMapLength, dsIndicatorLength;
-                        try {
-                            ds = JSON.parse(e.target.result);
+                loadCriteriaFunctions = function (criteriaFunctionArray) {
 
-                            if (Object.prototype.toString.call(ds) === '[object Array]') {
-                                indicatorMapLength = 0;
-                                for (indicatorProp in $scope.indicatorMap) {
-                                    if ($scope.indicatorMap.hasOwnProperty(indicatorProp)) {
-                                        indicatorMapLength++;
-                                    }
-                                }
-                                // we need to check if the decision strategies defined in the file
-                                // match to the indicators of the loaded indicator files...
-                                for (indicatorProp in $scope.indicatorMap) {
-                                    for (i = 0; i < ds.length; i++) {
-                                        s = ds[i];
-                                        dsIndicatorLength = s.criteriaEmphases.length;
-                                        for (j = 0; j < s.criteriaEmphases.length; j++) {
-                                            cfIndicator = s.criteriaEmphases[j].indicator.displayName;
+                    var criteriaFunctionContainer, i, j, indicatorProp, indicatorFound, cfIndicator, msg, indicatorMapLength,
+                            cfIndicatorLength;
+
+                    if (Object.prototype.toString.call(criteriaFunctionArray) === '[object Array]') {
+                        indicatorMapLength = 0;
+                        for (indicatorProp in $scope.indicatorMap) {
+                            if ($scope.indicatorMap.hasOwnProperty(indicatorProp)) {
+                                indicatorMapLength++;
+                            }
+                        }
+                        // we need to check if the criteria Functions defined in the file
+                        // match to the indicators of the loaded indicator files...
+                        for (indicatorProp in $scope.indicatorMap) {
+                            if ($scope.indicatorMap.hasOwnProperty(indicatorProp)) {
+                                for (i = 0; i < criteriaFunctionArray.length; i++) {
+                                    criteriaFunctionContainer = criteriaFunctionArray[i];
+                                    if (criteriaFunctionContainer && criteriaFunctionContainer !== null && criteriaFunctionContainer !== undefined &&
+                                            criteriaFunctionContainer.criteriaFunctions && criteriaFunctionContainer.criteriaFunctions !== null && criteriaFunctionContainer.criteriaFunctions !== undefined) {
+                                        cfIndicatorLength = criteriaFunctionContainer.criteriaFunctions.length;
+                                        if (criteriaFunctionContainer.name) {
+                                            $scope.loadedCfFile = criteriaFunctionContainer.name;
+                                        } else {
+                                            $scope.loadedCfFile = ' '
+                                        }
+
+                                        for (j = 0; j < criteriaFunctionContainer.criteriaFunctions.length; j++) {
+                                            cfIndicator = criteriaFunctionContainer.criteriaFunctions[j].indicator;
                                             indicatorFound = false;
 
                                             if ($scope.indicatorMap[indicatorProp].displayName === cfIndicator) {
@@ -491,48 +357,133 @@ angular.module(
                                                 break;
                                             }
                                         }
-                                        if (s.satisfactionEmphasis.length !== indicatorMapLength) {
-                                            msg = 'Satisfaction Emphasis Vector for decision strategy :"' + ds.name + '" contains more elements than indicator are defined';
-                                            console.error(msg);
-                                            $scope.showDsFileLoadingError(msg);
-                                            return;
-                                        }
                                         if (!indicatorFound) {
-                                            msg = 'Could not find indicator "' + $scope.indicatorMap[indicatorProp].displayName + '" in decision strategy "' + s.name + '"';
+                                            msg = 'Could not find indicator "' + $scope.indicatorMap[indicatorProp].displayName + '" in criteria function "' + criteriaFunctionContainer.name + '"';
                                             console.error(msg);
-                                            $scope.showDsFileLoadingError(msg);
+                                            $scope.showCfFileLoadingError(msg);
                                             return;
                                         }
-                                        if (dsIndicatorLength !== indicatorMapLength) {
-                                            msg = 'Decision strategy :"' + ds.name + '" contains more indicators than the loaded indicator files.';
+                                        if (cfIndicatorLength !== indicatorMapLength) {
+                                            msg = 'Criteria Function :"' + criteriaFunctionContainer.name + '" contains more indicators than the loaded indicator files.';
                                             console.error(msg);
-                                            $scope.showDsFileLoadingError(msg);
+                                            $scope.showCfFileLoadingError(msg);
                                             return;
                                         }
+                                    } else {
+                                        $scope.showCfFileLoadingError('Wrong Criteria Function File Format');
                                     }
                                 }
-                                $scope.loadedDsfFile = theFile.name;
-                                $scope.decisionStrategies = ds;
                             }
+                        }
+
+                        console.log(criteriaFunctionArray.length + 'criteria functions strategies loaded');
+                        $scope.criteriaFunctions = criteriaFunctionArray;
+
+                    } else {
+                        msg = 'criteria function object is not an array or empty';
+                        console.log(msg + ': ' + criteriaFunctionArray.ToString());
+                        $scope.showCfFileLoadingError('msg');
+                    }
+                };
+
+                onloadDsFile = function (theFile) {
+                    return function (e) {
+                        var decisionStrategyArray;
+                        try {
+                            decisionStrategyArray = JSON.parse(e.target.result);
+                            loadDecisionStrategies(decisionStrategyArray);
+                            $scope.loadedDsfFile = theFile.name;
                             $scope.$apply();
                         } catch (err) {
                             // show an error in the gui...
                             console.error('Could not read Decision Strategy Config File: ' + theFile.name);
+                            console.error(err.toString());
                         }
                     };
                 };
-                
-                onSeamlessEvent = function(eventData) {
+
+                loadDecisionStrategies = function (decisionStrategyArray) {
+                    var decisionStrategyContainer, i, j, indicatorProp, indicatorFound, cfIndicator,
+                            msg, indicatorMapLength, dsIndicatorLength;
+
+                    if (Object.prototype.toString.call(decisionStrategyArray) === '[object Array]') {
+                        indicatorMapLength = 0;
+                        for (indicatorProp in $scope.indicatorMap) {
+                            if ($scope.indicatorMap.hasOwnProperty(indicatorProp)) {
+                                indicatorMapLength++;
+                            }
+                        }
+                        // we need to check if the decision strategies defined in the file
+                        // match to the indicators of the loaded indicator files...
+                        for (indicatorProp in $scope.indicatorMap) {
+                            for (i = 0; i < decisionStrategyArray.length; i++) {
+                                decisionStrategyContainer = decisionStrategyArray[i];
+                                if (decisionStrategyContainer && decisionStrategyContainer !== null && decisionStrategyContainer !== undefined &&
+                                        decisionStrategyContainer.criteriaEmphases && decisionStrategyContainer.criteriaEmphases !== null && decisionStrategyContainer.criteriaEmphases !== undefined) {
+                                    if (decisionStrategyContainer.name) {
+                                        $scope.loadedDsfFile = decisionStrategyContainer.name;
+                                    } else {
+                                        $scope.loadedDsfFile = '';
+                                    }
+
+                                    dsIndicatorLength = decisionStrategyContainer.criteriaEmphases.length;
+                                    for (j = 0; j < decisionStrategyContainer.criteriaEmphases.length; j++) {
+                                        cfIndicator = decisionStrategyContainer.criteriaEmphases[j].indicator.displayName;
+                                        indicatorFound = false;
+
+                                        if ($scope.indicatorMap[indicatorProp].displayName === cfIndicator) {
+                                            indicatorFound = true;
+                                            break;
+                                        }
+                                    }
+                                    if (decisionStrategyContainer.satisfactionEmphasis.length !== indicatorMapLength) {
+                                        msg = 'Satisfaction Emphasis Vector for decision strategy :"' + decisionStrategyArray.name + '" contains more elements than indicator are defined';
+                                        console.error(msg);
+                                        $scope.showDsFileLoadingError(msg);
+                                        return;
+                                    }
+                                    if (!indicatorFound) {
+                                        msg = 'Could not find indicator "' + $scope.indicatorMap[indicatorProp].displayName + '" in decision strategy "' + decisionStrategyContainer.name + '"';
+                                        console.error(msg);
+                                        $scope.showDsFileLoadingError(msg);
+                                        return;
+                                    }
+                                    if (dsIndicatorLength !== indicatorMapLength) {
+                                        msg = 'Decision strategy :"' + decisionStrategyArray.name + '" contains more indicators than the loaded indicator files.';
+                                        console.error(msg);
+                                        $scope.showDsFileLoadingError(msg);
+                                        return;
+                                    }
+                                } else {
+                                    $scope.showCfFileLoadingError('Wrong Criteria Function File Format');
+                                }
+                            }
+                        }
+
+                        $scope.decisionStrategies = decisionStrategyArray;
+                        console.log(decisionStrategyArray.length + 'decision strategies loaded');
+                    } else {
+                        msg = 'decision strategy object is not an array or empty';
+                        console.log(msg + ': ' + decisionStrategyArray.ToString());
+                        $scope.showCfFileLoadingError('msg');
+                    }
+                };
+
+                onSeamlessEvent = function (eventData) {
                     console.log('load study from node id: ' + eventData.nodeId);
-                    
+
                     restApi.getStudy(eventData.nodeId).then(function (study) {
-                            var indicatorArray = drupalService.studyHelper.getIndicatorArray(study);
-                            loadIndicatorObjects(indicatorArray);
-                        }, function (error) {
-                            console.log(error.data.message);
-                            showIndicatorFileLoadingError(error.data.message.toString());
-                        });
-                    };
+                        var indicatorArray = drupalService.studyHelper.getIndicatorArray(study);
+                        var criteriaFunctionArray = drupalService.studyHelper.getCriteriaFunction(study);
+                        var decisionStrategyArray = drupalService.studyHelper.getDecisionStrategy(study);
+                        loadIndicatorObjects(indicatorArray);
+                        loadCriteriaFunctions(criteriaFunctionArray);
+                        loadDecisionStrategies(decisionStrategyArray);
+                    }, function (error) {
+                        console.log(error.data.message);
+                        showIndicatorFileLoadingError(error.data.message.toString());
+                    });
+                };
 
                 /*
                  * When the newFile property has changed the User want's to add a new list of files.
@@ -554,6 +505,7 @@ angular.module(
                             } catch (err) {
                                 // show an error in the gui...
                                 showIndicatorFileLoadingError(err.toString());
+                                console.error(err.toString());
                             }
 
                         }
@@ -578,6 +530,7 @@ angular.module(
                         } catch (err) {
                             // show an error in the gui...
                             console.error('Could not read Criteria Function Config File: ' + file.name);
+                            console.error(err.toString());
                         }
                     }
 
@@ -601,13 +554,14 @@ angular.module(
                         } catch (err) {
                             // show an error in the gui...
                             console.error('Could not read Decision Strategy Config File: ' + file.name);
+                            console.error(err.toString());
                         }
 
                     }
 
                 }, true);
 
-                
+
 
 
                 // TODO: get study / EU-GL Step Entity id from Drpal API, e.g. 

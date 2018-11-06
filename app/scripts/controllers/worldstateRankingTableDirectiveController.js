@@ -12,10 +12,10 @@ angular.module(
         'ngDialog',
         function ($scope, $filter, NgTableParams, Worldstates, ccs, as, ngDialog) {
             'use strict';
-            var ctrl;
+            var $this;
 
-            ctrl = this;
-            ctrl.getOrderedProperties = function (obj) {
+            $this = this;
+            $this.getOrderedProperties = function (obj) {
                 var p, keys;
                 keys = [];
                 for (p in obj) {
@@ -27,7 +27,7 @@ angular.module(
                 return keys;
             };
 
-            ctrl.extractIndicators = function (worldstate) {
+            $this.extractIndicators = function (worldstate) {
                 var indicatorGroup, indicatorProp, iccObject, group, indicators;
                 indicators = [];
                 if (worldstate) {
@@ -48,9 +48,9 @@ angular.module(
                 return indicators;
             };
 
-            ctrl.getCriteriaVectorForWorldstate = function (ws, critFunc) {
+            $this.getCriteriaVectorForWorldstate = function (ws, critFunc) {
                 var indicators, criterias, i;
-                indicators = ctrl.extractIndicators(ws);
+                indicators = $this.extractIndicators(ws);
                 criterias = [];
                 if (indicators && indicators.length === critFunc.criteriaFunctions.length) {
                     for (i = 0; i < indicators.length; i++) {
@@ -68,7 +68,7 @@ angular.module(
                 return criterias;
             };
 
-            ctrl.getCritAndWeightVector = function (dec, criteria) {
+            $this.getCritAndWeightVector = function (dec, criteria) {
                 var critWeight, i, critEmph;
                 critWeight = {};
                 critWeight.criteria = [];
@@ -86,11 +86,11 @@ angular.module(
                 return critWeight;
             };
 
-            ctrl.createTableItem = function (ws) {
+            $this.createTableItem = function (ws) {
                 var i, crit, critWeight, score, newTableItem, item;
                 if ($scope.criteriaFunction && $scope.decisionStrategy) {
-                    crit = ctrl.getCriteriaVectorForWorldstate(ws, $scope.criteriaFunction);
-                    critWeight = ctrl.getCritAndWeightVector($scope.decisionStrategy, crit);
+                    crit = $this.getCriteriaVectorForWorldstate(ws, $scope.criteriaFunction);
+                    critWeight = $this.getCritAndWeightVector($scope.decisionStrategy, crit);
                     score = as.getOwa().aggregateLS(critWeight.criteria, $scope.decisionStrategy.satisfactionEmphasis, critWeight.weights);
                 } else {
                     score = 0;
@@ -116,9 +116,9 @@ angular.module(
                 return newTableItem;
             };
 
-            ctrl.addMissingColumns = function (ws) {
+            $this.addMissingColumns = function (ws) {
                 var i, indicator, indicators, exists = false;
-                indicators = ctrl.extractIndicators(ws);
+                indicators = $this.extractIndicators(ws);
                 for (i = 0; i < indicators.length; i++) {
                     indicator = indicators[i];
                     /*jshint -W083 */
@@ -136,7 +136,7 @@ angular.module(
                 }
             };
 
-            ctrl.insertAtCorrectTablePosition = function (tableArr, newTableItem) {
+            $this.insertAtCorrectTablePosition = function (tableArr, newTableItem) {
                 var i, insertPosition, updateRank,
                     tableItem, score;
                 score = newTableItem.rawScore;
@@ -168,19 +168,19 @@ angular.module(
                 }
             };
 
-            ctrl.addWorldstateToTableData = function (ws) {
+            $this.addWorldstateToTableData = function (ws) {
                 var newTableItem;
-                ctrl.addMissingColumns(ws);
-                newTableItem = ctrl.createTableItem(ws);
+                $this.addMissingColumns(ws);
+                newTableItem = $this.createTableItem(ws);
                 // we need to find out the insertion point...
                 if (!$scope.tableData) {
                     $scope.tableData = [];
                 }
-                ctrl.insertAtCorrectTablePosition($scope.tableData, newTableItem);
-//                ctrl.refreshTable();
+                $this.insertAtCorrectTablePosition($scope.tableData, newTableItem);
+//                $this.refreshTable();
             };
 
-            ctrl.removeWorldstateFromTableData = function (ws) {
+            $this.removeWorldstateFromTableData = function (ws) {
                 var i, isRemoved = -1;
                 if ($scope.tableData) {
                     $scope.tableData.forEach(function (item, index) {
@@ -193,27 +193,27 @@ angular.module(
                         for (i = isRemoved; i < $scope.tableData.length; i++) {
                             $scope.tableData[i].rank--;
                         }
-//                    ctrl.refreshTable();
+//                    $this.refreshTable();
                     } else {
                         console.error('Could not remove worldstate ' + ws + ' from ranking table');
                     }
                 }
             };
 
-            ctrl.updateWorldstateTableData = function (ws) {
+            $this.updateWorldstateTableData = function (ws) {
                 var tableItem, i, newTableItem;
-                newTableItem = ctrl.createTableItem(ws);
+                newTableItem = $this.createTableItem(ws);
                 for (i = 0; i < $scope.tableData.length; i++) {
                     tableItem = $scope.tableData[i];
                     if (tableItem.ws.id === ws.id) {
-                        ctrl.removeWorldstateFromTableData(tableItem.ws);
+                        $this.removeWorldstateFromTableData(tableItem.ws);
                         break;
                     }
                 }
-                ctrl.insertAtCorrectTablePosition($scope.tableData, newTableItem);
+                $this.insertAtCorrectTablePosition($scope.tableData, newTableItem);
             };
 
-            ctrl.refreshTable = function () {
+            $this.refreshTable = function () {
                 if ($scope.tableParams) {
                     $scope.tableParams.reload();
 //                    $scope.tableParams.settings().$scope = $scope;
@@ -241,7 +241,7 @@ angular.module(
                 }
             };
 
-            ctrl.addMissingWoldstatesToTable = function (oldWorldStates) {
+            $this.addMissingWoldstatesToTable = function (oldWorldStates) {
                 var i, ws, isContained;
                 for (i = $scope.worldstates.length - 1; i >= 0; i--) {
                     ws = $scope.worldstates[i];
@@ -254,13 +254,13 @@ angular.module(
                             }
                         });
                         if (!isContained) {
-                            ctrl.addWorldstateToTableData(ws);
+                            $this.addWorldstateToTableData(ws);
                         }
                     }
                 }
             };
 
-            ctrl.removeMissingWorldstatesFromTable = function (oldWorldstates) {
+            $this.removeMissingWorldstatesFromTable = function (oldWorldstates) {
                 var i, ws, isContained;
                 for (i = oldWorldstates.length - 1; i >= 0; i--) {
                     ws = oldWorldstates[i];
@@ -272,42 +272,42 @@ angular.module(
                         }
                     });
                     if (!isContained) {
-                        ctrl.removeWorldstateFromTableData(ws);
+                        $this.removeWorldstateFromTableData(ws);
                     }
                 }
             };
 
-            ctrl.worldstateWatchCallback = function (newVal, oldVal) {
+            $this.worldstateWatchCallback = function (newVal, oldVal) {
 //                if (newVal === oldVal || !oldVal) {
                 if (newVal === oldVal || !oldVal) {
                     return;
                 }
-                ctrl.removeMissingWorldstatesFromTable(oldVal);
+                $this.removeMissingWorldstatesFromTable(oldVal);
 
                 if ($scope.worldstates && $scope.worldstates.length > 0 && $scope.criteriaFunction && $scope.decisionStrategy) {
-                    ctrl.addMissingWoldstatesToTable(oldVal);
-                    ctrl.refreshTable();
+                    $this.addMissingWoldstatesToTable(oldVal);
+                    $this.refreshTable();
                 }
             };
 
-            ctrl.decisionStrategyWatchCallback = function (newVal, oldVal) {
+            $this.decisionStrategyWatchCallback = function (newVal, oldVal) {
                 var ws, newTableItem, i = 0, newTableData = [];
                 if (!angular.equals(newVal, oldVal) && $scope.worldstates && $scope.worldstates.length > 0) {
                     if ($scope.criteriaFunction && $scope.decisionStrategy) {
                         if (!$scope.tableData || $scope.tableData.length === 0) {
                             for (i = 0; i < $scope.worldstates.length; i++) {
-                                ctrl.addWorldstateToTableData($scope.worldstates[i]);
+                                $this.addWorldstateToTableData($scope.worldstates[i]);
                             }
                         } else {
                             // we need to re-calculate and re-index the tableData...
                             for (i = 0; i < $scope.tableData.length; i++) {
                                 ws = $scope.tableData[i].ws;
-                                newTableItem = ctrl.createTableItem(ws);
-                                ctrl.insertAtCorrectTablePosition(newTableData, newTableItem);
+                                newTableItem = $this.createTableItem(ws);
+                                $this.insertAtCorrectTablePosition(newTableData, newTableItem);
                             }
                             $scope.tableData = newTableData;
                         }
-                        ctrl.refreshTable();
+                        $this.refreshTable();
                     }
                 }
             };
@@ -333,11 +333,11 @@ angular.module(
                 }];
 
             $scope.tableVisibleSwitch = '0';
-            $scope.$watch('worldstates', ctrl.worldstateWatchCallback, true);
+            $scope.$watch('worldstates', $this.worldstateWatchCallback, true);
 
-            $scope.$watch('decisionStrategy', ctrl.decisionStrategyWatchCallback, true);
+            $scope.$watch('decisionStrategy', $this.decisionStrategyWatchCallback, true);
 
-            $scope.$watch('criteriaFunction', ctrl.decisionStrategyWatchCallback, true);
+            $scope.$watch('criteriaFunction', $this.decisionStrategyWatchCallback, true);
         }
     ]
     );

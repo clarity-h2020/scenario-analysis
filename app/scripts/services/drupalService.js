@@ -17,8 +17,14 @@ angular.module(
         ['$http', '$resource', '$q', function ($http, $resource, $q) {
                 'use strict';
 
-                var $this;
+                var $this, studyPath, studyFields;
                 $this = this;
+                studyPath = '/study/:studyId';
+                studyFields = [];
+                //studyFields['indicators'] = 'field_mcda_indicators'
+                studyFields['indicators'] = 'field_indicators';
+                studyFields['criteriaFunction'] = 'field_mcda_criteriafunction';
+                studyFields['decisionStrategy'] = 'field_field_mcda_decision_strate';              
 
                 // <editor-fold defaultstate="open" desc="=== drupalRestApi ===========================">
                 $this.drupalRestApi = {};
@@ -53,7 +59,7 @@ angular.module(
                 $this.drupalRestApi.getStudy = function (studyId) {
 
                     return $this.drupalRestApi.getToken().then(function tokenSuccessCallback(token) {
-                        var studyResource = $resource($this.drupalRestApi.host + '/study/:studyId',
+                        var studyResource = $resource($this.drupalRestApi.host + studyPath,
                             {
                                 studyId: '@studyId',
                                 _format: 'hal_json'
@@ -81,21 +87,34 @@ angular.module(
                 //$this.drupalRestApi.initToken();
 
                 $this.drupalStudyHelper = {};
+                var getObjectFromDrupalField;
                 $this.drupalStudyHelper.getIndicatorArray = function (study) {
+                    return getObjectFromDrupalField(study, studyFields['indicators']);
+                };
+                
+                $this.drupalStudyHelper.getCriteriaFunction = function (study) {
+                    return getObjectFromDrupalField(study, studyFields['criteriaFunction']);
+                };
+                
+                $this.drupalStudyHelper.getDecisionStrategy = function (study) {
+                    return getObjectFromDrupalField(study, studyFields['decisionStrategy']);
+                };      
+                
+                getObjectFromDrupalField = function(study, field) {
                     if (!study || study === null || study === undefined ||
-                            !study.field_indicators || study.field_indicators === null || study.field_indicators === undefined) {
+                            !study.field_indicators || study[field] === null || study[field] === undefined) {
+                        console.log('study object is null or field "' + field + '" is empty!');
                         return [];
                     } else {
-                        var studyIndicators = [];
-                        for(var i = 0; i < study.field_indicators.length; i++) {
+                        var objects = [];
+                        for(var i = 0; i < study[field].length; i++) {
                             // this is madness: parse into object and later stringify again
                             // so that it can be used by the akward ICMM library (won't touch this thing!)
-                            var studyIndicator = JSON.parse(study.field_indicators[i].value);
-                            studyIndicators.push(studyIndicator);
+                            var object = JSON.parse(study[field][i].value);
+                            objects.push(object);
                         }
-                        return studyIndicators;
+                        return objects;
                     }
-
                 };
 
                 return {

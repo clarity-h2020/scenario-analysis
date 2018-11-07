@@ -23,12 +23,12 @@ angular.module(
                 nodeFields = [];
                 //nodeFields['indicators'] = 'field_mcda_indicators'
                 nodeFields['indicators'] = 'field_indicators';
-                nodeFields['criteriaFunction'] = 'field_mcda_criteriafunction';
-                nodeFields['decisionStrategy'] = 'field_field_mcda_decision_strate';              
+                nodeFields['criteriaFunction'] = 'field_mcda_criteria_function';
+                nodeFields['decisionStrategy'] = 'field_mcda_indicators';              
 
                 // <editor-fold defaultstate="open" desc="=== drupalRestApi ===========================">
                 $this.drupalRestApi = {};
-                $this.drupalRestApi.host = ''; //http://roberto:8080';
+                $this.drupalRestApi.host = '';
                 $this.drupalRestApi.token = undefined;
                 // </editor-fold>
 

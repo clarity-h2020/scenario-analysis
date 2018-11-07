@@ -163,11 +163,12 @@ angular.module(
 
                 onloadIccObjects = function (file) {
                     return function (e) {
+                        console.log('load icc file: ' + file.name);
+                        
                         var fileObj;
                         try {
                             fileObj = JSON.parse(e.target.result);
-                            loadIndicatorObjects(fileObj);
-
+                            loadIndicatorObject(fileObj);
                             $scope.$apply();
                         } catch (err) {
                             console.log(err.toString());
@@ -310,7 +311,11 @@ angular.module(
                         var criteriaFunctionArray;
                         try {
                             criteriaFunctionArray = JSON.parse(e.target.result);
-                            loadCriteriaFunctions(criteriaFunctionArray);
+                            if (Object.prototype.toString.call(criteriaFunctionArray) !== '[object Array]') {
+                                loadCriteriaFunctions([criteriaFunctionArray]);
+                            } else {
+                                loadCriteriaFunctions(criteriaFunctionArray);
+                            }
                             $scope.loadedCfFile = theFile.name;
                             $scope.$apply();
                         } catch (err) {
@@ -345,7 +350,7 @@ angular.module(
                                         if (criteriaFunctionContainer.name) {
                                             $scope.loadedCfFile = criteriaFunctionContainer.name;
                                         } else {
-                                            $scope.loadedCfFile = ' '
+                                            $scope.loadedCfFile = ' ';
                                         }
 
                                         for (j = 0; j < criteriaFunctionContainer.criteriaFunctions.length; j++) {
@@ -381,7 +386,7 @@ angular.module(
 
                     } else {
                         msg = 'criteria function object is not an array or empty';
-                        console.log(msg + ': ' + criteriaFunctionArray.ToString());
+                        console.log(msg + ': ' + criteriaFunctionArray.toString());
                         $scope.showCfFileLoadingError('msg');
                     }
                 };
@@ -391,6 +396,9 @@ angular.module(
                         var decisionStrategyArray;
                         try {
                             decisionStrategyArray = JSON.parse(e.target.result);
+                            if (Object.prototype.toString.call(decisionStrategyArray) !== '[object Array]') {
+                                decisionStrategyArray = [decisionStrategyArray];
+                            }
                             loadDecisionStrategies(decisionStrategyArray);
                             $scope.loadedDsfFile = theFile.name;
                             $scope.$apply();
@@ -464,7 +472,7 @@ angular.module(
                         console.log(decisionStrategyArray.length + 'decision strategies loaded');
                     } else {
                         msg = 'decision strategy object is not an array or empty';
-                        console.log(msg + ': ' + decisionStrategyArray.ToString());
+                        console.log(msg + ': ' + decisionStrategyArray.toString());
                         $scope.showCfFileLoadingError('msg');
                     }
                 };

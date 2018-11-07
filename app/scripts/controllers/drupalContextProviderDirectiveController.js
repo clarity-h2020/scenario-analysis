@@ -470,12 +470,12 @@ angular.module(
                 };
 
                 onSeamlessEvent = function (eventData) {
-                    console.log('load study from node id: ' + eventData.nodeId);
+                    console.log('load node from node id: ' + eventData.nodeId);
 
-                    restApi.getStudy(eventData.nodeId).then(function (study) {
-                        var indicatorArray = drupalService.studyHelper.getIndicatorArray(study);
-                        var criteriaFunctionArray = drupalService.studyHelper.getCriteriaFunction(study);
-                        var decisionStrategyArray = drupalService.studyHelper.getDecisionStrategy(study);
+                    restApi.getNode(eventData.nodeId).then(function (node) {
+                        var indicatorArray = drupalService.nodeHelper.getIndicatorArray(node);
+                        var criteriaFunctionArray = drupalService.nodeHelper.getCriteriaFunction(node);
+                        var decisionStrategyArray = drupalService.nodeHelper.getDecisionStrategy(node);
                         loadIndicatorObjects(indicatorArray);
                         loadCriteriaFunctions(criteriaFunctionArray);
                         loadDecisionStrategies(decisionStrategyArray);
@@ -564,7 +564,7 @@ angular.module(
 
 
 
-                // TODO: get study / EU-GL Step Entity id from Drpal API, e.g. 
+                // TODO: get node / EU-GL Step Entity id from Drpal API, e.g. 
                 // via request parameter passed to iFrame or via seamless.js parent.receive callback
 //                $timeout(function () {
 //                    onSeamlessEvent({nodeId:2})

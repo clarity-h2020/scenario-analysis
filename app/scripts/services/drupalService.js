@@ -17,14 +17,14 @@ angular.module(
         ['$http', '$resource', '$q', function ($http, $resource, $q) {
                 'use strict';
 
-                var $this, studyPath, studyFields;
+                var $this, nodePath, nodeFields;
                 $this = this;
-                studyPath = '/study/:studyId';
-                studyFields = [];
-                //studyFields['indicators'] = 'field_mcda_indicators'
-                studyFields['indicators'] = 'field_indicators';
-                studyFields['criteriaFunction'] = 'field_mcda_criteriafunction';
-                studyFields['decisionStrategy'] = 'field_field_mcda_decision_strate';              
+                nodePath = '/node/:nodeId';
+                nodeFields = [];
+                //nodeFields['indicators'] = 'field_mcda_indicators'
+                nodeFields['indicators'] = 'field_indicators';
+                nodeFields['criteriaFunction'] = 'field_mcda_criteriafunction';
+                nodeFields['decisionStrategy'] = 'field_field_mcda_decision_strate';              
 
                 // <editor-fold defaultstate="open" desc="=== drupalRestApi ===========================">
                 $this.drupalRestApi = {};
@@ -56,12 +56,12 @@ angular.module(
                     }
                 };
 
-                $this.drupalRestApi.getStudy = function (studyId) {
+                $this.drupalRestApi.getNode = function (nodeId) {
 
                     return $this.drupalRestApi.getToken().then(function tokenSuccessCallback(token) {
-                        var studyResource = $resource($this.drupalRestApi.host + studyPath,
+                        var nodeResource = $resource($this.drupalRestApi.host + nodePath,
                             {
-                                studyId: '@studyId',
+                                nodeId: '@nodeId',
                                 _format: 'hal_json'
 
                             }, {
@@ -75,8 +75,8 @@ angular.module(
                         }
                     });
 
-                    var studyInstance = studyResource.get({studyId: studyId});
-                    return studyInstance.$promise;
+                    var nodeInstance = nodeResource.get({nodeId: nodeId});
+                    return nodeInstance.$promise;
 
                     }, function tokenErrorCallback(response) {
                         return $q.reject(response);
@@ -86,31 +86,31 @@ angular.module(
                 // init the token
                 //$this.drupalRestApi.initToken();
 
-                $this.drupalStudyHelper = {};
+                $this.drupalNodeHelper = {};
                 var getObjectFromDrupalField;
-                $this.drupalStudyHelper.getIndicatorArray = function (study) {
-                    return getObjectFromDrupalField(study, studyFields['indicators']);
+                $this.drupalNodeHelper.getIndicatorArray = function (node) {
+                    return getObjectFromDrupalField(node, nodeFields['indicators']);
                 };
                 
-                $this.drupalStudyHelper.getCriteriaFunction = function (study) {
-                    return getObjectFromDrupalField(study, studyFields['criteriaFunction']);
+                $this.drupalNodeHelper.getCriteriaFunction = function (node) {
+                    return getObjectFromDrupalField(node, nodeFields['criteriaFunction']);
                 };
                 
-                $this.drupalStudyHelper.getDecisionStrategy = function (study) {
-                    return getObjectFromDrupalField(study, studyFields['decisionStrategy']);
+                $this.drupalNodeHelper.getDecisionStrategy = function (node) {
+                    return getObjectFromDrupalField(node, nodeFields['decisionStrategy']);
                 };      
                 
-                getObjectFromDrupalField = function(study, field) {
-                    if (!study || study === null || study === undefined ||
-                            !study.field_indicators || study[field] === null || study[field] === undefined) {
-                        console.log('study object is null or field "' + field + '" is empty!');
+                getObjectFromDrupalField = function(node, field) {
+                    if (!node || node === null || node === undefined ||
+                            !node.field_indicators || node[field] === null || node[field] === undefined) {
+                        console.log('node object is null or field "' + field + '" is empty!');
                         return [];
                     } else {
                         var objects = [];
-                        for(var i = 0; i < study[field].length; i++) {
+                        for(var i = 0; i < node[field].length; i++) {
                             // this is madness: parse into object and later stringify again
                             // so that it can be used by the akward ICMM library (won't touch this thing!)
-                            var object = JSON.parse(study[field][i].value);
+                            var object = JSON.parse(node[field][i].value);
                             objects.push(object);
                         }
                         return objects;
@@ -119,7 +119,7 @@ angular.module(
 
                 return {
                     restApi: $this.drupalRestApi,
-                    studyHelper: $this.drupalStudyHelper
+                    nodeHelper: $this.drupalNodeHelper
                 };
             }
         ]);

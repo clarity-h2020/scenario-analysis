@@ -22,9 +22,9 @@ angular.module(
                 nodePath = '/node/:nodeId';
                 nodeFields = [];
                 //nodeFields['indicators'] = 'field_mcda_indicators'
-                nodeFields['indicators'] = 'field_indicators';
+                nodeFields['indicators'] = 'field_mcda_indicators';
                 nodeFields['criteriaFunction'] = 'field_mcda_criteria_function';
-                nodeFields['decisionStrategy'] = 'field_mcda_indicators';              
+                nodeFields['decisionStrategy'] = 'field_mcda_decision_strategy';              
 
                 // <editor-fold defaultstate="open" desc="=== drupalRestApi ===========================">
                 $this.drupalRestApi = {};
@@ -102,7 +102,7 @@ angular.module(
                 
                 getObjectFromDrupalField = function(node, field) {
                     if (!node || node === null || node === undefined ||
-                            !node.field_indicators || node[field] === null || node[field] === undefined) {
+                            !node[field] || node[field] === null || node[field] === undefined) {
                         console.log('node object is null or field "' + field + '" is empty!');
                         return [];
                     } else {

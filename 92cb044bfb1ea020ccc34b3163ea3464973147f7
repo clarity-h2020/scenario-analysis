@@ -1,11 +1,11 @@
 {
   "built_on": "master",
-  "duration": 87.308999979,
-  "full_display_name": "scenario-analysis #19",
-  "id": "19",
-  "number": 19,
+  "duration": 106.918999994,
+  "full_display_name": "scenario-analysis #20",
+  "id": "20",
+  "number": 20,
   "result": "SUCCESS",
   "status_message": "?",
-  "time": "2018-11-13 13:11:24 +0000",
-  "url": "job/scenario-analysis/19/"
+  "time": "2019-01-16 17:17:07 +0000",
+  "url": "job/scenario-analysis/20/"
 }

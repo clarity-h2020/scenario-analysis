@@ -1,11 +1,14 @@
 //<script type="text/javascript">
 'use strict';
+/* global $ */
+/* jshint ignore:start */
 if (typeof $ === 'undefined') {
     var $ = jQuery;
 }
 if (typeof $ === 'undefined') {
     var $ = window.jQuery;
 }
+/* jshint ignore:end */
 
 window.Drupal.behaviors.myBehavior = {
     attach: function (context, drupalSettings) {

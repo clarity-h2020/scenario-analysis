@@ -167,6 +167,10 @@ angular.module(
 //                    });
 //                };
 
+                // WTF:
+                // PhantomJS 2.1.1 (Windows 8.0.0) ERROR
+                // SyntaxError: Expected token ')'
+                // at ../mainController.js:170
                 $scope.screenshot = function (elementId, imageName = elementId, foreignObjectRendering = false) {
                     $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
                         document.body.appendChild(canvas);

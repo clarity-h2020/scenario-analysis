@@ -383,7 +383,7 @@ angular.module(
                             }
                         }
 
-                        console.log(criteriaFunctionArray.length + 'criteria functions strategies loaded');
+                        console.log(criteriaFunctionArray.length + ' criteria functions strategies loaded');
                         $scope.criteriaFunctions = criteriaFunctionArray;
 
                     } else {

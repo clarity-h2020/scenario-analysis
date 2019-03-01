@@ -23,7 +23,7 @@ angular.module(
                                 criteriaEmphasis : item.criteriaEmphasis
                             });
                         }
-                    }
+                    }                    
                 }
             };
 

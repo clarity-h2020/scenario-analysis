@@ -168,7 +168,11 @@ angular.module(
                         var fileObj;
                         try {
                             fileObj = JSON.parse(e.target.result);
-                            loadIndicatorObject(fileObj);
+                            if (Object.prototype.toString.call(fileObj) !== '[object Array]') {
+                                loadIndicatorObject(fileObj);
+                            } else {
+                                loadIndicatorObjects(fileObj);
+                            }
                             $scope.$apply();
                         } catch (err) {
                             console.log(err.toString());
@@ -180,6 +184,7 @@ angular.module(
 
                 loadIndicatorObjects = function (indicatorObjects) {
                     var arrayLength = indicatorObjects.length;
+                    console.debug('loading ' + arrayLength + ' indicator arrays');
                     for (var i = 0; i < arrayLength; i++) {
                         loadIndicatorObject(indicatorObjects[i]);
                     }

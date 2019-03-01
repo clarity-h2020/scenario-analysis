@@ -249,7 +249,7 @@ angular.module(
                                                     if ($scope.indicatorMap[indicator].displayName === origLoadedIndicators[indicatorGroup][indicatorProp].displayName) {
                                                         loadedIndicatorLength++;
                                                         containsIndicator = true;
-                                                        break;
+                                                        //break;
                                                     }
                                                 }
                                             }
@@ -264,12 +264,14 @@ angular.module(
                                 }
                             }
                         }
-                        if (loadedIndicatorLength !== indicatorMapLength) {
-                            msg = 'indicator data in file has more indicators defined that the first loaded indicator set.';
+                        
+                        // FIXME: don't use  displayName as **unique** key !!!111!!11 :o(
+                        /**if (loadedIndicatorLength !== indicatorMapLength) {
+                            msg = 'indicator data in file has more indicators ('+loadedIndicatorLength+') defined than the first loaded indicator set ('+indicatorMapLength+').';
                             console.error(msg);
                             showIndicatorFileLoadingError(msg);
                             return;
-                        }
+                        }**/
 
                         // we need an id to distinct the icc objects. eg. the ranking table use this id
                         // to keep track of the indicator objects

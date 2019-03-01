@@ -1,7 +1,7 @@
 angular.module(
     'eu.myclimateservice.csis.scenario-analysis.directives'
     ).directive(
-    'fileContextProvider',
+    'drupalContextProvider',
     [
         function () {
             'use strict';
@@ -18,8 +18,8 @@ angular.module(
             return {
                 scope: scope,
                 restrict: 'E',
-                templateUrl: 'templates/fileContextProviderTemplate.html',
-                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.FileContextProviderDirectiveController'
+                templateUrl: 'templates/drupalContextProviderTemplate.html',
+                controller: 'eu.myclimateservice.csis.scenario-analysis.controllers.drupalContextProviderDirectiveController'
             };
         }
     ]

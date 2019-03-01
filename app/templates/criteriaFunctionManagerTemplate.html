@@ -67,15 +67,17 @@
             <div class="alert alert-warning" role="alert"><b>Warning:</b> No worldstates are selected</div>
         </div>
         <div class="col-lg-9 col-md-12" style="margin-top: 20px" ng-if="selectedCriteriaFunctionIndex >= 0 && criteriaFunctionSet[selectedCriteriaFunctionIndex]">
-            <div class="row" ng-if="!listItemsDisabled" ng-repeat="indicator in indicators">
+            <div class="row" ng-if="!listItemsDisabled" ng-repeat="criteriaFunction in criteriaFunctionSet[selectedCriteriaFunctionIndex].criteriaFunctions">
+                <!-- Criteria Function for Indicator {{criteriaFunction.indicator}}-->
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-12 vCenter">
-                            <img ng-src="{{indicator.iconResource}}" style="margin-right:5px;margin-bottom: 5px" /> <label>{{indicator.displayName}}</label>
+                            <img ng-src="{{criteriaFunction.iconResource}}" style="margin-right:5px;margin-bottom: 5px" /> <label>{{criteriaFunction.indicator}}</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12" >
+                            <!-- Indicator Band -->
                             <indicator-band criteria-function="criteriaFunctionSet[selectedCriteriaFunctionIndex].criteriaFunctions[$index]"></indicator-band>        
                         </div>
                     </div>

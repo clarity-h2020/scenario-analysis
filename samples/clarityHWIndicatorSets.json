@@ -1,0 +1,430 @@
+[
+    {
+        "name": "HW 28°C 6 days",
+        "iccdata": {
+            "v0": {
+                "displayName": "Population: age group <14",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 78366,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 47947,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 11734,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 1435,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 90,
+                    "unit": "Persons"
+                }
+            },
+            "v1": {
+                "displayName": "Population: age group 15-65",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 367956,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 135820,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 20053,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 55,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 35,
+                    "unit": "Persons"
+                }
+            },
+            "v2": {
+                "displayName": "Population: age group  >65",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 43278,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 41406,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 15846,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 3032,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 301,
+                    "unit": "Persons"
+                }
+            }
+        }
+    },
+    {
+        "name": "HW 30°C 6 days",
+        "iccdata": {
+            "v0": {
+                "displayName": "Population: age group <14",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 64159,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 39255,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 9607,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 1175,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 73,
+                    "unit": "Persons"
+                }
+            },
+            "v1": {
+                "displayName": "Population: age group 15-65",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 50799,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 31080,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 7606,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 930,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 50,
+                    "unit": "Persons"
+                }
+            },
+            "v2": {
+                "displayName": "Population: age group  >65",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 35752,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 34205,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 13090,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 2504,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 248,
+                    "unit": "Persons"
+                }
+            }
+        }
+    },
+    {
+        "name": "HW 32°C 6 days",
+        "iccdata": {
+            "v0": {
+                "displayName": "Population: age group <14",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 50799,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 31080,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 7606,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 930,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 58,
+                    "unit": "Persons"
+                }
+            },
+            "v1": {
+                "displayName": "Population: age group 15-65",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 236277,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 87214,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 12877,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 950,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 35,
+                    "unit": "Persons"
+                }
+            },
+            "v2": {
+                "displayName": "Population: age group  >65",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 27014,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 25846,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 9891,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 1892,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 188,
+                    "unit": "Persons"
+                }
+            }
+        }
+    },
+    {
+        "name": "HW 34°C 6 days",
+        "iccdata": {
+            "v0": {
+                "displayName": "Population: age group <14",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 37206,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 22764,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 5571,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 681,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 42,
+                    "unit": "Persons"
+                }
+            },
+            "v1": {
+                "displayName": "Population: age group 15-65",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 171800,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 63415,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 9363,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 691,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 26,
+                    "unit": "Persons"
+                }
+            },
+            "v2": {
+                "displayName": "Population: age group  >65",
+                "iconResource": "flower_16.png",
+                "d1": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_dead_16.png",
+                    "value": 19389,
+                    "unit": "Persons"
+                },
+                "d2": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_injured_16.png",
+                    "value": 18550,
+                    "unit": "Persons"
+                },
+                "d3": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 7099,
+                    "unit": "Persons"
+                },
+                "d4": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 1358,
+                    "unit": "Persons"
+                },
+                "d5": {
+                    "displayName": "Death",
+                    "iconResource": "flower_homeless_16.png",
+                    "value": 134,
+                    "unit": "Persons"
+                }
+            }
+        }
+    }
+]  

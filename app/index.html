@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>CLARTIY Scenario Analysis</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
@@ -23,7 +23,7 @@
         <!-- build:css() -->
         <link rel="stylesheet" href="styles/indicatorCriteriaTableDirective.css">
         <!-- endbuild -->
-        
+
         <!-- seamless.js -->
         <script src="bower_components/seamless/build/seamless.child.js" type="text/javascript"></script>
     </head>
@@ -36,66 +36,12 @@
         <div class="container" name="application" ng-controller="eu.myclimateservice.csis.scenario-analysis.demoApp.controllers.MainController">
             <div class="row" name= "row" style="margin-bottom: 20px;">
                 <div class="col-lg-12">
-                    <tabset>
-                        <tab select="switchToIcmmTab();filesTabCollapsed=false" active="icmmTabActive">
-                            <tab-heading>
-                                <i class="glyphicon glyphicon-chevron-up" 
-                                   ng-show="icmmTabActive && !filesTabCollapsed"
-                                   ng-click="filesTabCollapsed = true"
-                                   style="color:#2a6496; cursor: pointer"></i>
-                                <i class="glyphicon glyphicon-chevron-down" 
-                                   ng-show="icmmTabActive && filesTabCollapsed"
-                                   ng-click="filesTabCollapsed = false"
-                                   style="color:#2a6496; cursor: pointer"></i>
-                                Analysis from ICMM
-                            </tab-heading>
-                            <tab-content>
-                                <div style="border-left: 1px solid #ddd;
-                                     border-right: 1px solid #ddd;
-                                     border-bottom: 1px solid #ddd;
-                                     padding: 20px 30px;">
-                                    <div collapse="filesTabCollapsed">
-                                        <icmm-context-provider
-                                            worldstates="container.refWorldstatesIcmm"
-                                            selected-worldstates="container.worldstatesIcmm"
-                                            decision-strategies="container.decisionStrategiesIcmm"
-                                            criteria-functions="container.criteriaFunctionsIcmm"
-                                            >
-                                        </icmm-context-provider>
-                                    </div>
-                                </div>
-                            </tab-content>
-                        </tab>
-                        <tab select="switchToFilesTab();icmmTabCollapsed=false" active="filesTabActive">
-                            <tab-heading>
-                                <i class="glyphicon glyphicon-chevron-up" 
-                                   ng-show="filesTabActive && !icmmTabCollapsed"
-                                   ng-click="icmmTabCollapsed = true"
-                                   style="color:#2a6496; cursor: pointer"></i>
-                                <i class="glyphicon glyphicon-chevron-down" 
-                                   ng-show="filesTabActive && icmmTabCollapsed"
-                                   ng-click="icmmTabCollapsed = false"
-                                   style="color:#2a6496; cursor: pointer"></i>
-                                Analysis from Files
-                            </tab-heading>
-                            <tab-content>
-                                <div style="border-left: 1px solid #ddd;
-                                     border-right: 1px solid #ddd;
-                                     border-bottom: 1px solid #ddd;
-                                     padding: 20px 30px;"
-                                     >
-                                    <div collapse="icmmTabCollapsed">
-                                        <file-context-provider 
-                                            worldstates="container.refWorldstatesFiles"
-                                            selected-worldstates="container.worldstatesFiles"
-                                            decision-strategies="container.decisionStrategiesFiles"
-                                            criteria-functions="container.criteriaFunctionsFiles">
-                                        </file-context-provider>
-                                    </div>
-                                </div>
-                            </tab-content>
-                        </tab>
-                    </tabset>
+                    <drupal-context-provider 
+                        worldstates="container.refWorldstatesFiles"
+                        selected-worldstates="container.worldstatesFiles"
+                        decision-strategies="container.decisionStrategiesFiles"
+                        criteria-functions="container.criteriaFunctionsFiles">
+                    </drupal-context-provider>
                 </div>
             </div>
 
@@ -246,6 +192,7 @@
                                                                           worldstates='container.worldstates' 
                                                                           for-criteria='forCriteriaTable'
                                                                           criteria-function="container.selectedCriteriaFunction"
+                                                                          detail-icons="true"
                                                                           >
                                                 </indicator-criteria-table>
                                             </div>
@@ -281,7 +228,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="panel panel-default">
-                                            
+
                                             <div class="panel-heading"
                                                  style="display:table;width:100%">
                                                 <h3 style="display:table-cell;vertical-align: middle" class="panel-title"> 
@@ -328,13 +275,13 @@
                                             <div class="panel-heading"
                                                  style="display:table;width:100%">
                                                 <h3 style="display:table-cell;vertical-align: middle" class="panel-title"> 
-                                                        <a style="color:#000" 
-                                                           ng-click="criteriaRadaCollapsed = !criteriaRadaCollapsed">
-                                                            <i ng-if="!criteriaRadaCollapsed" class="glyphicon glyphicon-chevron-up"></i>
-                                                            <i ng-if="criteriaRadaCollapsed" class="glyphicon glyphicon-chevron-down"></i>
-                                                            Criteria radar chart comparison
-                                                        </a>
-                                                    </h3>
+                                                    <a style="color:#000" 
+                                                       ng-click="criteriaRadaCollapsed = !criteriaRadaCollapsed">
+                                                        <i ng-if="!criteriaRadaCollapsed" class="glyphicon glyphicon-chevron-up"></i>
+                                                        <i ng-if="criteriaRadaCollapsed" class="glyphicon glyphicon-chevron-down"></i>
+                                                        Criteria radar chart comparison
+                                                    </a>
+                                                </h3>
                                                 <div class="btn-group pull-right">
                                                     <button type="button" class="btn btn-sm btn-primary" 
                                                             ng-disabled="!container.worldstates || !container.worldstates.length"
@@ -563,30 +510,33 @@
         <script src="scripts/services/icmmPersistanceService.js"></script>
         <script src="scripts/services/icmmCriteriaFunctions.js"></script>
         <script src="scripts/services/icmmDecisionStrategies.js"></script>
+        <script src="scripts/services/drupalService.js"></script>
+        <script src="scripts/controllers/drupalContextProviderDirectiveController.js"></script>
+        <script src="scripts/directives/drupalBasedAnalysisContextProvider.js" type="text/javascript"></script>
         <!-- endbuild -->
 
         <!-- demo only -->
         <script>
-            angular.module('eu.myclimateservice.csis.scenario-analysis.demoApp').config(
-            [
-                    '$provide',
-                    function ($provide) {
-                    'use strict';
-                    $provide.constant('CRISMA_DOMAIN', 'CRISMA');
+                                                                        angular.module('eu.myclimateservice.csis.scenario-analysis.demoApp').config(
+                                                                                [
+                                                                                    '$provide',
+                                                                                    function ($provide) {
+                                                                                        'use strict';
+                                                                                        $provide.constant('CRISMA_DOMAIN', 'CRISMA');
 //                                                                                    $provide.constant('CRISMA_ICMM_API', 'http://localhost:8890');
-                    $provide.constant('CRISMA_ICMM_API', 'http://crisma.cismet.de/icmm_api');
+                                                                                        $provide.constant('CRISMA_ICMM_API', 'http://crisma.cismet.de/icmm_api');
 //                                                                                            $provide.constant('CRISMA_ICMM_API', 'sadfg');
-                    }
-            ]
-                    );
+                                                                                    }
+                                                                                ]
+                                                                                );
         </script>
-        
+
         <!-- seamless.js -->
         <script type="text/javascript">
 
-        // Connect to the parent page.
-        // https://github.com/travist/seamless.js?files=1#connect-child-page-to-parent-page
-        window.seamless.connect();
-      </script>
+            // Connect to the parent page.
+            // https://github.com/travist/seamless.js?files=1#connect-child-page-to-parent-page
+            window.seamless.connect();
+        </script>
     </body>
 </html>

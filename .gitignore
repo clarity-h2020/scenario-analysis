@@ -8,3 +8,4 @@ app/bower_components
 target
 .checkDependencies
 test-results.xml
+private/

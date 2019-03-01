@@ -1,0 +1,161 @@
+<div class="row">
+    <div ng-show="!fileAPIAvailable" class="col-lg-12 col-md-12 col-sm-12">
+        <div class="alert alert-danger">
+            HTML 5 File APi is not available in your Browser. Please use a Browser that supports this.
+            see also http://caniuse.com/#search=file%20api
+        </div>
+    </div>
+    <div ng-show="fileAPIAvailable" class="col-lg-12 col-md-12 col-sm-12">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" >
+                            <h4 class="panel-title">
+                                <a ng-click="indicatorFileCollapsed = !indicatorFileCollapsed">
+                                    <i ng-if="!indicatorFileCollapsed" class="glyphicon glyphicon-chevron-up"></i>
+                                    <i ng-if="indicatorFileCollapsed" class="glyphicon glyphicon-chevron-down"></i>
+                                    Indicator files
+                                </a>
+                                <span style="font-size: 14px" 
+                                      class="pull-right glyphicon glyphicon-plus-sign btn-file ">
+                                    <span
+                                        data-placement="top" data-type="info" 
+                                        data-delay="500" 
+                                        data-animation="am-fade-and-scale" 
+                                        data-container="body"
+                                        bs-tooltip="tooltipAdd.title"></span>
+                                    <input type="file" file-input="iccObjects" multiple>
+                                </span>
+                                <span style="margin-right:5px; font-size: 14px" 
+                                      class="pull-right glyphicon glyphicon-minus-sign"
+                                      data-placement="top" data-type="info" 
+                                      data-delay="500" 
+                                      data-animation="am-fade-and-scale" 
+                                      data-container="body"
+                                      bs-tooltip="tooltipDeleteSelection.title"
+                                      ng-style="removeSelectionButtonStyle"
+                                      ng-click="removeSelectedDummyWS()">
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse" collapse="indicatorFileCollapsed" >
+                            <ul class="list-group">
+                                <!--dummy item that indicates that no indicator objects are available-->
+                                <li class="list-group-item" ng-show="showDummyListItem">
+                                </li>
+                                <li ng-click="toggleSelection($index)"
+                                    ng-class="getItemStyle($index)"
+                                    class="list-group-item" ng-repeat="ws in worldstates">
+
+                                    <span ng-hide="editable[$index]" 
+                                          style="width: 90%;
+                                          overflow: hidden;
+                                          text-overflow: ellipsis; 
+                                          white-space: nowrap;
+                                          display:inline-block">
+                                        {{ws.name}}
+                                    </span>
+                                    <input style ="width: 90%; color:black;" ng-hide="!editable[$index]" type="text" ng-model="ws.name">
+                                    <div class="pull-right">
+
+                                        <i ng-hide="listItemsDisabled || editable[$index]" 
+                                           data-placement="top" data-type="info" 
+                                           data-delay="500" 
+                                           data-animation="am-fade-and-scale" 
+                                           data-container="body"
+                                           bs-tooltip="tooltipRename.title"
+                                           ng-click="editable[$index] = true" 
+                                           style="margin-right: 10px;"
+                                           class="glyphicon glyphicon-pencil"></i>
+                                        <i ng-hide="listItemDisabled || !editable[$index]"
+                                           data-placement="top" 
+                                           data-type="info" 
+                                           data-delay="500" 
+                                           data-animation="am-fade-and-scale" 
+                                           data-container="body"
+                                           bs-tooltip="tooltipRenameDone.title"
+                                           ng-click="editable[$index] = false"
+                                           style="margin-right: 10px;"
+                                           class="glyphicon glyphicon-ok"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--<select style="width:100%" ng-model="selectedWorldstates" ng-options="ws.name for ws in worldstates" multiple></select>-->
+            </div>
+        </div>
+        <div ng-show="fileLoading" class="row">
+            <div class="col-lg-12">
+
+            </div>
+        </div>
+        <div ng-show="fileLoadError" class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="alert alert-danger">
+                    {{errorMessage}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <label>Criteria function file</label>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <span class="btn btn-default btn-file"  ng-disabled="noIndicatorsLoaded">
+                    Choose a file
+                    <input type="file" ng-disabled="noIndicatorsLoaded" file-input="cfConfigFile">
+                </span>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <div ng-if="noIndicatorsLoaded" 
+                     class="alert alert-warning">
+                    <i class="glyphicon glyphicon-info-sign"></i> 
+                    No indicator files selected
+                </div>
+                <div ng-if="cfFileLoadError" 
+                     class="alert alert-danger"
+                     style="font-size: 14px;">
+                    <i class="glyphicon glyphicon-warning-sign"></i>
+                    {{cfFileLoadErrorMsg}}
+                </div>
+                <div class="alert alert-success" ng-if="loadedCfFile" style="vertical-align: middle">
+                    Loaded File: {{loadedCfFile}}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <label>Decision strategy file</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <span class="btn btn-default btn-file" ng-disabled="noIndicatorsLoaded">
+                    Choose a file
+                    <input type="file" file-input="dsConfigFile" ng-disabled="noIndicatorsLoaded">
+                </span>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <div ng-if="noIndicatorsLoaded" 
+                     class="alert alert-warning">
+                    <i class="glyphicon glyphicon-info-sign"></i> 
+                    No indicator files selected
+                </div>
+                <div ng-if="dsFileLoadError"
+                     class="alert alert-danger">
+                    <i class="glyphicon glyphicon-warning-sign"></i>
+                    {{dsFileLoadErrorMsg}}
+                </div>
+                 <div class="alert alert-success" ng-if="loadedDsfFile" style="vertical-align: middle">
+                    Loaded File: {{loadedDsfFile}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

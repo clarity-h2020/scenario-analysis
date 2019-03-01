@@ -1,3 +1,4 @@
+/* global d3, RadarChart */
 angular.module(
     'eu.myclimateservice.csis.scenario-analysis.directives'
 ).directive(
@@ -7,7 +8,8 @@ angular.module(
         function (WorldstateService) {
             'use strict';
 
-            var scope, linkFunction, drawLegend, augmentWithTooltips;
+            var scope, linkFunction, drawLegend, augmentWithTooltips, 
+                    lastGoodWidth, lastGoodLegendWidth;
             scope = {
                 localModel: '&worldstates',
                 criteriaFunction: '=',
@@ -75,7 +77,15 @@ angular.module(
                 yOff = 0;
                 labels.attr('transform', function (data, i) {
                     var width, sumLabelWidth, sumRectWidth, margin, offset;
-                    width = d3.select(this).node().getBBox().width;
+                    // #6
+                    // exception if chart is not visible (e.g. edit the criteria function in a different tab)
+                    try {
+                        width = d3.select(this).node().getBBox().width;
+                        lastGoodWidth = width;
+                    }
+                    catch(error) {
+                        width = lastGoodWidth;
+                    }
                     sumLabelWidth = labelWidth.reduce(function (prev, curr) {
                         return prev + curr;
                     }, 0);
@@ -123,7 +133,16 @@ angular.module(
                 //center the legend horizontally
                 legendContainer.attr('transform', function () {
                     var legendWidth, off;
-                    legendWidth = d3.select(this).node().getBBox().width;
+                    // #6
+                    // exception if chart is not visible (e.g. edit the criteria function in a different tab)
+                    try {
+                        legendWidth = d3.select(this).node().getBBox().width;
+                        lastGoodLegendWidth = legendWidth;
+                    }
+                    catch(error) {
+                        legendWidth = lastGoodLegendWidth;
+                    }
+                    
                     off = (chartConfig.w - legendWidth) / 2;
                     off = off < 0 ? 0 : off;
                     return 'translate(' + off + ',' + '0)';
@@ -176,7 +195,8 @@ angular.module(
                 };
 
                 scope.$watchCollection('localModel()', watchCallback);
-                scope.$watch('criteriaFunction', watchCallback, true);
+                // FIXME: temp disabled due to https://github.com/clarity-h2020/scenario-analysis/issues/6
+                //scope.$watch('criteriaFunction', watchCallback, true);
             };
 
             return {

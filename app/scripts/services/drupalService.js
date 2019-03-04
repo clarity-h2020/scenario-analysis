@@ -59,9 +59,10 @@ angular.module(
 
                 $this.drupalRestApi.initEmikatCredentials = function () {
                     return $http({method: 'GET', url: $this.drupalRestApi.host + '/jsonapi/user/user'})
-                            .then(function tokenSuccessCallback(response) {
-                                if (response !== null && response.data[0] !== null && response.data[0].attributes.field_basic_auth_credentials !== null) {
-                                    $this.emikatRestApi.emikatCredentials = response.data[0].attributes.field_basic_auth_credentials;
+                            .then(function initEmikatCredentialsSuccessCallback(response) {
+                                // data.data?! fXXXk yeah! :o
+                                if (response !== null && response.data[0] !== null && response.data.data[0].attributes.field_basic_auth_credentials !== null) {
+                                    $this.emikatRestApi.emikatCredentials = response.data.data[0].attributes.field_basic_auth_credentials;
                                     console.log('EMIKAT Authentication Info API.');
                                     return $this.emikatRestApi.emikatCredentials;
                                 } else

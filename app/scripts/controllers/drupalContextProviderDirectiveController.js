@@ -507,7 +507,7 @@ angular.module(
                         //TODO: do something useful here!
                         console.log(impactScenario);
                     }, function (error) {
-                        console.log(error.data.message);
+                        console.log(error.message);
                     });
                 };
 

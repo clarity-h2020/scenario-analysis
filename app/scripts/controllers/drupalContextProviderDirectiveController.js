@@ -152,13 +152,13 @@ angular.module(
 
                 $scope.showCfFileLoadingError = function (message) {
                     $scope.cfFileLoadError = true;
-                    $scope.cfFileLoadErrorMsg = 'Criteria functions not loaded. ' + message;
+                    $scope.cfFileLoadErrorMsg = ' Criteria functions not loaded. ' + message;
                     //$scope.$apply();
                 };
 
                 $scope.showDsFileLoadingError = function (message) {
                     $scope.dsFileLoadError = true;
-                    $scope.dsFileLoadErrorMsg = 'Decision strategies not loaded. ' + message;
+                    $scope.dsFileLoadErrorMsg = ' Decision strategies not loaded. ' + message;
                     //$scope.$apply();
                 };
 

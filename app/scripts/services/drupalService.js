@@ -31,7 +31,7 @@ angular.module(
                 $this.drupalRestApi = {};
                 $this.drupalRestApi.host = '';
                 $this.drupalRestApi.token = undefined;
-                $this.emikatRestApi.emikatCredentials = undefined;
+                $this.drupalRestApi.emikatCredentials = undefined;
 
                 $this.drupalRestApi.initToken = function () {
                     return $http({method: 'GET', url: $this.drupalRestApi.host + '/rest/session/token'})

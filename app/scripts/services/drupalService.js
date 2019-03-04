@@ -60,8 +60,8 @@ angular.module(
                 $this.drupalRestApi.initEmikatCredentials = function () {
                     return $http({method: 'GET', url: $this.drupalRestApi.host + '/jsonapi/user/user'})
                             .then(function initEmikatCredentialsSuccessCallback(response) {
-                                // data.data?! fXXXk yeah! :o
-                                if (response !== null && response.data[0] !== null && response.data.data[0].attributes.field_basic_auth_credentials !== null) {
+                                // data.data?! fXXk yeah! :o
+                                if (response !== null && response.data !== null && response.data.data[0] !== null && response.data.data[0].attributes.field_basic_auth_credentials !== null) {
                                     $this.emikatRestApi.emikatCredentials = response.data.data[0].attributes.field_basic_auth_credentials;
                                     console.log('EMIKAT Authentication Info API.');
                                     return $this.emikatRestApi.emikatCredentials;
@@ -126,7 +126,7 @@ angular.module(
                 $this.emikatRestApi.getImpactScenario = function (scenarioId, viewId) {
 
                     return $this.drupalRestApi.getEmikatCredentials().then(function credentialsSuccessCallback(credentials) {
-                        var impactScenarioResource = $resource($this.drupalRestApi.host + emikatPath,
+                        var impactScenarioResource = $resource($this.emikatRestApi.host + emikatPath,
                                 {
                                     scenarioId: '@scenarioId',
                                     viewId: '@nodeId'

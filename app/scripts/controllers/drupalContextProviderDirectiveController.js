@@ -13,7 +13,8 @@ angular.module(
                 var showIndicatorFileLoadingError, showFileLoading, loadIndicatorObjects,
                         loadIndicatorObject, onloadCfFile, onloadDsFile, onSeamlessEvent,
                         onloadIccObjects, loadCriteriaFunctions, loadDecisionStrategies;
-                var restApi = drupalService.restApi;
+                var drupalRestApi = drupalService.drupalRestApi;
+                var emikatRestApi = drupalService.emikatRestApi;
 
                 console.log('window.seamless.connect()');
                 var parent = window.seamless.connect();
@@ -21,7 +22,7 @@ angular.module(
                 // inside the onConnect() method, otherwise the event is not recieved (race condition?)
                 // strangley, the onConnect callback is called twice. See comment in nodeConncetor.js
                 parent.receive(function (data) {
-                    //console.log('  parent.receive:' + data);
+                    //console.log('parent.receive:' + data);
                     onSeamlessEvent(data);
                 });
 
@@ -487,7 +488,9 @@ angular.module(
                 onSeamlessEvent = function (eventData) {
                     console.log('load node from node id: ' + eventData.nodeId);
 
-                    restApi.getNode(eventData.nodeId).then(function (node) {
+                    // FIXME: This is only for testing purposes! We load load the JSON from the 
+                    // IA/RA EU-GL step, but ir should come from the Data Package or EMIKAT REST API!
+                    drupalRestApi.getNode(eventData.nodeId).then(function (node) {
                         var indicatorArray = drupalService.nodeHelper.getIndicatorArray(node);
                         var criteriaFunctionArray = drupalService.nodeHelper.getCriteriaFunction(node);
                         var decisionStrategyArray = drupalService.nodeHelper.getDecisionStrategy(node);
@@ -497,6 +500,14 @@ angular.module(
                     }, function (error) {
                         console.log(error.data.message);
                         showIndicatorFileLoadingError(error.data.message.toString());
+                    });
+                    
+                    // FIXME: get scenario and view ids from Data Package
+                    emikatRestApi.getImpactScenario(2846, 2812).then(function (impactScenario){
+                        //TODO: do something useful here!
+                        console.log(impactScenario);
+                    }, function (error) {
+                        console.log(error.data.message);
                     });
                 };
 

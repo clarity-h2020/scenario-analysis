@@ -121,7 +121,7 @@ angular.module(
 
                 // <editor-fold defaultstate="closed" desc="=== emikatRestApi ===========================">
                 $this.emikatRestApi = {};
-                $this.emikatRestApi.host = 'https://service.emikat.at/EmiKatTst/api/';
+                $this.emikatRestApi.host = 'https://service.emikat.at/EmiKatTst/api';
 
                 $this.emikatRestApi.getImpactScenario = function (scenarioId, viewId) {
 

@@ -1,10 +1,28 @@
 {
     "elements": {
+        "criteria-function-manager": {},
+        "relation-analysis-chart": {},
+        "tab-content": {},
         "indicator-band": {
             "attributes": {
                 "criteria-function": {}
             }
-        }
+        },
+        "tab": {},
+        "worldstate-ranking-table": {},
+        "indicator-criteria-table": {},
+        "drupal-context-provider": {},
+        "indicator-bar-charts": {},
+        "tab-heading": {},
+        "tabset": {},
+        "decision-strategy-manager": {}
     },
-    "attributes": {}
+    "attributes": {
+        "dropdown": {
+            "context": "div"
+        },
+        "collapse": {
+            "context": "div"
+        }
+    }
 }

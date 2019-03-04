@@ -477,7 +477,7 @@ angular.module(
                         }
 
                         $scope.decisionStrategies = decisionStrategyArray;
-                        console.log(decisionStrategyArray.length + 'decision strategies loaded');
+                        console.log(decisionStrategyArray.length + ' decision strategies loaded');
                     } else {
                         msg = 'decision strategy object is not an array or empty';
                         console.log(msg + ': ' + decisionStrategyArray.toString());

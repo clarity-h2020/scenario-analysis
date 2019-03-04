@@ -184,7 +184,7 @@ angular.module(
 
                 return {
                     drupalRestApi: $this.drupalRestApi,
-                    emikatApi: $this.emikatRestApi,
+                    emikatRestApi: $this.emikatRestApi,
                     nodeHelper: $this.drupalNodeHelper
                 };
             }

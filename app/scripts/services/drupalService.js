@@ -20,7 +20,7 @@ angular.module(
                 var $this, nodePath, emikatPath, nodeFields;
                 $this = this;
                 nodePath = '/node/:nodeId';
-                emikatPath = '/scenarios/:scenarioId/feature/view.:viewId/table/data'
+                emikatPath = '/scenarios/:scenarioId/feature/view.:viewId/table/data';
                 nodeFields = [];
                 //nodeFields['indicators'] = 'field_mcda_indicators'
                 nodeFields['indicators'] = 'field_mcda_indicators';
@@ -184,7 +184,7 @@ angular.module(
 
                 return {
                     drupalRestApi: $this.drupalRestApi,
-                    emikatApi: $this.emikatApi,
+                    emikatApi: $this.emikatRestApi,
                     nodeHelper: $this.drupalNodeHelper
                 };
             }

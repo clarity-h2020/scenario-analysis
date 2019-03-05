@@ -1,0 +1,158 @@
+[
+    {
+        "name": "Heat wave 28°, 6 days",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "people",
+                "iconResource": "flower_injured_16.png",
+                "indicator1": {
+                    "displayName": "D1",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 43278.251888334584
+                },
+                "indicator2": {
+                    "displayName": "D2",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 41406.41070639549
+                },
+                "indicator3": {
+                    "displayName": "D3",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 15846.254222888836
+                },
+                "indicator4": {
+                    "displayName": "D4",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 3032.212377401513
+                },
+                "indicator5": {
+                    "displayName": "D5",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 301.20627164706406
+                }
+            }
+        }
+    },
+    {
+        "name": "Heat wave 30°, 6 days",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "people",
+                "iconResource": "flower_injured_16.png",
+                "indicator1": {
+                    "displayName": "D1",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 35752.13772332034
+                },
+                "indicator2": {
+                    "displayName": "D2",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 34205.8108544454
+                },
+                "indicator3": {
+                    "displayName": "D3",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 13090.581034493567
+                },
+                "indicator4": {
+                    "displayName": "D4",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 2504.9088120039405
+                },
+                "indicator5": {
+                    "displayName": "D5",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 248.8263189289384
+                }
+            }
+        }
+    },
+    {
+        "name": "Heat wave 32°, 6 days",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "people",
+                "iconResource": "flower_injured_16.png",
+                "indicator1": {
+                    "displayName": "D1",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 27014.978392501303
+                },
+                "indicator2": {
+                    "displayName": "D2",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 25846.54512919038
+                },
+                "indicator3": {
+                    "displayName": "D3",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 9891.485833068335
+                },
+                "indicator4": {
+                    "displayName": "D4",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 1892.7555592664007
+                },
+                "indicator5": {
+                    "displayName": "D5",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 188.01778180011516
+                }
+            }
+        }
+    },
+    {
+        "name": "Haet wave 34°, 6 days",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "people",
+                "iconResource": "flower_injured_16.png",
+                "indicator1": {
+                    "displayName": "D1",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 37206.24214506262
+                },
+                "indicator2": {
+                    "displayName": "D2",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 22764.096153520382
+                },
+                "indicator3": {
+                    "displayName": "D3",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 5571.181965600621
+                },
+                "indicator4": {
+                    "displayName": "D4",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 681.7446750098032
+                },
+                "indicator5": {
+                    "displayName": "D5",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 42.74157420113949
+                }
+            }
+        }
+    }
+]

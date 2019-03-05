@@ -187,21 +187,91 @@ angular.module(
                     }
                 };
                 // </editor-fold>
-                
+
                 // <editor-fold defaultstate="closed" desc="=== emikatHelper ===========================">
                 $this.emikatHelper = {};
-                
+
                 /**
                  * Parses, aggregates and transforms emikat API response to ICC DATA Vector
                  * 
-                 * @param {type} data emikat scenario data as obtained from EMIKAT REST PAI
-                 * @returns {undefined}
+                 * @param {type} scenarioData emikat scenario data as obtained from EMIKAT REST PAI
+                 * @param {type} icon
+                 * @param {type} aggregate
+                 * @returns {Array}
                  */
-                $this.emikatHelper.transformToIndicatorArray = function (scenarioData) {
-                    
+                $this.emikatHelper.transformImpactScenario = function (scenarioData, icon = 'flower_injured_16.png', aggregate = false) {
+                    var worldstates = [], cMap = {};
+                    if (!scenarioData || !scenarioData.name || scenarioData.name === null || !scenarioData.rows || !scenarioData.columnnames) {
+                        console.warn('EMIKAT Sceanrio Data is null, cannot transform result to ICC Data Array');
+                        return worldstates;
+                    } else {
+                        console.info('tranforing EMIKAT Scenario: ' + scenarioData.name);
+                    }
+
+                    // fill associative map
+                    for (var i = 0, len = scenarioData.columnnames.length; i < len; i++) {
+                        cMap[scenarioData.columnnames[i]] = i;
+                    }
+
+                    // iterate rows
+                    for (i = 0; i < scenarioData.rows.length; i++) {
+                        var column = scenarioData.rows[i].values;
+                        // yes, they start at 1 not at 0! :o
+                        var worldstate = worldstates[column[cMap['HAZARD_EVENT_ID']]-1];
+                        if (!worldstate || worldstate === null) {
+                            worldstate = {};
+                            worldstate.name = column[cMap['HAZEVENT_NAME']];
+                            worldstate.iccdata = {};
+                            // yes, they start at 1 not at 0! :o
+                            worldstates[column[cMap['HAZARD_EVENT_ID']]-1] = worldstate;
+                        }
+
+                        // aggregate by vulnerability class
+                        var indicatorSetKey = 'indicatorset';
+                        if (aggregate === true) {
+                            indicatorSetKey += column[cMap['VULNERABILITYCLASS_ID']];
+                        }
+
+                        // indicator set (group of indicators)
+                        var indicatorSet = worldstate.iccdata[indicatorSetKey];
+                        if (!indicatorSet || indicatorSet === null) {
+                            indicatorSet = {};
+                            indicatorSet.displayName = column[cMap['NAME']];
+                            if (aggregate === true) {
+                                indicatorSet.displayName += ': ' + column[cMap['VULCLASS_NAME']];
+                            }
+
+                            indicatorSet.iconResource = icon;
+                            worldstate.iccdata[indicatorSetKey] = indicatorSet;
+                        }
+
+                        // FIXME: Always 5 damage classes?!
+                        for (var j = 1; j < 6; j++) {
+                            var indicatorKey = 'indicator' + j;
+                            var indicator = indicatorSet[indicatorKey];
+                            if (!indicator || indicator === null) {
+                                indicator = {};
+                                // FIXME: Damage Class Name!
+                                indicator.displayName = 'D' + (j);
+                                // FIXME: support different icons!
+                                indicator.iconResource = icon;
+                                indicator.unit = column[cMap['QUANTITYUNIT']];
+                                indicator.value = 0;
+                                indicatorSet[indicatorKey] = indicator;
+                            }
+
+                            if (aggregate === true) {
+                                indicator.value += column[cMap['DAMAGELEVEL' + j + 'QUANTITY']];
+                            } else {
+                                indicator.value = column[cMap['DAMAGELEVEL' + j + 'QUANTITY']];
+                            }
+                        }
+                    }
+                    // just to be sure: remove null elements
+                    return worldstates.filter(n => n);
                 };
-                
-                
+
+
 
                 // </editor-fold>
 

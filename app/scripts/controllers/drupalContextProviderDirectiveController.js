@@ -593,6 +593,11 @@ angular.module(
                     emikatRestApi.getImpactScenario(window.emikatProperties.scenarioId, window.emikatProperties.viewId, window.emikatProperties.credentials).then(function (impactScenario) {
                         //TODO: do something useful here!
                         console.log(impactScenario);
+                        var worldstates = drupalService.emikatHelper.transformImpactScenario(impactScenario);
+                        console.log(JSON.stringify(worldstates));
+                        
+                        // this is a total mess: worldstates object is awkwardly modified modified by infamous ICCM_Helper
+                        loadIndicatorObjects(worldstates);
                     }, function (error) {
                         console.log(error.message);
                     });

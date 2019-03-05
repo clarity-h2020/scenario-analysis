@@ -123,9 +123,8 @@ angular.module(
                 $this.emikatRestApi = {};
                 $this.emikatRestApi.host = 'https://service.emikat.at/EmiKatTst/api';
 
-                $this.emikatRestApi.getImpactScenario = function (scenarioId, viewId) {
-
-                    return $this.drupalRestApi.getEmikatCredentials().then(function credentialsSuccessCallback(credentials) {
+                $this.emikatRestApi.getImpactScenario = function (scenarioId, viewId, credentials) {
+                    var getImpactScenario = function (scenarioId, viewId, credentials) {
                         var impactScenarioResource = $resource($this.emikatRestApi.host + emikatPath,
                                 {
                                     scenarioId: '@scenarioId',
@@ -141,12 +140,18 @@ angular.module(
                             }
                         });
 
-                        var impactScenario = impactScenarioResource.get({scenarioId:scenarioId, viewId:viewId});
+                        var impactScenario = impactScenarioResource.get({scenarioId: scenarioId, viewId: viewId});
                         return impactScenario.$promise;
-
-                    }, function credentialsErrorCallback(response) {
-                        return $q.reject(response);
-                    });
+                    };
+                    if (!credentials) {
+                        return $this.drupalRestApi.getEmikatCredentials().then(function credentialsSuccessCallback(emikatCredentials) {
+                            return getImpactScenario(scenarioId, viewId, emikatCredentials);
+                        }, function credentialsErrorCallback(response) {
+                            return $q.reject(response);
+                        });
+                    } else {
+                        return getImpactScenario(scenarioId, viewId, credentials);
+                    }
                 };
                 // </editor-fold>
 
@@ -182,11 +187,29 @@ angular.module(
                     }
                 };
                 // </editor-fold>
+                
+                // <editor-fold defaultstate="closed" desc="=== emikatHelper ===========================">
+                $this.emikatHelper = {};
+                
+                /**
+                 * Parses, aggregates and transforms emikat API response to ICC DATA Vector
+                 * 
+                 * @param {type} data emikat scenario data as obtained from EMIKAT REST PAI
+                 * @returns {undefined}
+                 */
+                $this.emikatHelper.transformToIndicatorArray = function (scenarioData) {
+                    
+                };
+                
+                
+
+                // </editor-fold>
 
                 return {
                     drupalRestApi: $this.drupalRestApi,
                     emikatRestApi: $this.emikatRestApi,
-                    nodeHelper: $this.drupalNodeHelper
+                    nodeHelper: $this.drupalNodeHelper,
+                    emikatHelper: $this.emikatHelper
                 };
             }
         ]);

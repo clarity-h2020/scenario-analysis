@@ -165,7 +165,7 @@ angular.module(
                 onloadIccObjects = function (file) {
                     return function (e) {
                         console.log('load icc file: ' + file.name);
-                        
+
                         var fileObj;
                         try {
                             fileObj = JSON.parse(e.target.result);
@@ -270,14 +270,14 @@ angular.module(
                                 }
                             }
                         }
-                        
+
                         // FIXME: don't use  displayName as **unique** key !!!111!!11 :o(
                         /**if (loadedIndicatorLength !== indicatorMapLength) {
-                            msg = 'indicator data in file has more indicators ('+loadedIndicatorLength+') defined than the first loaded indicator set ('+indicatorMapLength+').';
-                            console.error(msg);
-                            showIndicatorFileLoadingError(msg);
-                            return;
-                        }**/
+                         msg = 'indicator data in file has more indicators ('+loadedIndicatorLength+') defined than the first loaded indicator set ('+indicatorMapLength+').';
+                         console.error(msg);
+                         showIndicatorFileLoadingError(msg);
+                         return;
+                         }**/
 
                         // we need an id to distinct the icc objects. eg. the ranking table use this id
                         // to keep track of the indicator objects
@@ -501,9 +501,9 @@ angular.module(
                         console.log(error.data.message);
                         showIndicatorFileLoadingError(error.data.message.toString());
                     });
-                    
+
                     // FIXME: get scenario and view ids from Data Package
-                    emikatRestApi.getImpactScenario(2846, 2812).then(function (impactScenario){
+                    emikatRestApi.getImpactScenario(2846, 2812).then(function (impactScenario) {
                         //TODO: do something useful here!
                         console.log(impactScenario);
                     }, function (error) {
@@ -587,16 +587,16 @@ angular.module(
 
                 }, true);
 
-
-
-
-                // TODO: get node / EU-GL Step Entity id from Drpal API, e.g. 
-                // via request parameter passed to iFrame or via seamless.js parent.receive callback
-//                $timeout(function () {
-//                    onSeamlessEvent({nodeId:2})
-//                }, 1000);
-
-
+                // if local file /scripts/.local.js exists, load some test data
+                if (window.emikatProperties) {
+                    console.warn('/scripts/.local.js found, loading test data');
+                    emikatRestApi.getImpactScenario(window.emikatProperties.scenarioId, window.emikatProperties.viewId, window.emikatProperties.credentials).then(function (impactScenario) {
+                        //TODO: do something useful here!
+                        console.log(impactScenario);
+                    }, function (error) {
+                        console.log(error.message);
+                    });
+                }
             }
         ]
         );

@@ -6,8 +6,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>CLARTIY Scenario Analysis</title>
+        <title>CLARITY Scenario Analysis</title>
         <meta name="description" content="">
+        <meta name="author" content="Pascal Dih&eacute;" />
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -23,9 +24,12 @@
         <!-- build:css() -->
         <link rel="stylesheet" href="styles/indicatorCriteriaTableDirective.css">
         <!-- endbuild -->
+        
+        <!-- Local Test File, comment in production -->
+        <script src="scripts/.local.js" type="text/javascript"></script>
 
         <!-- seamless.js -->
-        <script src="bower_components/seamless/build/seamless.child.js" type="text/javascript"></script>
+        <script src="bower_components/seamless.js/build/seamless.child.min.js" type="text/javascript"></script>
     </head>
     <body ng-app="eu.myclimateservice.csis.scenario-analysis.demoApp">
         <!--[if lt IE 7]>
@@ -125,7 +129,7 @@
                                                 <div class="pull-right">
                                                     <div class="input-group">
                                                         <div class="input-group-btn " style="display: block">
-                                                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="disabled">
+                                                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" ng-click="open = !open" ng-disabled="disabled">
                                                                 Change Mode <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" role="menu">
@@ -514,21 +518,21 @@
         <script src="scripts/controllers/drupalContextProviderDirectiveController.js"></script>
         <script src="scripts/directives/drupalBasedAnalysisContextProvider.js" type="text/javascript"></script>
         <!-- endbuild -->
-
+        
         <!-- demo only -->
         <script>
-                                                                        angular.module('eu.myclimateservice.csis.scenario-analysis.demoApp').config(
-                                                                                [
-                                                                                    '$provide',
-                                                                                    function ($provide) {
-                                                                                        'use strict';
-                                                                                        $provide.constant('CRISMA_DOMAIN', 'CRISMA');
-//                                                                                    $provide.constant('CRISMA_ICMM_API', 'http://localhost:8890');
-                                                                                        $provide.constant('CRISMA_ICMM_API', 'http://crisma.cismet.de/icmm_api');
-//                                                                                            $provide.constant('CRISMA_ICMM_API', 'sadfg');
-                                                                                    }
-                                                                                ]
-                                                                                );
+        angular.module('eu.myclimateservice.csis.scenario-analysis.demoApp').config(
+        [
+                '$provide',
+                function ($provide) {
+                'use strict';
+                $provide.constant('CRISMA_DOMAIN', 'CRISMA');
+//              $provide.constant('CRISMA_ICMM_API', 'http://localhost:8890');
+                $provide.constant('CRISMA_ICMM_API', 'http://crisma.cismet.de/icmm_api');
+//              $provide.constant('CRISMA_ICMM_API', 'sadfg');
+                }
+        ]
+                );
         </script>
 
         <!-- seamless.js -->

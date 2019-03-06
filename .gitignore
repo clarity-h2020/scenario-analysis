@@ -9,3 +9,4 @@ target
 .checkDependencies
 test-results.xml
 private/
+/app/scripts/.local.js

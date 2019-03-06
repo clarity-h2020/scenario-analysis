@@ -18,13 +18,8 @@ window.Drupal.behaviors.myBehavior = {
             // to get node and group id!
             var groupId = drupalSettings.csisHelpers.entityinfo.study;
             
-            // FIXME: this does not work if the iframe is embedded in a separate node that is then referenced
-            // from the node containg the actual data!
             var nodeId = drupalSettings.csisHelpers.entityinfo.step;
             
-            // ugly workaround parsing the node id from URL study/$1/step/$2
-            nodeId = window.location.pathname.split('/')[4];
-
             console.log('groupId = ' + groupId + ', nodeId = ' + nodeId);
             var connectCount = 0;
             // for some unknown the reason angular directive controler of the embedded child iframe

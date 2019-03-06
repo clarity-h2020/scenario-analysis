@@ -188,24 +188,25 @@ angular.module(
                 };
                 // </editor-fold>
 
-                // <editor-fold defaultstate="closed" desc="=== emikatHelper ===========================">
+                // <editor-fold defaultstate="open" desc="=== emikatHelper ===========================">
                 $this.emikatHelper = {};
 
                 /**
                  * Parses, aggregates and transforms emikat API response to ICC DATA Vector
                  * 
-                 * @param {type} scenarioData emikat scenario data as obtained from EMIKAT REST PAI
+                 * @param {ScenarioData} scenarioData emikat scenario data as obtained from EMIKAT REST PAI
+                 * @param {Array} damageClasses Damage  Class  information
+                 * @param {boolean} aggregate
                  * @param {type} icon
-                 * @param {type} aggregate
                  * @returns {Array}
                  */
-                $this.emikatHelper.transformImpactScenario = function (scenarioData, icon = 'flower_injured_16.png', aggregate = false) {
+                $this.emikatHelper.transformImpactScenario = function (scenarioData, damageClasses, aggregate = false, icon = 'flower_injured_16.png') {
                     var worldstates = [], cMap = {};
                     if (!scenarioData || !scenarioData.name || scenarioData.name === null || !scenarioData.rows || !scenarioData.columnnames) {
                         console.warn('EMIKAT Sceanrio Data is null, cannot transform result to ICC Data Array');
                         return worldstates;
                     } else {
-                        console.info('tranforing EMIKAT Scenario: ' + scenarioData.name);
+                        console.info('transforming (and aggregeting: '+aggregate+') EMIKAT Scenario: ' + scenarioData.name);
                     }
 
                     // fill associative map
@@ -228,7 +229,7 @@ angular.module(
 
                         // aggregate by vulnerability class
                         var indicatorSetKey = 'indicatorset';
-                        if (aggregate === true) {
+                        if (aggregate === false) {
                             indicatorSetKey += column[cMap['VULNERABILITYCLASS_ID']];
                         }
 
@@ -237,7 +238,7 @@ angular.module(
                         if (!indicatorSet || indicatorSet === null) {
                             indicatorSet = {};
                             indicatorSet.displayName = column[cMap['NAME']];
-                            if (aggregate === true) {
+                            if (aggregate === false) {
                                 indicatorSet.displayName += ': ' + column[cMap['VULCLASS_NAME']];
                             }
 
@@ -246,24 +247,29 @@ angular.module(
                         }
 
                         // FIXME: Always 5 damage classes?!
-                        for (var j = 1; j < 6; j++) {
-                            var indicatorKey = 'indicator' + j;
+                        for (var j = 0; j < 5; j++) {
+                            var indicatorKey = 'indicator' + (j+1);
                             var indicator = indicatorSet[indicatorKey];
                             if (!indicator || indicator === null) {
                                 indicator = {};
-                                // FIXME: Damage Class Name!
-                                indicator.displayName = 'D' + (j);
-                                // FIXME: support different icons!
-                                indicator.iconResource = icon;
+
+                                if(damageClasses && damageClasses!== null && damageClasses[j] && damageClasses[j].displayName) {
+                                    indicator.displayName = damageClasses[j].displayName;
+                                    indicator.iconResource = damageClasses[j].iconResource;
+                                } else {
+                                    indicator.displayName = 'D' + (j+1);
+                                    indicator.iconResource = icon;
+                                }
+
                                 indicator.unit = column[cMap['QUANTITYUNIT']];
                                 indicator.value = 0;
                                 indicatorSet[indicatorKey] = indicator;
                             }
 
-                            if (aggregate === true) {
-                                indicator.value += column[cMap['DAMAGELEVEL' + j + 'QUANTITY']];
+                            if (aggregate === false) {
+                                indicator.value = column[cMap['DAMAGELEVEL' + (j+1) + 'QUANTITY']];
                             } else {
-                                indicator.value = column[cMap['DAMAGELEVEL' + j + 'QUANTITY']];
+                                indicator.value += column[cMap['DAMAGELEVEL' + (j+1) + 'QUANTITY']];
                             }
                         }
                     }

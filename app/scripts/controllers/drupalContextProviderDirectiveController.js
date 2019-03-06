@@ -5,16 +5,25 @@ angular.module(
         [
             '$scope',
             '$timeout',
+            '$http',
             'de.cismet.crisma.ICMM.services.icmm',
             'de.cismet.crisma.ICMM.Worldstates',
             'eu.myclimateservice.csis.scenario-analysis.services.drupalService',
-            function ($scope, $timeout, Icmm, Worldstates, drupalService) {
+            function ($scope, $timeout, $http, Icmm, Worldstates, drupalService) {
                 'use strict';
                 var showIndicatorFileLoadingError, showFileLoading, loadIndicatorObjects,
                         loadIndicatorObject, onloadCfFile, onloadDsFile, onSeamlessEvent,
-                        onloadIccObjects, loadCriteriaFunctions, loadDecisionStrategies;
+                        onloadIccObjects, loadCriteriaFunctions, loadDecisionStrategies,
+                        damageClasses;
                 var drupalRestApi = drupalService.drupalRestApi;
                 var emikatRestApi = drupalService.emikatRestApi;
+
+                // TODO: Load this kinf of information from the Data Package
+                $http.get('samples/populationDamageClasses.json').success(function (data) {
+                    damageClasses = data;
+                }).error(function (data, status) {
+                    console.error('Could not load populationDamageClasses: ', status, data);
+                });
 
                 console.log('window.seamless.connect()');
                 var parent = window.seamless.connect();
@@ -162,6 +171,7 @@ angular.module(
                     //$scope.$apply();
                 };
 
+                // <editor-fold defaultstate="closed" desc="=== loadIndicatorObjects ===========================">
                 onloadIccObjects = function (file) {
                     return function (e) {
                         console.log('load icc file: ' + file.name);
@@ -313,7 +323,9 @@ angular.module(
                         console.error(err.toString());
                     }
                 };
+                //</editor-fold>
 
+                // <editor-fold defaultstate="closed" desc="=== loadCriteriaFunctions ===========================">
                 onloadCfFile = function (theFile) {
                     return function (e) {
                         var criteriaFunctionArray;
@@ -398,7 +410,9 @@ angular.module(
                         $scope.showCfFileLoadingError('msg');
                     }
                 };
+                // </editor-fold>
 
+                // <editor-fold defaultstate="closed" desc="=== loadDecisionStrategies ===========================">
                 onloadDsFile = function (theFile) {
                     return function (e) {
                         var decisionStrategyArray;
@@ -484,6 +498,7 @@ angular.module(
                         $scope.showCfFileLoadingError('msg');
                     }
                 };
+                // </editor-fold>
 
                 onSeamlessEvent = function (eventData) {
                     console.log('load node from node id: ' + eventData.nodeId);
@@ -510,6 +525,9 @@ angular.module(
                         console.log(error.message);
                     });
                 };
+
+
+                // <editor-fold defaultstate="closed" desc="[x] === $scope.$watch ===========================">
 
                 /*
                  * When the newFile property has changed the User want's to add a new list of files.
@@ -586,17 +604,21 @@ angular.module(
                     }
 
                 }, true);
+                //</editor-fold>
 
                 // if local file /scripts/.local.js exists, load some test data
                 if (window.emikatProperties) {
                     console.warn('/scripts/.local.js found, loading test data');
-                    emikatRestApi.getImpactScenario(window.emikatProperties.scenarioId, window.emikatProperties.viewId, window.emikatProperties.credentials).then(function (impactScenario) {
-                        //TODO: do something useful here!
-                        console.log(impactScenario);
-                        var worldstates = drupalService.emikatHelper.transformImpactScenario(impactScenario);
-                        console.log(JSON.stringify(worldstates));
-                        
+                    emikatRestApi.getImpactScenario(
+                            window.emikatProperties.scenarioId,
+                            window.emikatProperties.viewId,
+                            window.emikatProperties.credentials).then(function (impactScenario) {
+                        //console.log(impactScenario);
+                        var worldstates = drupalService.emikatHelper.transformImpactScenario(impactScenario, damageClasses, true);
+
                         // this is a total mess: worldstates object is awkwardly modified modified by infamous ICCM_Helper
+                        //console.log(JSON.stringify(worldstates));
+
                         loadIndicatorObjects(worldstates);
                     }, function (error) {
                         console.log(error.message);

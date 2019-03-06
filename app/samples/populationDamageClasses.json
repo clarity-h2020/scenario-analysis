@@ -1,0 +1,32 @@
+[
+    {
+        "key": "D1",
+        "displayName": "Fatigue, discomfort",
+        "iconResource": "flower_16.png",
+        "unit": "Persons"
+    },
+    {
+        "key": "D2",
+        "displayName": "Heat cramps, heat exhaustion",
+        "iconResource": "flower_16.png",
+        "unit": "Persons"
+    },
+    {
+        "key": "D3",
+        "displayName": "Heat cramps, heatstroke",
+        "iconResource": "flower_homeless_16.png",
+        "unit": "Persons"
+    },
+    {
+        "key": "D4",
+        "displayName": "Heatstroke, sunstroke",
+        "iconResource": "flower_injured_16.png",
+        "unit": "Persons"
+    },
+    {
+        "key": "D5",
+        "displayName": "Death",
+        "iconResource": "flower_dead_16.png",
+        "unit": "Persons"
+    }
+]

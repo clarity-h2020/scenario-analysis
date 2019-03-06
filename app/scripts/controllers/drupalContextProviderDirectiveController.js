@@ -5,15 +5,25 @@ angular.module(
         [
             '$scope',
             '$timeout',
+            '$http',
             'de.cismet.crisma.ICMM.services.icmm',
             'de.cismet.crisma.ICMM.Worldstates',
             'eu.myclimateservice.csis.scenario-analysis.services.drupalService',
-            function ($scope, $timeout, Icmm, Worldstates, drupalService) {
+            function ($scope, $timeout, $http, Icmm, Worldstates, drupalService) {
                 'use strict';
                 var showIndicatorFileLoadingError, showFileLoading, loadIndicatorObjects,
                         loadIndicatorObject, onloadCfFile, onloadDsFile, onSeamlessEvent,
-                        onloadIccObjects, loadCriteriaFunctions, loadDecisionStrategies;
-                var restApi = drupalService.restApi;
+                        onloadIccObjects, loadCriteriaFunctions, loadDecisionStrategies,
+                        damageClasses;
+                var drupalRestApi = drupalService.drupalRestApi;
+                var emikatRestApi = drupalService.emikatRestApi;
+
+                // TODO: Load this kinf of information from the Data Package
+                $http.get('samples/populationDamageClasses.json').success(function (data) {
+                    damageClasses = data;
+                }).error(function (data, status) {
+                    console.error('Could not load populationDamageClasses: ', status, data);
+                });
 
                 console.log('window.seamless.connect()');
                 var parent = window.seamless.connect();
@@ -21,7 +31,7 @@ angular.module(
                 // inside the onConnect() method, otherwise the event is not recieved (race condition?)
                 // strangley, the onConnect callback is called twice. See comment in nodeConncetor.js
                 parent.receive(function (data) {
-                    //console.log('  parent.receive:' + data);
+                    //console.log('parent.receive:' + data);
                     onSeamlessEvent(data);
                 });
 
@@ -151,20 +161,21 @@ angular.module(
 
                 $scope.showCfFileLoadingError = function (message) {
                     $scope.cfFileLoadError = true;
-                    $scope.cfFileLoadErrorMsg = 'Criteria functions not loaded. ' + message;
+                    $scope.cfFileLoadErrorMsg = ' Criteria functions not loaded. ' + message;
                     //$scope.$apply();
                 };
 
                 $scope.showDsFileLoadingError = function (message) {
                     $scope.dsFileLoadError = true;
-                    $scope.dsFileLoadErrorMsg = 'Decision strategies not loaded. ' + message;
+                    $scope.dsFileLoadErrorMsg = ' Decision strategies not loaded. ' + message;
                     //$scope.$apply();
                 };
 
+                // <editor-fold defaultstate="closed" desc="=== loadIndicatorObjects ===========================">
                 onloadIccObjects = function (file) {
                     return function (e) {
                         console.log('load icc file: ' + file.name);
-                        
+
                         var fileObj;
                         try {
                             fileObj = JSON.parse(e.target.result);
@@ -269,14 +280,14 @@ angular.module(
                                 }
                             }
                         }
-                        
+
                         // FIXME: don't use  displayName as **unique** key !!!111!!11 :o(
                         /**if (loadedIndicatorLength !== indicatorMapLength) {
-                            msg = 'indicator data in file has more indicators ('+loadedIndicatorLength+') defined than the first loaded indicator set ('+indicatorMapLength+').';
-                            console.error(msg);
-                            showIndicatorFileLoadingError(msg);
-                            return;
-                        }**/
+                         msg = 'indicator data in file has more indicators ('+loadedIndicatorLength+') defined than the first loaded indicator set ('+indicatorMapLength+').';
+                         console.error(msg);
+                         showIndicatorFileLoadingError(msg);
+                         return;
+                         }**/
 
                         // we need an id to distinct the icc objects. eg. the ranking table use this id
                         // to keep track of the indicator objects
@@ -312,7 +323,9 @@ angular.module(
                         console.error(err.toString());
                     }
                 };
+                //</editor-fold>
 
+                // <editor-fold defaultstate="closed" desc="=== loadCriteriaFunctions ===========================">
                 onloadCfFile = function (theFile) {
                     return function (e) {
                         var criteriaFunctionArray;
@@ -397,7 +410,9 @@ angular.module(
                         $scope.showCfFileLoadingError('msg');
                     }
                 };
+                // </editor-fold>
 
+                // <editor-fold defaultstate="closed" desc="=== loadDecisionStrategies ===========================">
                 onloadDsFile = function (theFile) {
                     return function (e) {
                         var decisionStrategyArray;
@@ -476,18 +491,21 @@ angular.module(
                         }
 
                         $scope.decisionStrategies = decisionStrategyArray;
-                        console.log(decisionStrategyArray.length + 'decision strategies loaded');
+                        console.log(decisionStrategyArray.length + ' decision strategies loaded');
                     } else {
                         msg = 'decision strategy object is not an array or empty';
                         console.log(msg + ': ' + decisionStrategyArray.toString());
                         $scope.showCfFileLoadingError('msg');
                     }
                 };
+                // </editor-fold>
 
                 onSeamlessEvent = function (eventData) {
                     console.log('load node from node id: ' + eventData.nodeId);
 
-                    restApi.getNode(eventData.nodeId).then(function (node) {
+                    // FIXME: This is only for testing purposes! We load load the JSON from the 
+                    // IA/RA EU-GL step, but ir should come from the Data Package or EMIKAT REST API!
+                    drupalRestApi.getNode(eventData.nodeId).then(function (node) {
                         var indicatorArray = drupalService.nodeHelper.getIndicatorArray(node);
                         var criteriaFunctionArray = drupalService.nodeHelper.getCriteriaFunction(node);
                         var decisionStrategyArray = drupalService.nodeHelper.getDecisionStrategy(node);
@@ -498,7 +516,18 @@ angular.module(
                         console.log(error.data.message);
                         showIndicatorFileLoadingError(error.data.message.toString());
                     });
+
+                    // FIXME: get scenario and view ids from Data Package
+                    emikatRestApi.getImpactScenario(2846, 2812).then(function (impactScenario) {
+                        //TODO: do something useful here!
+                        console.log(impactScenario);
+                    }, function (error) {
+                        console.log(error.message);
+                    });
                 };
+
+
+                // <editor-fold defaultstate="closed" desc="[x] === $scope.$watch ===========================">
 
                 /*
                  * When the newFile property has changed the User want's to add a new list of files.
@@ -575,17 +604,26 @@ angular.module(
                     }
 
                 }, true);
+                //</editor-fold>
 
+                // if local file /scripts/.local.js exists, load some test data
+                if (window.emikatProperties) {
+                    console.warn('/scripts/.local.js found, loading test data');
+                    emikatRestApi.getImpactScenario(
+                            window.emikatProperties.scenarioId,
+                            window.emikatProperties.viewId,
+                            window.emikatProperties.credentials).then(function (impactScenario) {
+                        //console.log(impactScenario);
+                        var worldstates = drupalService.emikatHelper.transformImpactScenario(impactScenario, damageClasses, true);
 
+                        // this is a total mess: worldstates object is awkwardly modified modified by infamous ICCM_Helper
+                        //console.log(JSON.stringify(worldstates));
 
-
-                // TODO: get node / EU-GL Step Entity id from Drpal API, e.g. 
-                // via request parameter passed to iFrame or via seamless.js parent.receive callback
-//                $timeout(function () {
-//                    onSeamlessEvent({nodeId:2})
-//                }, 1000);
-
-
+                        loadIndicatorObjects(worldstates);
+                    }, function (error) {
+                        console.log(error.message);
+                    });
+                }
             }
         ]
         );

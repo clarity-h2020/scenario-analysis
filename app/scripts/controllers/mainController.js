@@ -180,7 +180,7 @@ angular.module(
                         var payload = {
                             '_links': {
                                 'type': {
-                                    'href': restApi.host + '/rest/type/file/image'
+                                    'href': restApi.host + '/jsonapi/node/report_image/field_image'
                                 }
                             },
                             'filename': [
@@ -206,7 +206,7 @@ angular.module(
                         $http({method: 'GET', url: restApi.host + '/rest/session/token'})
                                 .then(function tokenSuccessCallback(response) {
 
-                                    var uploadImage = $resource(restApi.host + '/entity/file',
+                                    var uploadImage = $resource(restApi.host + '/jsonapi/node/report_image/field_image',
                                             {
                                                 _format: 'hal_json'
                                             }, {
@@ -214,8 +214,9 @@ angular.module(
                                             method: 'POST',
                                             isArray: false,
                                             headers: {
-                                                'Content-Type': 'application/hal+json',
-                                                'X-CSRF-Token': response.data
+                                                'Content-Type': 'application/octet-stream',
+                                                'X-CSRF-Token': response.data,
+                                                'Content-Disposition': 'file; filename="filename.jpg"'
                                             }
                                         }
 
@@ -224,7 +225,7 @@ angular.module(
                                     /**
                                      * 2) POST the image and return the image id
                                      */
-                                    return uploadImage.store(payload)
+                                    return uploadImage.store(imageBlob)
                                             .$promise.then(function uploadImageSuccess(response) {
                                                 console.log('uploadImage finished');
                                                 // return the image id

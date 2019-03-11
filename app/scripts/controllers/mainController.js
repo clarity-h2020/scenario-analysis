@@ -171,7 +171,10 @@ angular.module(
                 // PhantomJS 2.1.1 (Windows 8.0.0) ERROR
                 // SyntaxError: Expected token ')'
                 // at ../mainController.js:170
-                $scope.screenshot = function (elementId, imageName = elementId, foreignObjectRendering = false) {
+                
+                $scope.screenshot = drupalService.screenshotHelper.uploadScreenshot;
+                
+                $scope.screenshot_x = function (elementId, imageName = elementId, foreignObjectRendering = false) {
                     $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
                         document.body.appendChild(canvas);
                         var imageBlob = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, '');
@@ -214,6 +217,8 @@ angular.module(
                                             method: 'POST',
                                             isArray: false,
                                             headers: {
+                                                'Content-Type': 'application/octet-stream',
+                                                'Content-Type': 'application/octet-stream',
                                                 'Content-Type': 'application/octet-stream',
                                                 'X-CSRF-Token': response.data,
                                                 'Content-Disposition': 'file; filename="filename.jpg"'

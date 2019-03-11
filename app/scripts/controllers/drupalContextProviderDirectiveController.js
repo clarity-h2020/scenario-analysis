@@ -506,10 +506,10 @@ angular.module(
                     // FIXME: This is only for testing purposes! We load load the JSON from the 
                     // IA/RA EU-GL step, but ir should come from the Data Package or EMIKAT REST API!
                     drupalRestApi.getNode(eventData.nodeId).then(function (node) {
-                        var indicatorArray = drupalService.nodeHelper.getIndicatorArray(node);
+                        //var indicatorArray = drupalService.nodeHelper.getIndicatorArray(node);
                         var criteriaFunctionArray = drupalService.nodeHelper.getCriteriaFunction(node);
                         var decisionStrategyArray = drupalService.nodeHelper.getDecisionStrategy(node);
-                        loadIndicatorObjects(indicatorArray);
+                        //loadIndicatorObjects(indicatorArray);
                         loadCriteriaFunctions(criteriaFunctionArray);
                         loadDecisionStrategies(decisionStrategyArray);
                     }, function (error) {
@@ -519,8 +519,13 @@ angular.module(
 
                     // FIXME: get scenario and view ids from Data Package
                     emikatRestApi.getImpactScenario(2846, 2812).then(function (impactScenario) {
-                        //TODO: do something useful here!
-                        console.log(impactScenario);
+                        //console.log(impactScenario);
+                        var worldstates = drupalService.emikatHelper.transformImpactScenario(impactScenario, damageClasses, true);
+
+                        // this is a total mess: worldstates object is awkwardly modified modified by infamous ICCM_Helper
+                        //console.log(JSON.stringify(worldstates));
+
+                        loadIndicatorObjects(worldstates);
                     }, function (error) {
                         console.log(error.message);
                     });

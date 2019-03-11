@@ -14,7 +14,7 @@
 angular.module(
         'eu.myclimateservice.csis.scenario-analysis.services'
         ).factory('eu.myclimateservice.csis.scenario-analysis.services.drupalService',
-        ['$http', '$resource', '$q', function ($http, $resource, $q) {
+        ['$window', '$http', '$resource', '$q', function ($window, $http, $resource, $q) {
                 'use strict';
 
                 var $this, nodePath, emikatPath, nodeFields;
@@ -29,9 +29,9 @@ angular.module(
 
                 // <editor-fold defaultstate="closed" desc="=== drupalRestApi ===========================">
                 $this.drupalRestApi = {};
-                $this.drupalRestApi.host = '';
+                $this.drupalRestApi.host = 'http://localhost:8080';
                 $this.drupalRestApi.token = undefined;
-                $this.drupalRestApi.emikatCredentials = undefined;
+                $this.drupalRestApi.emikatCredentials;
 
                 $this.drupalRestApi.initToken = function () {
                     return $http({method: 'GET', url: $this.drupalRestApi.host + '/rest/session/token'})
@@ -40,7 +40,7 @@ angular.module(
                                 console.log('X-CSRF-Token recieved from API: ' + $this.drupalRestApi.token);
                                 return response.data;
                             }, function tokenErrorCallback(response) {
-                                $this.drupalRestApi.token = undefined;
+                                $this.drupalRestApi.token;
                                 console.log('error retrieving X-CSRF-Token: ' + response);
                                 $q.reject(undefined);
                             });
@@ -58,23 +58,35 @@ angular.module(
                 };
 
                 $this.drupalRestApi.initEmikatCredentials = function () {
-                    return $http({method: 'GET', url: $this.drupalRestApi.host + '/jsonapi/user/user'})
-                            .then(function initEmikatCredentialsSuccessCallback(response) {
-                                // data.data?! fXXk yeah! :o
-                                if (response !== null && response.data !== null && response.data.data[0] !== null && response.data.data[0].attributes.field_basic_auth_credentials !== null) {
-                                    $this.emikatRestApi.emikatCredentials = response.data.data[0].attributes.field_basic_auth_credentials;
-                                    console.log('EMIKAT Authentication Info API.');
-                                    return $this.emikatRestApi.emikatCredentials;
-                                } else
-                                {
-                                    console.log('error retrieving EMIKAT Credentials: ' + response);
-                                    $q.reject(response);
-                                }
-                            }, function initEmikatCredentialsErrorCallback(response) {
-                                $this.emikatRestApi.emikatCredentials = undefined;
-                                console.log('error retrieving EMIKAT Credentials: ' + response);
-                                $q.reject(undefined);
-                            });
+                    return $http({method: 'GET', url: $this.drupalRestApi.host + '/jsonapi/'}).then(function success(apiResponse) {
+                        if (apiResponse !== null && apiResponse.data !== null && apiResponse.data.meta.links.me !== null && apiResponse.data.meta.links.me.href !== null) {
+                            return $http({method: 'GET', url: apiResponse.data.meta.links.me.href})
+                                    .then(function initEmikatCredentialsSuccessCallback(userResponse) {
+                                        // data.data?! Seriously?
+                                        if (userResponse !== null && userResponse.data.data !== null && userResponse.data.data !== null && userResponse.data.data.attributes.field_basic_auth_credentials !== null) {
+                                            $this.emikatRestApi.emikatCredentials = userResponse.data.data.attributes.field_basic_auth_credentials;
+                                            console.log('EMIKAT Authentication Info API recived from ' + apiResponse.data.meta.links.me.href);
+                                            return $this.emikatRestApi.emikatCredentials;
+                                        } else
+                                        {
+                                            console.log('error retrieving EMIKAT Credentials from ' + apiResponse.data.meta.links.me.href + ': ' + userResponse);
+                                            $q.reject(userResponse);
+                                        }
+                                    }, function initEmikatCredentialsErrorCallback(userErrorResponse) {
+                                        $this.emikatRestApi.emikatCredentials = undefined;
+                                        console.log('error retrieving EMIKAT Credentials from ' + apiResponse.data.meta.links.me.href + ': ' + userErrorResponse);
+                                        $q.reject(userErrorResponse);
+                                    });
+                        } else
+                        {
+                            console.log('error retrieving meta.links.me: null');
+                            $q.reject(apiResponse);
+                        }
+                    }, function error(apiErrorResponse) {
+                        $this.emikatRestApi.emikatCredentials = undefined;
+                        console.log('error retrieving meta.links.me: ' + apiErrorResponse);
+                        $q.reject(apiErrorResponse);
+                    });
                 };
 
                 /**
@@ -125,6 +137,7 @@ angular.module(
 
                 $this.emikatRestApi.getImpactScenario = function (scenarioId, viewId, credentials) {
                     var getImpactScenario = function (scenarioId, viewId, credentials) {
+                        console.log('credentials: ' + credentials + ' (Basic ' + btoa(credentials) + ')');
                         var impactScenarioResource = $resource($this.emikatRestApi.host + emikatPath,
                                 {
                                     scenarioId: '@scenarioId',
@@ -143,7 +156,7 @@ angular.module(
                         var impactScenario = impactScenarioResource.get({scenarioId: scenarioId, viewId: viewId});
                         return impactScenario.$promise;
                     };
-                    if (!credentials) {
+                    if (credentials === undefined || !credentials || credentials === null) {
                         return $this.drupalRestApi.getEmikatCredentials().then(function credentialsSuccessCallback(emikatCredentials) {
                             return getImpactScenario(scenarioId, viewId, emikatCredentials);
                         }, function credentialsErrorCallback(response) {
@@ -206,7 +219,7 @@ angular.module(
                         console.warn('EMIKAT Sceanrio Data is null, cannot transform result to ICC Data Array');
                         return worldstates;
                     } else {
-                        console.info('transforming (and aggregeting: '+aggregate+') EMIKAT Scenario: ' + scenarioData.name);
+                        console.info('transforming (and aggregeting: ' + aggregate + ') EMIKAT Scenario: ' + scenarioData.name);
                     }
 
                     // fill associative map
@@ -218,13 +231,13 @@ angular.module(
                     for (i = 0; i < scenarioData.rows.length; i++) {
                         var column = scenarioData.rows[i].values;
                         // yes, they start at 1 not at 0! :o
-                        var worldstate = worldstates[column[cMap['HAZARD_EVENT_ID']]-1];
+                        var worldstate = worldstates[column[cMap['HAZARD_EVENT_ID']] - 1];
                         if (!worldstate || worldstate === null) {
                             worldstate = {};
                             worldstate.name = column[cMap['HAZEVENT_NAME']];
                             worldstate.iccdata = {};
                             // yes, they start at 1 not at 0! :o
-                            worldstates[column[cMap['HAZARD_EVENT_ID']]-1] = worldstate;
+                            worldstates[column[cMap['HAZARD_EVENT_ID']] - 1] = worldstate;
                         }
 
                         // aggregate by vulnerability class
@@ -248,16 +261,16 @@ angular.module(
 
                         // FIXME: Always 5 damage classes?!
                         for (var j = 0; j < 5; j++) {
-                            var indicatorKey = 'indicator' + (j+1);
+                            var indicatorKey = 'indicator' + (j + 1);
                             var indicator = indicatorSet[indicatorKey];
                             if (!indicator || indicator === null) {
                                 indicator = {};
 
-                                if(damageClasses && damageClasses!== null && damageClasses[j] && damageClasses[j].displayName) {
+                                if (damageClasses && damageClasses !== null && damageClasses[j] && damageClasses[j].displayName) {
                                     indicator.displayName = damageClasses[j].displayName;
                                     indicator.iconResource = damageClasses[j].iconResource;
                                 } else {
-                                    indicator.displayName = 'D' + (j+1);
+                                    indicator.displayName = 'D' + (j + 1);
                                     indicator.iconResource = icon;
                                 }
 
@@ -267,25 +280,80 @@ angular.module(
                             }
 
                             if (aggregate === false) {
-                                indicator.value = column[cMap['DAMAGELEVEL' + (j+1) + 'QUANTITY']];
+                                indicator.value = column[cMap['DAMAGELEVEL' + (j + 1) + 'QUANTITY']];
                             } else {
-                                indicator.value += column[cMap['DAMAGELEVEL' + (j+1) + 'QUANTITY']];
+                                indicator.value += column[cMap['DAMAGELEVEL' + (j + 1) + 'QUANTITY']];
                             }
                         }
                     }
                     // just to be sure: remove null elements
                     return worldstates.filter(n => n);
                 };
-
-
-
                 // </editor-fold>
+
+
+                $this.screenshotHelper = {};
+
+                var getReportImageFileResource = function (token, imageName = 'scenario-analysis.png') {
+
+                    return $resource($this.drupalRestApi.host + '/jsonapi/node/report_image/field_image',
+                            {
+                                //_format: 'hal_json'
+                            }, {
+                        store: {
+                            method: 'POST',
+                            isArray: false,
+                            headers: {
+                                'Content-Type': 'application/octet-stream',
+                                'X-CSRF-Token': token,
+                                'Content-Disposition': 'file; filename="' + imageName + '"'
+                            }
+                        }
+                    });
+                };
+
+                $this.screenshotHelper.uploadScreenshot = function (elementId, imageName = elementId + '.png', foreignObjectRendering = false) {
+                    $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
+                        //document.body.appendChild(canvas);
+                        //var imageBlob = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, '');
+
+                        canvas.toBlob(function uploadImage(imageBlob) {
+                            // function is invoked on button press, so we can safely assume that the token promise was resolved.
+                            // TODO: add some error checking before going live 
+                            var reportImageFileResource = getReportImageFileResource($this.drupalRestApi.token, imageName);
+                            reportImageFileResource.store(imageBlob)
+                                    .$promise.then(function uploadImageSuccess(response) {
+                                        console.log('uploadImage finished');
+                                        // return the image id
+                                        return response.data.attributes.id;
+                                    }, function uploadImageError(response) {
+                                        console.log('error uploading Image: ' + response.statusText);
+                                        $q.reject(response);
+                                    });
+                        });
+
+
+
+                        //$this.drupalRestApi.getNode = function (nodeId) {
+//                        $this.drupalRestApi.getToken().then(function tokenSuccessCallback(token) {
+//                            var reportImageFileResource = getReportImageFileResource(token)
+//                            var reportImageFileInstance = reportImageFileResource.get({nodeId: nodeId});
+//                            return reportImageFileInstance.$promise;
+//
+//                        }, function tokenErrorCallback(response) {
+//                            return $q.reject(response);
+//                        });
+
+
+                    });
+                };
 
                 return {
                     drupalRestApi: $this.drupalRestApi,
                     emikatRestApi: $this.emikatRestApi,
                     nodeHelper: $this.drupalNodeHelper,
-                    emikatHelper: $this.emikatHelper
+                    emikatHelper: $this.emikatHelper,
+                    screenshotHelper: $this.screenshotHelper
                 };
             }
         ]);

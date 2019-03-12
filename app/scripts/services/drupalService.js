@@ -17,7 +17,9 @@ angular.module(
         ['$window', '$http', '$resource', '$q', function ($window, $http, $resource, $q) {
                 'use strict';
 
-                var $this, nodePath, emikatPath, nodeFields, reportImageTemplate, initReportImageTemplate, taxonomyTermUuid, glStepResource;
+                var $this, nodePath, emikatPath, nodeFields, reportImageTemplate,
+                        glStepTemplate, initReportImageTemplate, taxonomyTermUuid,
+                        initGlStepTemplate;
                 $this = this;
                 nodePath = '/node/:nodeId';
                 emikatPath = '/scenarios/:scenarioId/feature/view.:viewId/table/data';
@@ -43,7 +45,21 @@ angular.module(
                             });
                 };
 
+                initGlStepTemplate = function () {
+                    return $http({method: 'GET', url: 'data/glStepTemplate.json'})
+                            .then(function successCallback(response) {
+                                // data.data?! => data contains the data of the ngResource :o
+                                glStepTemplate = response.data;
+                                return response;
+                            }, function errorCallback(response) {
+                                glStepTemplate = null;
+                                console.log('error loading GL Step template: ' + response);
+                                return $q.reject(response);
+                            });
+                };
+
                 initReportImageTemplate();
+                initGlStepTemplate();
 
                 // <editor-fold defaultstate="closed" desc="=== drupalRestApi ===========================">
                 $this.drupalRestApi = {};
@@ -399,7 +415,31 @@ angular.module(
                                         reportImageTemplate.data.relationships.field_source_step.data.id = $this.drupalRestApi.eventData.stepUuid;
                                         var reportImageResource = createReportImageResource($this.drupalRestApi.token);
                                         reportImageResource.store(reportImageTemplate).$promise.then(function storeReportImageSuccess(reportImageResponse) {
-                                            console.log(reportImageResponse);
+                                            if (reportImageResponse && reportImageResponse.data && reportImageResponse.data.id) {
+
+                                                glStepTemplate.data.id = $this.drupalRestApi.eventData.stepUuid;
+                                                glStepTemplate.data.relationships.field_report_images.data[0].id = reportImageResponse.data.id;
+                                                console.log('assigning report image ' + reportImageResponse.data.id + ' to GL Step ' + $this.drupalRestApi.eventData.stepUuid);
+
+                                                $http(
+                                                        {
+                                                            method: 'PATCH',
+                                                            url: $this.drupalRestApi.host + '/jsonapi/node/gl_step/'+$this.drupalRestApi.eventData.stepUuid,
+                                                            headers: {
+                                                                'Accept': 'application/vnd.api+json',
+                                                                'Content-Type': 'application/vnd.api+json',
+                                                                'X-CSRF-Token': $this.drupalRestApi.token
+                                                            },
+                                                            data: glStepTemplate
+                                                        }
+                                                ).then(function successCallback(glStepResponse) {
+                                                    console.log('report image ' + reportImageResponse.data.id + ' successfully assigned to GL Step ' + $this.drupalRestApi.eventData.stepUuid);
+                                                }, function errorCallback(glStepErrorResponse) {
+                                                    console.log('error updating GL Step ' + $this.drupalRestApi.eventData.stepUuid + ': ' + glStepErrorResponse);
+                                                });
+                                            } else {
+                                                console.error('error processing stored ReportImage entity: ' + reportImageResponse);
+                                            }
 
                                         }, function storeReportImageError(reportImageErrorResponse) {
                                             console.log('error storing ReportImage entity: ' + reportImageErrorResponse.statusText);

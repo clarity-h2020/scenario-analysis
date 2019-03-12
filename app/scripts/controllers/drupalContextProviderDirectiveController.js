@@ -519,11 +519,12 @@ angular.module(
                         showIndicatorFileLoadingError(error.data.message.toString());
                     });
 
-                    drupalRestApi.initGlStepResource(eventData.stepUuid).then(function (glStepResource) {
+                    // full glStepResource is not needed if we use PATCH method! -> data/glStepTemplate.json
+                    /*drupalRestApi.initGlStepResource(eventData.stepUuid).then(function (glStepResource) {
                         console.log('glStepResource ' + eventData.stepUuid + ' loaded: ' + glStepResource.data.attributes.title);
                     }, function (error) {
                         console.log('could not load glStepResource:' + error);
-                    });
+                    });*/
 
                     // FIXME: get scenario and view ids from Data Package
                     emikatRestApi.getImpactScenario(2846, 2812).then(function (impactScenario) {

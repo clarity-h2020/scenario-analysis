@@ -20,7 +20,7 @@ angular.module(
             calculateCriteria = function (indicatorValue, criteriaFunction) {
                 var i, pre, suc, list = [];
                 //check the format of the criteriaFunction
-                if (!(criteriaFunction.lowerBoundary && criteriaFunction.upperBoundary && criteriaFunction.intervals)) {
+                if (!criteriaFunction || criteriaFunction === null || !(criteriaFunction.lowerBoundary && criteriaFunction.upperBoundary && criteriaFunction.intervals)) {
                     throw new Error('CriteriaFunction is not valid');
                 }
                 list.push(criteriaFunction.lowerBoundary);

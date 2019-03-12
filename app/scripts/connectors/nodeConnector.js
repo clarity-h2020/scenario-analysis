@@ -17,10 +17,17 @@ window.Drupal.behaviors.myBehavior = {
             // now using the csisHelpers Module (https://github.com/clarity-h2020/csis-helpers-module)
             // to get node and group id!
             var groupId = drupalSettings.csisHelpers.entityinfo.study;
-            
             var nodeId = drupalSettings.csisHelpers.entityinfo.step;
-            
-            console.log('groupId = ' + groupId + ', nodeId = ' + nodeId);
+            var studyUuid = drupalSettings.csisHelpers.entityinfo.study_uuid;
+            var stepUuid = drupalSettings.csisHelpers.entityinfo.step_uuid;
+            var eventData = {
+                nodeId: nodeId,
+                groupId: groupId,
+                stepUuid: stepUuid,
+                studyUuid: studyUuid
+            };
+
+            console.log('groupId = ' + groupId + ', nodeId = ' + nodeId + ', studyUuid = ' + studyUuid + ', stepUuid = ' + stepUuid);
             var connectCount = 0;
             // for some unknown the reason angular directive controler of the embedded child iframe
             // does not recieve the event when it's not fired from the onConnect method.
@@ -29,10 +36,7 @@ window.Drupal.behaviors.myBehavior = {
                             // FIXME: for some unknown reason, onConnect is called if no child frame has actively connected
                             // by invoking seamless.connect() resulting in the onConnect function called twice!
                             if (connectCount === 1) {
-                                scenarioAnalysisApp.send({
-                                    nodeId: nodeId,
-                                    groupId: groupId
-                                });
+                                scenarioAnalysisApp.send(eventData);
                             } else {
                                 //ignore
                                 //console.log('pre/re connection #:' + connectCount);

@@ -17,7 +17,7 @@ angular.module(
         ['$window', '$http', '$resource', '$q', function ($window, $http, $resource, $q) {
                 'use strict';
 
-                var $this, nodePath, emikatPath, nodeFields;
+                var $this, nodePath, emikatPath, nodeFields, reportImageTemplate, initReportImageTemplate, taxonomyTermUuid, glStepResource;
                 $this = this;
                 nodePath = '/node/:nodeId';
                 emikatPath = '/scenarios/:scenarioId/feature/view.:viewId/table/data';
@@ -27,11 +27,31 @@ angular.module(
                 nodeFields['criteriaFunction'] = 'field_mcda_criteria_function';
                 nodeFields['decisionStrategy'] = 'field_mcda_decision_strategy';
 
+                // FIXME: retrieve from JSON:API ?      
+                taxonomyTermUuid = '1ce9180e-8439-45a8-8e80-23161b76c2b9';
+
+                initReportImageTemplate = function () {
+                    return $http({method: 'GET', url: 'data/reportImageTemplate.json'})
+                            .then(function successCallback(response) {
+                                // data.data?! => data contains the data of the ngResource :o
+                                reportImageTemplate = response.data;
+                                return response;
+                            }, function errorCallback(response) {
+                                reportImageTemplate = null;
+                                console.log('error loading report image template: ' + response);
+                                return $q.reject(response);
+                            });
+                };
+
+                initReportImageTemplate();
+
                 // <editor-fold defaultstate="closed" desc="=== drupalRestApi ===========================">
                 $this.drupalRestApi = {};
-                $this.drupalRestApi.host = 'http://localhost:8080';
-                $this.drupalRestApi.token = undefined;
-                $this.drupalRestApi.emikatCredentials;
+                $this.drupalRestApi.host = '';
+                $this.drupalRestApi.token = null;
+                $this.drupalRestApi.emikatCredentials = null;
+                $this.drupalRestApi.glStepInstance = null;
+                $this.drupalRestApi.eventData = null;
 
                 $this.drupalRestApi.initToken = function () {
                     return $http({method: 'GET', url: $this.drupalRestApi.host + '/rest/session/token'})
@@ -40,10 +60,36 @@ angular.module(
                                 console.log('X-CSRF-Token recieved from API: ' + $this.drupalRestApi.token);
                                 return response.data;
                             }, function tokenErrorCallback(response) {
-                                $this.drupalRestApi.token;
-                                console.log('error retrieving X-CSRF-Token: ' + response);
-                                $q.reject(undefined);
+                                $this.drupalRestApi.token = null;
+                                console.log('error retrieving X-CSRF-Token from ' + $this.drupalRestApi.host + '/rest/session/token:' + response);
+                                return $q.reject(undefined);
                             });
+                };
+
+                $this.drupalRestApi.initGlStepResource = function (stepUuid) {
+
+                    return $this.drupalRestApi.getToken().then(function tokenSuccessCallback(token) {
+                        var glStepResource = $resource($this.drupalRestApi.host + '/jsonapi/node/gl_step/:stepUuid',
+                                {
+                                    stepUuid: '@stepUuid'
+                                }, {
+                            store: {
+                                method: 'GET',
+                                isArray: false,
+                                headers: {
+                                    'Accept': 'application/vnd.api+json',
+                                    'Content-Type': 'application/vnd.api+json',
+                                    'X-CSRF-Token': token
+                                }
+                            }
+                        });
+
+                        $this.drupalRestApi.glStepInstance = glStepResource.get({stepUuid: stepUuid});
+                        return $this.drupalRestApi.glStepInstance.$promise;
+
+                    }, function tokenErrorCallback(response) {
+                        return $q.reject(response);
+                    });
                 };
 
                 /**
@@ -79,12 +125,12 @@ angular.module(
                                     });
                         } else
                         {
-                            console.log('error retrieving meta.links.me: null');
+                            console.log('error retrieving meta.links.me: null from ' + apiResponse.data.meta.links.me.href);
                             $q.reject(apiResponse);
                         }
                     }, function error(apiErrorResponse) {
                         $this.emikatRestApi.emikatCredentials = undefined;
-                        console.log('error retrieving meta.links.me: ' + apiErrorResponse);
+                        console.log('error retrieving meta.links.me from ' + apiResponse.data.meta.links.me.href + ': ' + apiErrorResponse);
                         $q.reject(apiErrorResponse);
                     });
                 };
@@ -294,7 +340,27 @@ angular.module(
 
                 $this.screenshotHelper = {};
 
-                var getReportImageFileResource = function (token, imageName = 'scenario-analysis.png') {
+
+
+                var createReportImageResource = function (token) {
+
+                    return $resource($this.drupalRestApi.host + '/jsonapi/node/report_image/:imageFileUuid',
+                            {
+                                imageFileUuid: '@imageFileUuid'
+                            }, {
+                        store: {
+                            method: 'POST',
+                            isArray: false,
+                            headers: {
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Type': 'application/vnd.api+json',
+                                'X-CSRF-Token': token
+                            }
+                        }
+                    });
+                };
+
+                var createReportImageFileResource = function (token, imageName = 'scenario-analysis.png') {
 
                     return $resource($this.drupalRestApi.host + '/jsonapi/node/report_image/field_image',
                             {
@@ -305,14 +371,15 @@ angular.module(
                             isArray: false,
                             headers: {
                                 'Content-Type': 'application/octet-stream',
-                                'X-CSRF-Token': token,
-                                'Content-Disposition': 'file; filename="' + imageName + '"'
+                                'Accept': 'application/vnd.api+json',
+                                'Content-Disposition': 'file; filename="' + imageName + '"',
+                                'X-CSRF-Token': token
                             }
                         }
                     });
                 };
 
-                $this.screenshotHelper.uploadScreenshot = function (elementId, imageName = elementId + '.png', foreignObjectRendering = false) {
+                $this.screenshotHelper.uploadScreenshot = function (elementId, imageName = elementId + '.png', title = elementId, comment = elementId, foreignObjectRendering = false) {
                     $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
                         //document.body.appendChild(canvas);
                         //var imageBlob = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, '');
@@ -320,31 +387,29 @@ angular.module(
                         canvas.toBlob(function uploadImage(imageBlob) {
                             // function is invoked on button press, so we can safely assume that the token promise was resolved.
                             // TODO: add some error checking before going live 
-                            var reportImageFileResource = getReportImageFileResource($this.drupalRestApi.token, imageName);
+                            var reportImageFileResource = createReportImageFileResource($this.drupalRestApi.token, imageName);
                             reportImageFileResource.store(imageBlob)
-                                    .$promise.then(function uploadImageSuccess(response) {
-                                        console.log('uploadImage finished');
-                                        // return the image id
-                                        return response.data.attributes.id;
-                                    }, function uploadImageError(response) {
-                                        console.log('error uploading Image: ' + response.statusText);
-                                        $q.reject(response);
+                                    .$promise.then(function uploadImageFileSuccess(imageResponse) {
+                                        var imageFileUuid = imageResponse.data.id;
+                                        console.log('upload image file "' + imageName + '" + finished: ' + imageFileUuid);
+
+                                        reportImageTemplate.data.attributes.title = title;
+                                        reportImageTemplate.data.attributes.field_comment.value = comment;
+                                        reportImageTemplate.data.relationships.field_image.data.id = imageFileUuid;
+                                        reportImageTemplate.data.relationships.field_source_step.data.id = $this.drupalRestApi.eventData.stepUuid;
+                                        var reportImageResource = createReportImageResource($this.drupalRestApi.token);
+                                        reportImageResource.store(reportImageTemplate).$promise.then(function storeReportImageSuccess(reportImageResponse) {
+                                            console.log(reportImageResponse);
+
+                                        }, function storeReportImageError(reportImageErrorResponse) {
+                                            console.log('error storing ReportImage entity: ' + reportImageErrorResponse.statusText);
+                                            $q.reject(reportImageErrorResponse);
+                                        });
+                                    }, function uploadImageFileError(imageErrorResponse) {
+                                        console.log('error uploading Image: ' + imageErrorResponse.statusText);
+                                        $q.reject(imageErrorResponse);
                                     });
                         });
-
-
-
-                        //$this.drupalRestApi.getNode = function (nodeId) {
-//                        $this.drupalRestApi.getToken().then(function tokenSuccessCallback(token) {
-//                            var reportImageFileResource = getReportImageFileResource(token)
-//                            var reportImageFileInstance = reportImageFileResource.get({nodeId: nodeId});
-//                            return reportImageFileInstance.$promise;
-//
-//                        }, function tokenErrorCallback(response) {
-//                            return $q.reject(response);
-//                        });
-
-
                     });
                 };
 

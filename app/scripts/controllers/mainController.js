@@ -218,8 +218,6 @@ angular.module(
                                             isArray: false,
                                             headers: {
                                                 'Content-Type': 'application/octet-stream',
-                                                'Content-Type': 'application/octet-stream',
-                                                'Content-Type': 'application/octet-stream',
                                                 'X-CSRF-Token': response.data,
                                                 'Content-Disposition': 'file; filename="filename.jpg"'
                                             }

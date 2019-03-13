@@ -11,6 +11,8 @@ angular.module(
             'use strict';
             var createChartModels, getIndicators;
             $scope.forCriteriaTable = true;
+            $scope.showTableIndicatorse = true;
+            $scope.showTableRadarCharte = false;
             $scope.chartModels = [];
 
             createChartModels = function () {

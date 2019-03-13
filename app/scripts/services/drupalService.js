@@ -395,14 +395,14 @@ angular.module(
                     });
                 };
 
-                $this.screenshotHelper.uploadScreenshot = function (elementId, imageName = elementId + '.png', title = elementId, comment = elementId, foreignObjectRendering = false) {
+                $this.screenshotHelper.uploadScreenshot = function (elementId, title = elementId, imageName = elementId + '.png', comment = title, foreignObjectRendering = false) {
                     $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
                         //document.body.appendChild(canvas);
                         //var imageBlob = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, '');
 
                         canvas.toBlob(function uploadImage(imageBlob) {
                             // function is invoked on button press, so we can safely assume that the token promise was resolved.
-                            // TODO: add some error checking before going live 
+                            // TODO: add some error checking before going live
                             var reportImageFileResource = createReportImageFileResource($this.drupalRestApi.token, imageName);
                             reportImageFileResource.store(imageBlob)
                                     .$promise.then(function uploadImageFileSuccess(imageResponse) {

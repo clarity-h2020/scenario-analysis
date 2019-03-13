@@ -1,0 +1,59 @@
+[
+    {
+        "name": "CLARITY Example Strategy",
+        "criteriaEmphases": [
+            {
+                "indicator": {
+                    "displayName": "Fatigue, discomfort",
+                    "iconResource": "flower_16.png",
+                    "unit": "number of people",
+                    "value": 489601.5342970918
+                },
+                "criteriaEmphasis": 100
+            },
+            {
+                "indicator": {
+                    "displayName": "Heat cramps, heat exhaustion",
+                    "iconResource": "flower_16.png",
+                    "unit": "number of people",
+                    "value": 225174.21908512185
+                },
+                "criteriaEmphasis": 50
+            },
+            {
+                "indicator": {
+                    "displayName": "Heat cramps, heatstroke",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "number of people",
+                    "value": 47634.45611608377
+                },
+                "criteriaEmphasis": 50
+            },
+            {
+                "indicator": {
+                    "displayName": "Heatstroke, sunstroke",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "number of people",
+                    "value": 5948.636369401891
+                },
+                "criteriaEmphasis": 50
+            },
+            {
+                "indicator": {
+                    "displayName": "Death",
+                    "iconResource": "flower_dead_16.png",
+                    "unit": "number of people",
+                    "value": 446.9205913450504
+                },
+                "criteriaEmphasis": 100
+            }
+        ],
+        "satisfactionEmphasis": [
+            0.2,
+            0.2,
+            0.2,
+            0.2,
+            0.2
+        ]
+    }
+]

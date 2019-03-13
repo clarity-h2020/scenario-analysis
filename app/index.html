@@ -24,7 +24,7 @@
         <!-- build:css() -->
         <link rel="stylesheet" href="styles/indicatorCriteriaTableDirective.css">
         <!-- endbuild -->
-        
+
         <!-- Local Test File, comment in production -->
         <script src="scripts/.local.js" type="text/javascript"></script>
 
@@ -37,8 +37,8 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div class="container" name="application" ng-controller="eu.myclimateservice.csis.scenario-analysis.demoApp.controllers.MainController">
-            <div class="row" name= "row" style="margin-bottom: 20px;">
+        <div class="container" ng-controller="eu.myclimateservice.csis.scenario-analysis.demoApp.controllers.MainController">
+            <div class="row" style="margin-bottom: 20px;">
                 <div class="col-lg-12">
                     <drupal-context-provider 
                         worldstates="container.refWorldstatesFiles"
@@ -114,8 +114,10 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Worldstate Ranking Table ####################################################### -->
                                     <div class="row">
-                                        <div class="panel panel-default">
+                                        <div class="panel panel-default" role="tablist">
                                             <div class="panel-heading" role="tab" id="rankingTableHeading"
                                                  style="display:table;width:100%">
                                                 <h3 style="display:table-cell;vertical-align: middle" 
@@ -123,23 +125,35 @@
                                                     <a  ng-click="rankingTableCollapsed = !rankingTableCollapsed">
                                                         <i ng-if="!rankingTableCollapsed" class="glyphicon glyphicon-chevron-up"></i>
                                                         <i ng-if="rankingTableCollapsed" class="glyphicon glyphicon-chevron-down"></i>
-                                                        Worldstate ranking table
+                                                        Worldstate Ranking Table
                                                     </a>
                                                 </h3>
                                                 <div class="pull-right">
                                                     <div class="input-group">
                                                         <div class="input-group-btn " style="display: block">
-                                                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" ng-click="open = !open" ng-disabled="disabled">
+                                                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" 
+                                                                    ng-click="open = !open" ng-disabled="disabled">
                                                                 Change Mode <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" role="menu">
-                                                                <li style="padding-left: 10px;"> 
-                                                                    <input type="checkbox" ng-model="showTableIndicators"> Show Indicators
+                                                                <li><a ng-click="showTableIndicators = true; showTableRadarChart = false;">
+                                                                        <i ng-show="showTableIndicators" class="glyphicon glyphicon-ok-circle"></i> 
+                                                                        <span ng-style="{'padding-left' : showTableIndicators? '0px': '19px'}">Show Indicators</span>
+                                                                    </a>
                                                                 </li>
-                                                                <li style="padding-left: 10px;"> 
-                                                                    <input type="checkbox" ng-model="showTableRadarChart"> Show radar chart
+                                                                <li>
+                                                                    <a ng-click="showTableRadarChart = true; showTableIndicators = false">
+                                                                        <i ng-show="showTableRadarChart" class="glyphicon glyphicon-ok-circle"></i>  
+                                                                        <span ng-style="{'padding-left': showTableRadarChart? '0px': '19px'}">Show radar chart</span>
+                                                                    </a>
                                                                 </li>
                                                             </ul>
+                                                            <!-- #3 Report Button -->
+                                                            <button type="button" class="btn btn-sm btn-primary" 
+                                                                    ng-disabled="rankingTableCollapsed || !container.worldstates || !container.worldstates.length ||
+                                                                                !container.decisionStrategies || !container.decisionStrategies.length"
+                                                                    ng-click="screenshot('worldstate-ranking-table', ('Worldstate Ranking Table - ' + (showTableIndicators ? 'Indicator' : 'Radar Charts')));">
+                                                                Include in Report</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -147,6 +161,7 @@
                                             <div class="panel-body" 
                                                  collapse="rankingTableCollapsed">
                                                 <worldstate-ranking-table 
+                                                    id="worldstate-ranking-table"
                                                     worldstates="container.worldstates"
                                                     criteria-function="container.selectedCriteriaFunction"
                                                     decision-strategy="container.selectedDecisionStrategy"
@@ -156,6 +171,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- Indicator / Criteria Table ####################################################### -->
                                     <div class="row">
                                         <div class="panel panel-default">
                                             <div class="panel-heading" 
@@ -171,7 +188,8 @@
                                                 <div class="pull-right">
                                                     <div class="input-group">
                                                         <div class="input-group-btn " style="display: block">
-                                                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="disabled">
+                                                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" 
+                                                                    ng-click="open = !open" data-toggle="dropdown" ng-disabled="disabled">
                                                                 Change Mode <span class="caret"></span>
                                                             </button>
                                                             <ul class="dropdown-menu" role="menu">
@@ -182,9 +200,10 @@
                                                             'padding-left'
                                                                 : forCriteriaTable? '0px': '19px'}">Criteria</span></a></li>
                                                             </ul>
+                                                            <!-- #3 Report Button -->
                                                             <button type="button" class="btn btn-sm btn-primary" 
-                                                                    ng-disabled="!container.worldstates || !container.worldstates.length"
-                                                                    ng-click="screenshot('indicator-criteria-table');">
+                                                                    ng-disabled="indicatorCriteriaTableCollapsed || !container.worldstates || !container.worldstates.length"
+                                                                    ng-click="screenshot('indicator-criteria-table', (forCriteriaTable ? 'Criteria Table' : 'Indicator Table'));">
                                                                 Include in Report</button>
                                                         </div>
                                                     </div>
@@ -202,6 +221,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Indicator Bar Charts  ####################################################### -->
                                     <div class="row">
                                         <div class="panel panel-default">
                                             <div class="panel-heading"
@@ -211,13 +231,14 @@
                                                        ng-click="indicatorBarChartsCollapsed = !indicatorBarChartsCollapsed">
                                                         <i ng-if="!indicatorBarChartsCollapsed" class="glyphicon glyphicon-chevron-up"></i>
                                                         <i ng-if="indicatorBarChartsCollapsed" class="glyphicon glyphicon-chevron-down"></i>
-                                                        Indicator bar charts
+                                                        Indicator Bar Charts
                                                     </a>
                                                 </h3>
                                                 <div class="btn-group pull-right">
+                                                    <!-- #3 Report Button -->
                                                     <button type="button" class="btn btn-sm btn-primary" 
-                                                            ng-disabled="!container.worldstates || !container.worldstates.length"
-                                                            ng-click="screenshot('indicator-bar-charts');">
+                                                            ng-disabled="indicatorBarChartsCollapsed || !container.worldstates || !container.worldstates.length"
+                                                            ng-click="screenshot('indicator-bar-charts', 'Indicator Bar Charts');">
                                                         Include in Report</button>
                                                 </div>
                                             </div>
@@ -230,6 +251,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Worldstate Relation Analysis Chart  ####################################################### -->
                                     <div class="row">
                                         <div class="panel panel-default">
 
@@ -240,7 +262,7 @@
                                                        ng-click="relationAnalysisChartCollapsed = !relationAnalysisChartCollapsed">
                                                         <i ng-if="!relationAnalysisChartCollapsed" class="glyphicon glyphicon-chevron-up"></i>
                                                         <i ng-if="relationAnalysisChartCollapsed" class="glyphicon glyphicon-chevron-down"></i>
-                                                        Worldstate relation analysis chart
+                                                        Worldstate Relation Analysis Chart
                                                     </a>
                                                 </h3>
                                                 <div class="btn-group pull-right">
@@ -249,15 +271,14 @@
                                                     </button>
                                                     <ul class="dropdown-menu" role="menu">
                                                         <li><a ng-click="isCriteria = false"><i ng-show="!isCriteria" class="glyphicon glyphicon-ok-circle"></i> <span ng-style="{
-                                                            'padding-left'
-                                                                : !isCriteria? '0px': '19px'}">Indicator</span></a></li>
+                                                            'padding-left' : !isCriteria? '0px': '19px'}">Indicator</span></a></li>
                                                         <li><a ng-click="isCriteria = true"><i ng-show="isCriteria" class="glyphicon glyphicon-ok-circle"> </i>  <span ng-style="{
-                                                            'padding-left'
-                                                                : isCriteria? '0px': '19px'}">Criteria</span></a></li>
+                                                            'padding-left' : isCriteria? '0px': '19px'}">Criteria</span></a></li>
                                                     </ul>
+                                                    <!-- #3 Report Button -->
                                                     <button type="button" class="btn btn-sm btn-primary" 
-                                                            ng-disabled="!container.worldstates || !container.worldstates.length"
-                                                            ng-click="screenshot('relation-analysis-chart');">
+                                                            ng-disabled="relationAnalysisChartCollapsed || !container.worldstates || !container.worldstates.length"
+                                                            ng-click="screenshot('relation-analysis-chart', 'Worldstate Relation Analysis Chart - ' + (isCriteria ? 'Criteria' : 'Indicator'));">
                                                         Include in Report</button>
                                                 </div>
                                             </div>
@@ -273,28 +294,29 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- Criteria Radar Chart Comparison  ####################################################### -->    
                                     <div class="row">
                                         <div class="panel panel-default">
                                             <div class="panel-heading"
                                                  style="display:table;width:100%">
                                                 <h3 style="display:table-cell;vertical-align: middle" class="panel-title"> 
                                                     <a style="color:#000" 
-                                                       ng-click="criteriaRadaCollapsed = !criteriaRadaCollapsed">
-                                                        <i ng-if="!criteriaRadaCollapsed" class="glyphicon glyphicon-chevron-up"></i>
-                                                        <i ng-if="criteriaRadaCollapsed" class="glyphicon glyphicon-chevron-down"></i>
-                                                        Criteria radar chart comparison
+                                                       ng-click="criteriaRadarCollapsed = !criteriaRadarCollapsed">
+                                                        <i ng-if="!criteriaRadarCollapsed" class="glyphicon glyphicon-chevron-up"></i>
+                                                        <i ng-if="criteriaRadarCollapsed" class="glyphicon glyphicon-chevron-down"></i>
+                                                        Criteria Radar Chart Comparison
                                                     </a>
                                                 </h3>
                                                 <div class="btn-group pull-right">
                                                     <button type="button" class="btn btn-sm btn-primary" 
-                                                            ng-disabled="!container.worldstates || !container.worldstates.length"
-                                                            ng-click="screenshot('indicator-bar-charts');">
+                                                            ng-disabled="criteriaRadarCollapsed || !container.worldstates || !container.worldstates.length"
+                                                            ng-click="screenshot('criteria-radar-chart-comparison', 'Criteria Radar Chart Comparison');">
                                                         Include in Report</button>
                                                 </div>
                                             </div>
-                                            <div collapse="criteriaRadaCollapsed"
-                                                 class="panel-body">
+                                            <div collapse="criteriaRadarCollapsed"
+                                                 class="panel-body"
+                                                 id="criteria-radar-chart-comparison">
                                                 <div class="col-lg-3 col-md-12">
                                                     <div class="row">
                                                         <div class="col-lg-12 col-md-12">
@@ -384,7 +406,10 @@
 
                                             </div>
                                             <div class="panel-body">
-                                                <criteria-function-manager worldstates="container.worldstates"  criteria-functions="container.criteriaFunctions"></criteria-function-manager>
+                                                <criteria-function-manager 
+                                                    worldstates="container.worldstates"  
+                                                    criteria-functions="container.criteriaFunctions">
+                                                </criteria-function-manager>
                                             </div>
                                         </div>
                                     </div>
@@ -426,7 +451,10 @@
                                                 </div>
                                             </div>
                                             <div class="panel-body">
-                                                <decision-strategy-manager worldstates="container.worldstates" decision-strategies="container.decisionStrategies"></decision-strategy-manager>
+                                                <decision-strategy-manager 
+                                                    worldstates="container.worldstates" 
+                                                    decision-strategies="container.decisionStrategies">
+                                                </decision-strategy-manager>
                                             </div>
                                         </div>
                                     </div>
@@ -453,6 +481,7 @@
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
         <script src="bower_components/ng-table/ng-table.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -518,21 +547,21 @@
         <script src="scripts/controllers/drupalContextProviderDirectiveController.js"></script>
         <script src="scripts/directives/drupalBasedAnalysisContextProvider.js" type="text/javascript"></script>
         <!-- endbuild -->
-        
+
         <!-- demo only -->
         <script>
-        angular.module('eu.myclimateservice.csis.scenario-analysis.demoApp').config(
-        [
-                '$provide',
-                function ($provide) {
-                'use strict';
-                $provide.constant('CRISMA_DOMAIN', 'CRISMA');
+                                                                        angular.module('eu.myclimateservice.csis.scenario-analysis.demoApp').config(
+                                                                        [
+                                                                                '$provide',
+                                                                                function ($provide) {
+                                                                                'use strict';
+                                                                                $provide.constant('CRISMA_DOMAIN', 'CRISMA');
 //              $provide.constant('CRISMA_ICMM_API', 'http://localhost:8890');
-                $provide.constant('CRISMA_ICMM_API', 'http://crisma.cismet.de/icmm_api');
+                                                                                $provide.constant('CRISMA_ICMM_API', 'http://crisma.cismet.de/icmm_api');
 //              $provide.constant('CRISMA_ICMM_API', 'sadfg');
-                }
-        ]
-                );
+                                                                                }
+                                                                        ]
+                                                                                );
         </script>
 
         <!-- seamless.js -->

@@ -4,7 +4,7 @@ angular.module(
         'de.cismet.crisma.ICMM.config',
         'de.cismet.crisma.ICMM.Worldstates',
         'de.cismet.cids.rest.collidngNames.Nodes',
-        'de.cismet.crisma.ICMM.services',
+        'de.cismet.crisma.ICMM.services'
     ]
     );
 angular.module(
@@ -13,6 +13,6 @@ angular.module(
         'nvd3ChartDirectives',
         'eu.myclimateservice.csis.scenario-analysis.services',
         'ngDialog',
-        'de.cismet.crisma.ICMM.config',
+        'de.cismet.crisma.ICMM.config'
     ]
     );

@@ -37,7 +37,8 @@
     "ngDialog": "0.2.14",
     "radar-chart-d3": "1.2.1",
     "html2canvas": "https://github.com/niklasvh/html2canvas/releases/download/v1.0.0-alpha.12/html2canvas.js",
-    "angular-bootstrap": "0.11.2"
+    "angular-bootstrap": "0.11.2",
+    "angular-cookies": "1.2.32"
   },
   "devDependencies": {
     "angular-mocks": "1.2.32",

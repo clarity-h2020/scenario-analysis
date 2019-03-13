@@ -1,0 +1,31 @@
+{
+    "data": {
+        "type": "node--report_image",
+        "attributes": {
+            "title": null,
+            "field_comment": {
+                "value": null
+            }
+        },
+        "relationships": {
+            "field_image": {
+                "data": {
+                    "type": "file--file",
+                    "id": null
+                }
+            },
+            "field_report_category": {
+                "data": {
+                    "type": "taxonomy_term--report_image_category",
+                    "id": "1ce9180e-8439-45a8-8e80-23161b76c2b9"
+                }
+            },
+            "field_source_step": {
+                "data": {
+                    "type": "node--gl_step",
+                    "id": null
+                }
+            }
+        }
+    }
+}

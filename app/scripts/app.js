@@ -1,3 +1,4 @@
+'use strict';
 // this is only used for demo/testing purposes
 angular.module(
     'eu.myclimateservice.csis.scenario-analysis.demoApp',
@@ -11,4 +12,6 @@ angular.module(
         'ui.bootstrap.dropdown',
         'ui.bootstrap.tpls'
     ]
-    );
+    ).config(function ($httpProvider) {
+    $httpProvider.defaults.withCredentials = false;
+});

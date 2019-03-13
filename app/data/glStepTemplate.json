@@ -1,0 +1,12 @@
+{
+    "data": {
+        "id": null,
+        "type": "node--gl_step",
+        "relationships": {
+            "field_report_images": {
+                "data": [
+                ]
+            }
+        }
+    }
+}

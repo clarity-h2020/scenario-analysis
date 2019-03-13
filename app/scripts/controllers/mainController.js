@@ -33,6 +33,8 @@ angular.module(
                 // stll works...
                 $scope.container = {};
                 $scope.forCriteriaTable = false;
+                $scope.showTableIndicatorse = true;
+                $scope.showTableRadarCharte = false;
                 $scope.container.chartModels = [];
                 $scope.icmmTabCollapsed = false;
                 $scope.filesTabCollapsed = false;
@@ -161,109 +163,6 @@ angular.module(
                 watchCfFiles();
                 watchDsFiles();
 
-                //                $scope.screenshot = function (elementId, foreignObjectRendering = true) {
-//                    $window.html2canvas(document.getElementById(elementId), {async: true, allowTaint: true, logging: true, useCORS: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
-//                        document.body.appendChild(canvas);
-//                    });
-//                };
-
-                // WTF:
-                // PhantomJS 2.1.1 (Windows 8.0.0) ERROR
-                // SyntaxError: Expected token ')'
-                // at ../mainController.js:170
-                $scope.screenshot = function (elementId, imageName = elementId, foreignObjectRendering = false) {
-                    $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
-                        document.body.appendChild(canvas);
-                        var imageBlob = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, '');
-
-                        //console.log(dataURL);
-                        var payload = {
-                            '_links': {
-                                'type': {
-                                    'href': restApi.host + '/rest/type/file/image'
-                                }
-                            },
-                            'filename': [
-                                {
-                                    'value': imageName
-                                }
-                            ],
-                            'filemime': [
-                                {
-                                    'value': 'image/png'
-                                }
-                            ],
-                            'data': [
-                                {
-                                    'value': imageBlob
-                                }
-                            ]
-                        };
-
-                        /**
-                         * 1) get the X-CSRF-Token
-                         */
-                        $http({method: 'GET', url: restApi.host + '/rest/session/token'})
-                                .then(function tokenSuccessCallback(response) {
-
-                                    var uploadImage = $resource(restApi.host + '/entity/file',
-                                            {
-                                                _format: 'hal_json'
-                                            }, {
-                                        store: {
-                                            method: 'POST',
-                                            isArray: false,
-                                            headers: {
-                                                'Content-Type': 'application/hal+json',
-                                                'X-CSRF-Token': response.data
-                                            }
-                                        }
-
-                                    });
-
-                                    /**
-                                     * 2) POST the image and return the image id
-                                     */
-                                    return uploadImage.store(payload)
-                                            .$promise.then(function uploadImageSuccess(response) {
-                                                console.log('uploadImage finished');
-                                                // return the image id
-                                                return response.fid[0];
-                                            }, function uploadImageError(response) {
-                                                console.log('error uploading Image: ' + response.data.message);
-                                                $q.reject(response.data);
-                                            });
-                                }, function tokenErrorCallback(response) {
-                                    console.log('error retrieving X-CSRF-Token: ' + response);
-                                    $q.reject(response);
-                                }).then(
-                                /**
-                                 * 3) PATCH the report resource and add the image id
-                                 * @param {int} response the image id 
-                                 */
-                                        function successCallback(response) {
-                                            console.log('image id: ' + response);
-
-                                            // TODO UPDATE Resource
-                                        },
-                                        function errorCallback(response) {
-                                            console.log('ERROR: ' + response);
-                                        });
-
-                                /*$http({
-                                 url: 'http://roberto:8080/entity/file?_format=hal_json',
-                                 method: "POST",
-                                 data: payload
-                                 })
-                                 .then(function(response) {
-                                 console.log('http uploadImage finished');
-                                 console.log(response);
-                                 }, 
-                                 function(response) { // optional
-                                 console.log('http uploadImage failed');
-                                 console.log(response);
-                                 });*/
-                            });
-                };
+                $scope.screenshot = drupalService.screenshotHelper.uploadScreenshot;
             }
         ]);

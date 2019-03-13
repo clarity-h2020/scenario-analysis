@@ -1,7 +1,21 @@
 {
     "elements": {
-        "criteria-function-manager": {},
-        "relation-analysis-chart": {},
+        "criteria-function-manager": {
+            "attributes": {
+                "worldstates": {},
+                "criteria-functions": {}
+            }
+        },
+        "relation-analysis-chart": {
+            "attributes": {
+                "for-criteria": {},
+                "worldstates": {},
+                "style": {},
+                "id": {},
+                "criteria-function": {},
+                "height": {}
+            }
+        },
         "tab-content": {},
         "indicator-band": {
             "attributes": {
@@ -9,13 +23,47 @@
             }
         },
         "tab": {},
-        "worldstate-ranking-table": {},
-        "indicator-criteria-table": {},
-        "drupal-context-provider": {},
-        "indicator-bar-charts": {},
+        "worldstate-ranking-table": {
+            "attributes": {
+                "show-radar-chart": {},
+                "decision-strategy": {},
+                "worldstates": {},
+                "id": {},
+                "show-indicators": {},
+                "criteria-function": {}
+            }
+        },
+        "indicator-criteria-table": {
+            "attributes": {
+                "for-criteria": {},
+                "worldstates": {},
+                "id": {},
+                "criteria-function": {},
+                "detail-icons": {}
+            }
+        },
+        "drupal-context-provider": {
+            "attributes": {
+                "selected-worldstates": {},
+                "decision-strategies": {},
+                "worldstates": {},
+                "criteria-functions": {}
+            }
+        },
+        "indicator-bar-charts": {
+            "attributes": {
+                "worldstates": {},
+                "id": {}
+            }
+        },
         "tab-heading": {},
         "tabset": {},
-        "decision-strategy-manager": {}
+        "decision-strategy-manager": {
+            "attributes": {
+                "decision-strategies": {},
+                "worldstates": {}
+            }
+        }
     },
     "attributes": {
         "dropdown": {

@@ -18,7 +18,7 @@ angular.module(
                 var drupalRestApi = drupalService.drupalRestApi;
                 var emikatRestApi = drupalService.emikatRestApi;
 
-                // TODO: Load this kinf of information from the Data Package
+                // TODO: Load this kind of information from the Data Package
                 $http.get('samples/populationDamageClasses.json').success(function (data) {
                     damageClasses = data;
                 }).error(function (data, status) {
@@ -31,7 +31,7 @@ angular.module(
                 // inside the onConnect() method, otherwise the event is not recieved (race condition?)
                 // strangley, the onConnect callback is called twice. See comment in nodeConncetor.js
                 parent.receive(function (data) {
-                    //console.log('parent.receive:' + data);
+                    console.log('parent.receive:' + data);
                     onSeamlessEvent(data);
                 });
 
@@ -503,13 +503,15 @@ angular.module(
                 onSeamlessEvent = function (eventData) {
                     console.log('load node from node id: ' + eventData.nodeId);
 
+                    drupalRestApi.eventData = eventData;
+
                     // FIXME: This is only for testing purposes! We load load the JSON from the 
                     // IA/RA EU-GL step, but ir should come from the Data Package or EMIKAT REST API!
                     drupalRestApi.getNode(eventData.nodeId).then(function (node) {
-                        var indicatorArray = drupalService.nodeHelper.getIndicatorArray(node);
+                        //var indicatorArray = drupalService.nodeHelper.getIndicatorArray(node);
                         var criteriaFunctionArray = drupalService.nodeHelper.getCriteriaFunction(node);
                         var decisionStrategyArray = drupalService.nodeHelper.getDecisionStrategy(node);
-                        loadIndicatorObjects(indicatorArray);
+                        //loadIndicatorObjects(indicatorArray);
                         loadCriteriaFunctions(criteriaFunctionArray);
                         loadDecisionStrategies(decisionStrategyArray);
                     }, function (error) {
@@ -517,10 +519,24 @@ angular.module(
                         showIndicatorFileLoadingError(error.data.message.toString());
                     });
 
+                    // full glStepResource is needed, even if we use PATCH method! -> data/glStepTemplate.json
+                    // PATCH replaces the field_report_images.data[] array completely, so we have to obtain the original array and add 
+                    // our report images on top of it :-/
+                    drupalRestApi.initGlStepResource(eventData.stepUuid).then(function (glStepResource) {
+                        console.log('glStepResource ' + eventData.stepUuid + ' loaded: ' + glStepResource.data.attributes.title);
+                    }, function (error) {
+                        console.log('could not load glStepResource:' + error);
+                    });
+
                     // FIXME: get scenario and view ids from Data Package
                     emikatRestApi.getImpactScenario(2846, 2812).then(function (impactScenario) {
-                        //TODO: do something useful here!
-                        console.log(impactScenario);
+                        //console.log(impactScenario);
+                        var worldstates = drupalService.emikatHelper.transformImpactScenario(impactScenario, damageClasses, true);
+
+                        // this is a total mess: worldstates object is awkwardly modified modified by infamous ICCM_Helper
+                        //console.log(JSON.stringify(worldstates));
+
+                        loadIndicatorObjects(worldstates);
                     }, function (error) {
                         console.log(error.message);
                     });

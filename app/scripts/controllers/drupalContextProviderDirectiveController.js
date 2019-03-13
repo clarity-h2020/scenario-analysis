@@ -519,12 +519,14 @@ angular.module(
                         showIndicatorFileLoadingError(error.data.message.toString());
                     });
 
-                    // full glStepResource is not needed if we use PATCH method! -> data/glStepTemplate.json
-                    /*drupalRestApi.initGlStepResource(eventData.stepUuid).then(function (glStepResource) {
+                    // full glStepResource is needed, even if we use PATCH method! -> data/glStepTemplate.json
+                    // PATCH replaces the field_report_images.data[] array completely, so we have to obtain the original array and add 
+                    // our report images on top of it :-/
+                    drupalRestApi.initGlStepResource(eventData.stepUuid).then(function (glStepResource) {
                         console.log('glStepResource ' + eventData.stepUuid + ' loaded: ' + glStepResource.data.attributes.title);
                     }, function (error) {
                         console.log('could not load glStepResource:' + error);
-                    });*/
+                    });
 
                     // FIXME: get scenario and view ids from Data Package
                     emikatRestApi.getImpactScenario(2846, 2812).then(function (impactScenario) {

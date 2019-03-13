@@ -416,15 +416,26 @@ angular.module(
                                         var reportImageResource = createReportImageResource($this.drupalRestApi.token);
                                         reportImageResource.store(reportImageTemplate).$promise.then(function storeReportImageSuccess(reportImageResponse) {
                                             if (reportImageResponse && reportImageResponse.data && reportImageResponse.data.id) {
+                                                if ($this.drupalRestApi.glStepInstance && $this.drupalRestApi.glStepInstance.data &&
+                                                        $this.drupalRestApi.glStepInstance.data.relationships && $this.drupalRestApi.glStepInstance.data.relationships.field_report_images && $this.drupalRestApi.glStepInstance.data.relationships.field_report_images.data &&
+                                                        $this.drupalRestApi.glStepInstance.data.relationships.field_report_images.data.length > 0) {
+                                                    console.log('adding resource image to ' + $this.drupalRestApi.glStepInstance.data.relationships.field_report_images.data.length + ' existing relationships');
+                                                    glStepTemplate.data.relationships.field_report_images.data = $this.drupalRestApi.glStepInstance.data.relationships.field_report_images.data;
+                                                }
+
+                                                var reportImageRelationship = {
+                                                    'id': reportImageResponse.data.id,
+                                                    'type': 'node--report_image'
+                                                };
 
                                                 glStepTemplate.data.id = $this.drupalRestApi.eventData.stepUuid;
-                                                glStepTemplate.data.relationships.field_report_images.data[0].id = reportImageResponse.data.id;
+                                                glStepTemplate.data.relationships.field_report_images.data.push(reportImageRelationship);
                                                 console.log('assigning report image ' + reportImageResponse.data.id + ' to GL Step ' + $this.drupalRestApi.eventData.stepUuid);
 
                                                 $http(
                                                         {
                                                             method: 'PATCH',
-                                                            url: $this.drupalRestApi.host + '/jsonapi/node/gl_step/'+$this.drupalRestApi.eventData.stepUuid,
+                                                            url: $this.drupalRestApi.host + '/jsonapi/node/gl_step/' + $this.drupalRestApi.eventData.stepUuid,
                                                             headers: {
                                                                 'Accept': 'application/vnd.api+json',
                                                                 'Content-Type': 'application/vnd.api+json',

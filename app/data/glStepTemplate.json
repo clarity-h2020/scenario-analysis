@@ -5,10 +5,6 @@
         "relationships": {
             "field_report_images": {
                 "data": [
-                    {
-                        "id": null,
-                        "type": "node--report_image"
-                    }
                 ]
             }
         }

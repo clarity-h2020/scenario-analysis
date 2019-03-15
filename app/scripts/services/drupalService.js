@@ -121,10 +121,12 @@ angular.module(
 
                 $this.drupalRestApi.initEmikatCredentials = function () {
                     return $http({method: 'GET', url: $this.drupalRestApi.host + '/jsonapi/'}).then(function success(apiResponse) {
-                        if (apiResponse !== null && apiResponse.data !== null && apiResponse.data.meta.links.me !== null && apiResponse.data.meta.links.me.href !== null) {
+                        if (apiResponse !== null && apiResponse.data !== null && apiResponse.data.meta.links.me !== null &&
+                                apiResponse.data.meta.links.me.meta !== null && apiResponse.data.meta.links.me.meta.id !== null) {
+                            // FIXME: Ugly workaround for https://github.com/clarity-h2020/docker-drupal/issues/57
+                            apiResponse.data.meta.links.me.href = $this.drupalRestApi.host + '/jsonapi/user/user/' + apiResponse.data.meta.links.me.meta.id;
                             return $http({method: 'GET', url: apiResponse.data.meta.links.me.href})
                                     .then(function initEmikatCredentialsSuccessCallback(userResponse) {
-                                        // data.data?! Seriously?
                                         if (userResponse !== null && userResponse.data.data !== null && userResponse.data.data !== null && userResponse.data.data.attributes.field_basic_auth_credentials !== null) {
                                             $this.emikatRestApi.emikatCredentials = userResponse.data.data.attributes.field_basic_auth_credentials;
                                             console.log('EMIKAT Authentication Info API recived from ' + apiResponse.data.meta.links.me.href);

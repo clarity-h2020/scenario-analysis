@@ -358,8 +358,11 @@ angular.module(
 
                 $this.screenshotHelper = {};
 
-
-
+                /**
+                 * 
+                 * @param {type} token
+                 * @returns {unresolved}
+                 */
                 var createReportImageResource = function (token) {
 
                     return $resource($this.drupalRestApi.host + '/jsonapi/node/report_image/:imageFileUuid',
@@ -378,6 +381,13 @@ angular.module(
                     });
                 };
 
+                /**
+                 * POST report image file resource to JSON API
+                 * 
+                 * @param {type} token
+                 * @param {type} imageName
+                 * @returns {unresolved}
+                 */
                 var createReportImageFileResource = function (token, imageName = 'scenario-analysis.png') {
 
                     return $resource($this.drupalRestApi.host + '/jsonapi/node/report_image/field_image',
@@ -397,20 +407,35 @@ angular.module(
                     });
                 };
 
+                /**
+                 * Take a screenshot of hrml element ($elementId) and store it under $ imageName
+                 * wirh comment $comment in Drupal.
+                 * @param {type} elementId
+                 * @param {type} title
+                 * @param {type} imageName
+                 * @param {type} comment
+                 * @param {type} foreignObjectRendering
+                 * @returns {undefined}
+                 */
                 $this.screenshotHelper.uploadScreenshot = function (elementId, title = elementId, imageName = elementId + '.png', comment = title, foreignObjectRendering = false) {
-                    $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
-                        //document.body.appendChild(canvas);
-                        //var imageBlob = canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, '');
 
+                    // STEP #1:
+                    // html2canvas screenshot function: take snapshot of HTML element $elementId (e.g. <div id="inlcudeInReport">
+                    $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
                         canvas.toBlob(function uploadImage(imageBlob) {
                             // function is invoked on button press, so we can safely assume that the token promise was resolved.
                             // TODO: add some error checking before going live
+
+                            // STEP #2:
+                            // Create new file entity: POST $imageBlob to /jsonapi/node/report_image/field_image
                             var reportImageFileResource = createReportImageFileResource($this.drupalRestApi.token, imageName);
                             reportImageFileResource.store(imageBlob)
                                     .$promise.then(function uploadImageFileSuccess(imageResponse) {
                                         var imageFileUuid = imageResponse.data.id;
                                         console.log('upload image file "' + imageName + '" + finished: ' + imageFileUuid);
 
+                                        // STEP #3: 
+                                        // Create new report_image Node, assign image entity uuid from Step #2, POST to /jsonapi/node/report_image/
                                         reportImageTemplate.data.attributes.title = title;
                                         reportImageTemplate.data.attributes.field_comment.value = comment;
                                         reportImageTemplate.data.relationships.field_image.data.id = imageFileUuid;
@@ -425,10 +450,12 @@ angular.module(
                                                     glStepTemplate.data.relationships.field_report_images.data = $this.drupalRestApi.glStepInstance.data.relationships.field_report_images.data;
                                                 }
 
+                                                // STEP #4: update GL-Step reportImageRelationship, PATCH /jsonapi/node/gl_step/
                                                 var reportImageRelationship = {
                                                     'id': reportImageResponse.data.id,
                                                     'type': 'node--report_image'
                                                 };
+
 
                                                 glStepTemplate.data.id = $this.drupalRestApi.eventData.stepUuid;
                                                 glStepTemplate.data.relationships.field_report_images.data.push(reportImageRelationship);

@@ -3,6 +3,19 @@
         "name": "Population HW Impact Criteria Function",
         "criteriaFunctions": [
             {
+                "indicator": "No damage",
+                "lowerBoundary": {
+                    "criteriaValue": 0,
+                    "indicatorValue": 0
+                },
+                "upperBoundary": {
+                    "criteriaValue": 100,
+                    "indicatorValue": 0
+                },
+                "intervals": [
+                ]
+            },
+            {
                 "indicator": "Fatigue, discomfort",
                 "lowerBoundary": {
                     "criteriaValue": 0,
@@ -19,7 +32,7 @@
                 "indicator": "Heat cramps, heat exhaustion",
                 "lowerBoundary": {
                     "criteriaValue": 0,
-                    "indicatorValue": 0
+                    "indicatorValue": 25
                 },
                 "upperBoundary": {
                     "criteriaValue": 100,
@@ -32,7 +45,7 @@
                 "indicator": "Heat cramps, heatstroke",
                 "lowerBoundary": {
                     "criteriaValue": 0,
-                    "indicatorValue": 25
+                    "indicatorValue": 0
                 },
                 "upperBoundary": {
                     "criteriaValue": 100,
@@ -43,19 +56,6 @@
             },
             {
                 "indicator": "Heatstroke, sunstroke",
-                "lowerBoundary": {
-                    "criteriaValue": 0,
-                    "indicatorValue": 0
-                },
-                "upperBoundary": {
-                    "criteriaValue": 100,
-                    "indicatorValue": 0
-                },
-                "intervals": [
-                ]
-            },
-            {
-                "indicator": "Death",
                 "lowerBoundary": {
                     "criteriaValue": 0,
                     "indicatorValue": 100

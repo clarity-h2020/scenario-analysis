@@ -4,7 +4,7 @@
         "criteriaEmphases": [
             {
                 "indicator": {
-                    "displayName": "Fatigue, discomfort",
+                    "displayName": "No damage",
                     "iconResource": "flower_16.png",
                     "unit": "number of people",
                     "value": 489601.5342970918
@@ -13,7 +13,7 @@
             },
             {
                 "indicator": {
-                    "displayName": "Heat cramps, heat exhaustion",
+                    "displayName": "Fatigue, discomfort",
                     "iconResource": "flower_16.png",
                     "unit": "number of people",
                     "value": 225174.21908512185
@@ -22,7 +22,7 @@
             },
             {
                 "indicator": {
-                    "displayName": "Heat cramps, heatstroke",
+                    "displayName": "Heat cramps, heat exhaustion",
                     "iconResource": "flower_homeless_16.png",
                     "unit": "number of people",
                     "value": 47634.45611608377
@@ -31,7 +31,7 @@
             },
             {
                 "indicator": {
-                    "displayName": "Heatstroke, sunstroke",
+                    "displayName": "Heat cramps, heatstroke",
                     "iconResource": "flower_injured_16.png",
                     "unit": "number of people",
                     "value": 5948.636369401891
@@ -40,7 +40,7 @@
             },
             {
                 "indicator": {
-                    "displayName": "Death",
+                    "displayName": "Heatstroke, sunstroke",
                     "iconResource": "flower_dead_16.png",
                     "unit": "number of people",
                     "value": 446.9205913450504

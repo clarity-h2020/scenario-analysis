@@ -19,7 +19,17 @@ angular.module(
 
                 var $this, nodePath, emikatPath, nodeFields, reportImageTemplate,
                         glStepTemplate, initReportImageTemplate, taxonomyTermUuid,
-                        initGlStepTemplate;
+                        initGlStepTemplate;  
+                /**
+                 * FIXME: Heavily hardcoded time periods
+                 * @type type
+                 */
+                var TIME_PERIODS = { 
+                    '20110101-20401231' : '2011-2040', 
+                    '20410101-20701231' : '2041-2070', 
+                    '20710101-21001231' : '2071-2100',
+                    'Baseline' : '1971-2000'
+                };        
                 $this = this;
                 nodePath = '/node/:nodeId';
                 emikatPath = '/scenarios/:scenarioId/feature/view.:viewId/table/data';
@@ -148,7 +158,7 @@ angular.module(
                         }
                     }, function error(apiErrorResponse) {
                         $this.emikatRestApi.emikatCredentials = undefined;
-                        console.log('error retrieving meta.links.me from ' + apiResponse.data.meta.links.me.href + ': ' + apiErrorResponse);
+                        console.log('error retrieving meta.links.me from ' + apiErrorResponse.data.meta.links.me.href + ': ' + apiErrorResponse);
                         $q.reject(apiErrorResponse);
                     });
                 };
@@ -201,7 +211,7 @@ angular.module(
 
                 $this.emikatRestApi.getImpactScenario = function (scenarioId, viewId, credentials) {
                     var getImpactScenario = function (scenarioId, viewId, credentials) {
-                        console.log('credentials: ' + credentials + ' (Basic ' + btoa(credentials) + ')');
+                        //console.log('credentials: ' + credentials + ' (Basic ' + btoa(credentials) + ')');
                         var impactScenarioResource = $resource($this.emikatRestApi.host + emikatPath,
                                 {
                                     scenarioId: '@scenarioId',
@@ -217,6 +227,7 @@ angular.module(
                             }
                         });
 
+                        console.debug('loading Impact Scenario Data for scenario ' + scenarioId + ' from EMIKAT: ' + $this.emikatRestApi.host + emikatPath );
                         var impactScenario = impactScenarioResource.get({scenarioId: scenarioId, viewId: viewId});
                         return impactScenario.$promise;
                     };
@@ -269,7 +280,9 @@ angular.module(
                 $this.emikatHelper = {};
 
                 /**
-                 * Parses, aggregates and transforms emikat API response to ICC DATA Vector
+                 * Parses, aggregates and transforms emikat API response to ICC DATA Vector.
+                 * 
+                 * KISS & YAGNI: 90% is hardcoded. This method works only with the format in samples/emikatScenarioDataHeatWave.json
                  * 
                  * @param {ScenarioData} scenarioData emikat scenario data as obtained from EMIKAT REST PAI
                  * @param {Array} damageClasses Damage  Class  information
@@ -278,80 +291,96 @@ angular.module(
                  * @returns {Array}
                  */
                 $this.emikatHelper.transformImpactScenario = function (scenarioData, damageClasses, aggregate = false, icon = 'flower_injured_16.png') {
-                    var worldstates = [], cMap = {};
+                    damageClasses = null;
+                    aggregate = false;
+
+                    var worldstates = [], criteriaMap = {};
                     if (!scenarioData || !scenarioData.name || scenarioData.name === null || !scenarioData.rows || !scenarioData.columnnames) {
                         console.warn('EMIKAT Sceanrio Data is null, cannot transform result to ICC Data Array');
                         return worldstates;
                     } else {
-                        console.info('transforming (and aggregeting: ' + aggregate + ') EMIKAT Scenario: ' + scenarioData.name);
+                        console.info('transforming (and aggregating: ' + aggregate + ') EMIKAT Scenario: ' + scenarioData.name);
                     }
 
                     // fill associative map
                     for (var i = 0, len = scenarioData.columnnames.length; i < len; i++) {
-                        cMap[scenarioData.columnnames[i]] = i;
+                        // COLUMN_NAME:index
+                        criteriaMap[scenarioData.columnnames[i]] = i;
                     }
 
                     // iterate rows
+                    console.debug('transformImpactScenario: processing ' + scenarioData.rows.length + ' rows');
                     for (i = 0; i < scenarioData.rows.length; i++) {
+                        // value:index
                         var column = scenarioData.rows[i].values;
                         // yes, they start at 1 not at 0! :o
-                        var worldstate = worldstates[column[cMap['HAZARD_EVENT_ID']] - 1];
+                        // here we define the grouping into worldstates
+                        // TODO: we have to create  worldstates for each TIME_PERIOD / RCP combination
+
+                        var scenarioName =
+                                //column[criteriaMap['STUDY_VARIANT']] + ': ' +
+                                column[criteriaMap['EMISSIONS_SCENARIO']].toUpperCase() + ' (' +
+                                TIME_PERIODS[column[criteriaMap['TIME_PERIOD']]] + ')';
+
+
+                        var worldstate = worldstates.find(function (ws) {
+                            return ws.name === scenarioName;
+                        });
+
                         if (!worldstate || worldstate === null) {
                             worldstate = {};
-                            worldstate.name = column[cMap['HAZEVENT_NAME']];
+                            worldstate.name = scenarioName;
                             worldstate.iccdata = {};
-                            // yes, they start at 1 not at 0! :o
-                            worldstates[column[cMap['HAZARD_EVENT_ID']] - 1] = worldstate;
+                            worldstates.push(worldstate);
+                            console.debug('transformImpactScenario: creating new worldstate ' + worldstate.name);
                         }
 
-                        // aggregate by vulnerability class
-                        var indicatorSetKey = 'indicatorset';
-                        if (aggregate === false) {
-                            indicatorSetKey += column[cMap['VULNERABILITYCLASS_ID']];
-                        }
-
+                        var indicatorSetKey = 'indicatorset';// + column[criteriaMap['EMISSIONS_SCENARIO']];
                         // indicator set (group of indicators)
                         var indicatorSet = worldstate.iccdata[indicatorSetKey];
                         if (!indicatorSet || indicatorSet === null) {
                             indicatorSet = {};
-                            indicatorSet.displayName = column[cMap['NAME']];
-                            if (aggregate === false) {
-                                indicatorSet.displayName += ': ' + column[cMap['VULCLASS_NAME']];
-                            }
+                            // FIXME: Heavily hardcoded indicator sez
+                            indicatorSet.displayName = 'Mortality Rate following Heat Wave Events';
+                            console.debug('transformImpactScenario: creating new Indicator Set ' + indicatorSet.displayName);
+                            /*if (aggregate === false) {
+                             indicatorSet.displayName += ': ' + column[criteriaMap['EVENT_FREQUENCY']];
+                             }*/
 
                             indicatorSet.iconResource = icon;
                             worldstate.iccdata[indicatorSetKey] = indicatorSet;
                         }
 
-                        // FIXME: Always 5 damage classes?!
-                        for (var j = 0; j < 5; j++) {
-                            var indicatorKey = 'indicator' + (j + 1);
-                            var indicator = indicatorSet[indicatorKey];
-                            if (!indicator || indicator === null) {
-                                indicator = {};
-
-                                if (damageClasses && damageClasses !== null && damageClasses[j] && damageClasses[j].displayName) {
-                                    indicator.displayName = damageClasses[j].displayName;
-                                    indicator.iconResource = damageClasses[j].iconResource;
-                                } else {
-                                    indicator.displayName = 'D' + (j + 1);
-                                    indicator.iconResource = icon;
-                                }
-
-                                indicator.unit = column[cMap['QUANTITYUNIT']];
-                                indicator.value = 0;
-                                indicatorSet[indicatorKey] = indicator;
-                            }
-
-                            if (aggregate === false) {
-                                indicator.value = column[cMap['DAMAGELEVEL' + (j + 1) + 'QUANTITY']];
-                            } else {
-                                indicator.value += column[cMap['DAMAGELEVEL' + (j + 1) + 'QUANTITY']];
-                            }
+                        var indicatorKey = 'indicator' + column[criteriaMap['EVENT_FREQUENCY']];
+                        var indicator = indicatorSet[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = column[criteriaMap['EVENT_FREQUENCY']];
+                            indicator.iconResource = icon;
+                            indicator.unit = '‰'; //column[criteriaMap['QUANTITYUNIT']];
+                            indicator.value = 0;
+                            indicatorSet[indicatorKey] = indicator;
                         }
+
+                        // FIXME: Heavily hardcoded calculation of indicator value
+                        indicator.value = (parseInt(column[criteriaMap['DAMAGEQUANTITY']]) / parseInt(column[criteriaMap['EXPOSEDQUANTITY']]) * 1000);
                     }
-                    // just to be sure: remove null elements
-                    return worldstates.filter(n => n);
+
+                    console.log(JSON.stringify(worldstates));
+                    return worldstates.sort(function (a, b) {
+                        var nameA = a.name.toUpperCase(); // Groß-/Kleinschreibung ignorieren
+                        var nameB = b.name.toUpperCase(); // Groß-/Kleinschreibung ignorieren
+                        if (nameA < nameB) {
+                            return -1;
+                        }
+                        if (nameA > nameB) {
+                            return 1;
+                        }
+
+                        // Namen müssen gleich sein
+                        return 0;
+                    });
+
                 };
                 // </editor-fold>
 

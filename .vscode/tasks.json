@@ -1,0 +1,48 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "grunt",
+            "task": "build",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "type": "grunt",
+            "task": "bowerDist",
+            "problemMatcher": []
+        },
+        {
+            "type": "grunt",
+            "task": "dist",
+            "problemMatcher": []
+        },
+        {
+            "type": "grunt",
+            "task": "bower",
+            "problemMatcher": []
+        },
+        {
+            "type": "grunt",
+            "task": "generateSources",
+            "problemMatcher": []
+        },
+        {
+            "type": "grunt",
+            "task": "chmod",
+            "problemMatcher": []
+        },
+        {
+            "type": "grunt",
+            "task": "sync",
+            "problemMatcher": []
+        },
+        {
+            "type": "grunt",
+            "task": "run",
+            "problemMatcher": []
+        }
+    ]
+}

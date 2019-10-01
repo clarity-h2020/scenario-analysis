@@ -505,8 +505,8 @@ angular.module(
 
                     drupalRestApi.eventData = eventData;
 
-                    // FIXME: This is only for testing purposes! We load load the JSON from the 
-                    // IA/RA EU-GL step, but ir should come from the Data Package or EMIKAT REST API!
+                    // FIXME: This is only for testing purposes! We load load the CriteriaFunction and DecisionStrategy JSON from the 
+                    // IA/RA EU-GL step, but it should come from the Data Package or EMIKAT REST API!
                     drupalRestApi.getNode(eventData.nodeId).then(function (node) {
                         //var indicatorArray = drupalService.nodeHelper.getIndicatorArray(node);
                         var criteriaFunctionArray = drupalService.nodeHelper.getCriteriaFunction(node);
@@ -515,7 +515,7 @@ angular.module(
                         loadCriteriaFunctions(criteriaFunctionArray);
                         loadDecisionStrategies(decisionStrategyArray);
                     }, function (error) {
-                        console.log(error.data.message);
+                        console.log(error.data.message, error);
                         showIndicatorFileLoadingError(error.data.message.toString());
                     });
 
@@ -528,8 +528,8 @@ angular.module(
                         console.log('could not load glStepResource:' + error);
                     });
 
-                    // FIXME: get scenario and view ids from Data Package
-                    emikatRestApi.getImpactScenario(2846, 2812).then(function (impactScenario) {
+                    // FIXME: get scenario and view ids from Data Package / API
+                    emikatRestApi.getImpactScenario(2846, 2994).then(function (impactScenario) {
                         //console.log(impactScenario);
                         var worldstates = drupalService.emikatHelper.transformImpactScenario(impactScenario, damageClasses, true);
 
@@ -541,7 +541,6 @@ angular.module(
                         console.log(error.message);
                     });
                 };
-
 
                 // <editor-fold defaultstate="closed" desc="[x] === $scope.$watch ===========================">
 

@@ -92,7 +92,7 @@ angular.module(
                                         if (val % 1 === 0) {
                                             val = $filter('number')(val, 0);
                                         }else{
-                                            val = $filter('number')(val, 2);
+                                            val = $filter('number')(val, 3);
                                         }
                                         $scope.rows[j++][field] = {name: val + ' ' + unit};
                                     }

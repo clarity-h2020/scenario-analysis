@@ -1,0 +1,286 @@
+[
+    {
+        "name": "BASELINE: 20110101-20401231",
+        "iccdata": {
+            "indicatorsetrcp26": {
+                "displayName": "rcp26",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 555.1291088318005
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 839.9304968459024
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 995.7031514514946
+                }
+            },
+            "indicatorsetrcp45": {
+                "displayName": "rcp45",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 555.1291088318005
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 941.2899693373234
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 1052.7106919276198
+                }
+            },
+            "indicatorsetrcp85": {
+                "displayName": "rcp85",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 522.2636669240837
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 792.8238007795861
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 1052.7106919276198
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: 20410101-20701231",
+        "iccdata": {
+            "indicatorsetrcp26": {
+                "displayName": "rcp26",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 555.1291088318005
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 839.9304968459024
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 995.7031514514946
+                }
+            },
+            "indicatorsetrcp45": {
+                "displayName": "rcp45",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 589.7932363010142
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 941.2899693373234
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 1112.3898725337249
+                }
+            },
+            "indicatorsetrcp85": {
+                "displayName": "rcp85",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 664.82624352689
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 995.7031514514946
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 1174.816042363951
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: 20710101-21001231",
+        "iccdata": {
+            "indicatorsetrcp26": {
+                "displayName": "rcp26",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 522.2636669240837
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 839.9304968459024
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 1694.41590035684
+                }
+            },
+            "indicatorsetrcp45": {
+                "displayName": "rcp45",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 626.3329098199712
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 995.7031514514946
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 1112.3898725337249
+                }
+            },
+            "indicatorsetrcp85": {
+                "displayName": "rcp85",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 792.8238007795861
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 1240.0621555770836
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 1781.1375944046993
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: Baseline",
+        "iccdata": {
+            "indicatorsetrcp26": {
+                "displayName": "Baseline",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 491.1214782010352
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 664.82624352689
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 995.7031514514946
+                }
+            },
+            "indicatorsetrcp45": {
+                "displayName": "Baseline",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 491.1214782010352
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 664.82624352689
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 995.7031514514946
+                }
+            },
+            "indicatorsetrcp85": {
+                "displayName": "Baseline",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 491.1214782010352
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 664.82624352689
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "#DEAD",
+                    "value": 995.7031514514946
+                }
+            }
+        }
+    }
+]

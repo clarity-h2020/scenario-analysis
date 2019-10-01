@@ -32,7 +32,7 @@ angular.module(
                                     if (parseInt(indicatorGroup[indicatorProp].value) > indicatorMap[indicatorProp].forceY) {
                                         indicatorMap[indicatorProp].forceY[1] = parseInt(indicatorGroup[indicatorProp].value);
                                     }
-                                    indicatorMap[indicatorProp].values.push([$scope.worldstates[i].name, parseInt(indicatorGroup[indicatorProp].value)]);
+                                    indicatorMap[indicatorProp].values.push([$scope.worldstates[i].name, parseFloat(indicatorGroup[indicatorProp].value)]);
                                 }
                             }
                         }

@@ -1,0 +1,375 @@
+{
+    "name": "TAB Impact on Heat wave (Mortality) ",
+    "description": "TAB Impact on Heat wave (Mortality) \nSum of impacts (calculated statistically expected mortality count as consequence of this Event) on Heatwave in Study Area\nEach cell expresses the calculated statistically expected mortality count as consequence of this Event\n",
+    "columnnames": [
+        "STUDY_VARIANT",
+        "TIME_PERIOD",
+        "EMISSIONS_SCENARIO",
+        "EVENT_FREQUENCY",
+        "EXPOSEDQUANTITY",
+        "DAMAGEQUANTITY",
+        "SZM_SZENARIO_REF"
+    ],
+    "rows": [
+        {
+            "rownum": 0,
+            "values": [
+                "BASELINE",
+                "20110101-20401231",
+                "rcp26",
+                "Frequent",
+                1387851.0,
+                555.1291088318005,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 1,
+            "values": [
+                "BASELINE",
+                "20110101-20401231",
+                "rcp26",
+                "Occasional",
+                1387851.0,
+                839.9304968459024,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 2,
+            "values": [
+                "BASELINE",
+                "20110101-20401231",
+                "rcp26",
+                "Rare",
+                1387851.0,
+                995.7031514514946,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 3,
+            "values": [
+                "BASELINE",
+                "20110101-20401231",
+                "rcp45",
+                "Frequent",
+                1387851.0,
+                555.1291088318005,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 4,
+            "values": [
+                "BASELINE",
+                "20110101-20401231",
+                "rcp45",
+                "Occasional",
+                1387851.0,
+                941.2899693373234,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 5,
+            "values": [
+                "BASELINE",
+                "20110101-20401231",
+                "rcp45",
+                "Rare",
+                1387851.0,
+                1052.7106919276198,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 6,
+            "values": [
+                "BASELINE",
+                "20110101-20401231",
+                "rcp85",
+                "Frequent",
+                1387851.0,
+                522.2636669240837,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 7,
+            "values": [
+                "BASELINE",
+                "20110101-20401231",
+                "rcp85",
+                "Occasional",
+                1387851.0,
+                792.8238007795861,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 8,
+            "values": [
+                "BASELINE",
+                "20110101-20401231",
+                "rcp85",
+                "Rare",
+                1387851.0,
+                1052.7106919276198,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 9,
+            "values": [
+                "BASELINE",
+                "20410101-20701231",
+                "rcp26",
+                "Frequent",
+                1387851.0,
+                555.1291088318005,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 10,
+            "values": [
+                "BASELINE",
+                "20410101-20701231",
+                "rcp26",
+                "Occasional",
+                1387851.0,
+                839.9304968459024,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 11,
+            "values": [
+                "BASELINE",
+                "20410101-20701231",
+                "rcp26",
+                "Rare",
+                1387851.0,
+                995.7031514514946,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 12,
+            "values": [
+                "BASELINE",
+                "20410101-20701231",
+                "rcp45",
+                "Frequent",
+                1387851.0,
+                589.7932363010142,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 13,
+            "values": [
+                "BASELINE",
+                "20410101-20701231",
+                "rcp45",
+                "Occasional",
+                1387851.0,
+                941.2899693373234,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 14,
+            "values": [
+                "BASELINE",
+                "20410101-20701231",
+                "rcp45",
+                "Rare",
+                1387851.0,
+                1112.3898725337249,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 15,
+            "values": [
+                "BASELINE",
+                "20410101-20701231",
+                "rcp85",
+                "Frequent",
+                1387851.0,
+                664.82624352689,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 16,
+            "values": [
+                "BASELINE",
+                "20410101-20701231",
+                "rcp85",
+                "Occasional",
+                1387851.0,
+                995.7031514514946,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 17,
+            "values": [
+                "BASELINE",
+                "20410101-20701231",
+                "rcp85",
+                "Rare",
+                1387851.0,
+                1174.816042363951,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 18,
+            "values": [
+                "BASELINE",
+                "20710101-21001231",
+                "rcp26",
+                "Frequent",
+                1387851.0,
+                522.2636669240837,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 19,
+            "values": [
+                "BASELINE",
+                "20710101-21001231",
+                "rcp26",
+                "Occasional",
+                1387851.0,
+                839.9304968459024,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 20,
+            "values": [
+                "BASELINE",
+                "20710101-21001231",
+                "rcp26",
+                "Rare",
+                1387851.0,
+                1694.41590035684,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 21,
+            "values": [
+                "BASELINE",
+                "20710101-21001231",
+                "rcp45",
+                "Frequent",
+                1387851.0,
+                626.3329098199712,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 22,
+            "values": [
+                "BASELINE",
+                "20710101-21001231",
+                "rcp45",
+                "Occasional",
+                1387851.0,
+                995.7031514514946,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 23,
+            "values": [
+                "BASELINE",
+                "20710101-21001231",
+                "rcp45",
+                "Rare",
+                1387851.0,
+                1112.3898725337249,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 24,
+            "values": [
+                "BASELINE",
+                "20710101-21001231",
+                "rcp85",
+                "Frequent",
+                1387851.0,
+                792.8238007795861,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 25,
+            "values": [
+                "BASELINE",
+                "20710101-21001231",
+                "rcp85",
+                "Occasional",
+                1387851.0,
+                1240.0621555770836,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 26,
+            "values": [
+                "BASELINE",
+                "20710101-21001231",
+                "rcp85",
+                "Rare",
+                1387851.0,
+                1781.1375944046993,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 27,
+            "values": [
+                "BASELINE",
+                "Baseline",
+                "Baseline",
+                "Frequent",
+                1387851.0,
+                491.1214782010352,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 28,
+            "values": [
+                "BASELINE",
+                "Baseline",
+                "Baseline",
+                "Occasional",
+                1387851.0,
+                664.82624352689,
+                2846.0
+            ]
+        },
+        {
+            "rownum": 29,
+            "values": [
+                "BASELINE",
+                "Baseline",
+                "Baseline",
+                "Rare",
+                1387851.0,
+                995.7031514514946,
+                2846.0
+            ]
+        }
+    ]
+}

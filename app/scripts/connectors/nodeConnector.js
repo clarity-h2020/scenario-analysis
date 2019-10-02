@@ -1,3 +1,4 @@
+//<!-- https://github.com/clarity-h2020/scenario-analysis/raw/dev/app/scripts/connectors/nodeConnector.js -->
 //<script type="text/javascript">
 'use strict';
 /* global $ */
@@ -34,7 +35,7 @@ window.Drupal.behaviors.myBehavior = {
                                 scenarioAnalysisApp.send(studyInfo);
                             } else {
                                 //ignore
-                                console.log('pre/re connection #:' + connectCount);
+                                console.log('ignoring pre/re connection #:' + connectCount);
                             }
                             connectCount++;
                         }});

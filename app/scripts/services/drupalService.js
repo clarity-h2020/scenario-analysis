@@ -19,17 +19,17 @@ angular.module(
 
                 var $this, nodePath, emikatPath, nodeFields, reportImageTemplate,
                         glStepTemplate, initReportImageTemplate, taxonomyTermUuid,
-                        initGlStepTemplate;  
+                        initGlStepTemplate;
                 /**
                  * FIXME: Heavily hardcoded time periods
                  * @type type
                  */
-                var TIME_PERIODS = { 
-                    '20110101-20401231' : '2011-2040', 
-                    '20410101-20701231' : '2041-2070', 
-                    '20710101-21001231' : '2071-2100',
-                    'Baseline' : '1971-2000'
-                };        
+                var TIME_PERIODS = {
+                    '20110101-20401231': '2011-2040',
+                    '20410101-20701231': '2041-2070',
+                    '20710101-21001231': '2071-2100',
+                    'Baseline': '1971-2000'
+                };
                 $this = this;
                 nodePath = '/node/:nodeId';
                 emikatPath = '/scenarios/:scenarioId/feature/view.:viewId/table/data';
@@ -77,7 +77,7 @@ angular.module(
                 $this.drupalRestApi.token = null;
                 $this.drupalRestApi.emikatCredentials = null;
                 $this.drupalRestApi.glStepInstance = null;
-                $this.drupalRestApi.eventData = null;
+                $this.drupalRestApi.studyInfo = null;
 
                 $this.drupalRestApi.initToken = function () {
                     return $http({method: 'GET', url: $this.drupalRestApi.host + '/rest/session/token'})
@@ -210,7 +210,11 @@ angular.module(
                 $this.emikatRestApi.host = 'https://service.emikat.at/EmiKatTst/api';
 
                 $this.emikatRestApi.getImpactScenario = function (scenarioId, viewId, credentials) {
+                    console.log('Loading Impact Scenario Data for scenario ' + scenarioId + ' and view ' + viewId +
+                                ' and credentials: ' + (credentials ? true : false));
+                    //console.log('-> emikatRestApi.getImpactScenario');
                     var getImpactScenario = function (scenarioId, viewId, credentials) {
+                        //console.log('-> emikatRestApi.getImpactScenario.getImpactScenario');
                         //console.log('credentials: ' + credentials + ' (Basic ' + btoa(credentials) + ')');
                         var impactScenarioResource = $resource($this.emikatRestApi.host + emikatPath,
                                 {
@@ -227,17 +231,25 @@ angular.module(
                             }
                         });
 
-                        console.debug('loading Impact Scenario Data for scenario ' + scenarioId + ' from EMIKAT: ' + $this.emikatRestApi.host + emikatPath );
+                        console.debug('loading Impact Scenario Data for scenario ' + scenarioId + ' and view ' + viewId +
+                                ' and credentials: ' + (credentials ? true : false) + ' from EMIKAT: ' + $this.emikatRestApi.host + emikatPath);
                         var impactScenario = impactScenarioResource.get({scenarioId: scenarioId, viewId: viewId});
                         return impactScenario.$promise;
                     };
+                    
                     if (credentials === undefined || !credentials || credentials === null) {
-                        return $this.drupalRestApi.getEmikatCredentials().then(function credentialsSuccessCallback(emikatCredentials) {
-                            return getImpactScenario(scenarioId, viewId, emikatCredentials);
-                        }, function credentialsErrorCallback(response) {
-                            return $q.reject(response);
-                        });
+                        console.warn('emikat credentials ' + credentials + ' missing, trying to fetch them from Drupal API ....');
+                        return $this.drupalRestApi.getEmikatCredentials().then(
+                                function credentialsSuccessCallback(emikatCredentials) {
+                                    console.debug('emikat credentials recieved, loading Impact Scenario Data for scenario ' + scenarioId + ' and view ' + viewId);
+                                    return getImpactScenario(scenarioId, viewId, emikatCredentials);
+                                },
+                                function credentialsErrorCallback(response) {
+                                    console.error(response);
+                                    return $q.reject(response);
+                                });
                     } else {
+                        console.debug('emikat credentials already avilable, loading Impact Scenario Data for scenario ' + scenarioId + ' and view ' + viewId);
                         return getImpactScenario(scenarioId, viewId, credentials);
                     }
                 };
@@ -342,7 +354,7 @@ angular.module(
                             indicatorSet = {};
                             // FIXME: Heavily hardcoded indicator sez
                             indicatorSet.displayName = 'Mortality Rate following Heat Wave Events';
-                            console.debug('transformImpactScenario: creating new Indicator Set ' + indicatorSet.displayName);
+                            //console.debug('transformImpactScenario: creating new Indicator Set ' + indicatorSet.displayName);
                             /*if (aggregate === false) {
                              indicatorSet.displayName += ': ' + column[criteriaMap['EVENT_FREQUENCY']];
                              }*/
@@ -360,13 +372,15 @@ angular.module(
                             indicator.unit = '‰'; //column[criteriaMap['QUANTITYUNIT']];
                             indicator.value = 0;
                             indicatorSet[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
 
                         // FIXME: Heavily hardcoded calculation of indicator value
                         indicator.value = (parseInt(column[criteriaMap['DAMAGEQUANTITY']]) / parseInt(column[criteriaMap['EXPOSEDQUANTITY']]) * 1000);
                     }
 
-                    console.log(JSON.stringify(worldstates));
+                    //console.log(JSON.stringify(worldstates));
                     return worldstates.sort(function (a, b) {
                         var nameA = a.name.toUpperCase(); // Groß-/Kleinschreibung ignorieren
                         var nameB = b.name.toUpperCase(); // Groß-/Kleinschreibung ignorieren
@@ -468,7 +482,7 @@ angular.module(
                                         reportImageTemplate.data.attributes.title = title;
                                         reportImageTemplate.data.attributes.field_comment.value = comment;
                                         reportImageTemplate.data.relationships.field_image.data.id = imageFileUuid;
-                                        reportImageTemplate.data.relationships.field_source_step.data.id = $this.drupalRestApi.eventData.stepUuid;
+                                        reportImageTemplate.data.relationships.field_source_step.data.id = $this.drupalRestApi.studyInfo.step_uuid;
                                         var reportImageResource = createReportImageResource($this.drupalRestApi.token);
                                         reportImageResource.store(reportImageTemplate).$promise.then(function storeReportImageSuccess(reportImageResponse) {
                                             if (reportImageResponse && reportImageResponse.data && reportImageResponse.data.id) {
@@ -486,14 +500,14 @@ angular.module(
                                                 };
 
 
-                                                glStepTemplate.data.id = $this.drupalRestApi.eventData.stepUuid;
+                                                glStepTemplate.data.id = $this.drupalRestApi.studyInfo.step_uuid;
                                                 glStepTemplate.data.relationships.field_report_images.data.push(reportImageRelationship);
-                                                console.log('assigning report image ' + reportImageResponse.data.id + ' to GL Step ' + $this.drupalRestApi.eventData.stepUuid);
+                                                console.log('assigning report image ' + reportImageResponse.data.id + ' to GL Step ' + $this.drupalRestApi.studyInfo.step_uuid);
 
                                                 $http(
                                                         {
                                                             method: 'PATCH',
-                                                            url: $this.drupalRestApi.host + '/jsonapi/node/gl_step/' + $this.drupalRestApi.eventData.stepUuid,
+                                                            url: $this.drupalRestApi.host + '/jsonapi/node/gl_step/' + $this.drupalRestApi.studyInfo.step_uuid,
                                                             headers: {
                                                                 'Accept': 'application/vnd.api+json',
                                                                 'Content-Type': 'application/vnd.api+json',
@@ -502,9 +516,9 @@ angular.module(
                                                             data: glStepTemplate
                                                         }
                                                 ).then(function successCallback(glStepResponse) {
-                                                    console.log('report image ' + reportImageResponse.data.id + ' successfully assigned to GL Step ' + $this.drupalRestApi.eventData.stepUuid);
+                                                    console.log('report image ' + reportImageResponse.data.id + ' successfully assigned to GL Step ' + $this.drupalRestApi.studyInfo.step_uuid);
                                                 }, function errorCallback(glStepErrorResponse) {
-                                                    console.log('error updating GL Step ' + $this.drupalRestApi.eventData.stepUuid + ': ' + glStepErrorResponse);
+                                                    console.log('error updating GL Step ' + $this.drupalRestApi.studyInfo.step_uuid + ': ' + glStepErrorResponse);
                                                 });
                                             } else {
                                                 console.error('error processing stored ReportImage entity: ' + reportImageResponse);

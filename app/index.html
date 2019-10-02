@@ -115,63 +115,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Worldstate Ranking Table ####################################################### -->
-                                    <div class="row">
-                                        <div class="panel panel-default" role="tablist">
-                                            <div class="panel-heading" role="tab" id="rankingTableHeading"
-                                                 style="display:table;width:100%">
-                                                <h3 style="display:table-cell;vertical-align: middle" 
-                                                    class="panel-title">
-                                                    <a  ng-click="rankingTableCollapsed = !rankingTableCollapsed">
-                                                        <i ng-if="!rankingTableCollapsed" class="glyphicon glyphicon-chevron-up"></i>
-                                                        <i ng-if="rankingTableCollapsed" class="glyphicon glyphicon-chevron-down"></i>
-                                                        Worldstate Ranking Table
-                                                    </a>
-                                                </h3>
-                                                <div class="pull-right">
-                                                    <div class="input-group">
-                                                        <div class="input-group-btn " style="display: block">
-                                                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" 
-                                                                    ng-click="open = !open" ng-disabled="disabled">
-                                                                Change Mode <span class="caret"></span>
-                                                            </button>
-                                                            <ul class="dropdown-menu" role="menu">
-                                                                <li><a ng-click="showTableIndicators = true; showTableRadarChart = false;">
-                                                                        <i ng-show="showTableIndicators" class="glyphicon glyphicon-ok-circle"></i> 
-                                                                        <span ng-style="{'padding-left' : showTableIndicators? '0px': '19px'}">Show Indicators</span>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a ng-click="showTableRadarChart = true; showTableIndicators = false">
-                                                                        <i ng-show="showTableRadarChart" class="glyphicon glyphicon-ok-circle"></i>  
-                                                                        <span ng-style="{'padding-left': showTableRadarChart? '0px': '19px'}">Show radar chart</span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                            <!-- #3 Report Button -->
-                                                            <button type="button" class="btn btn-sm btn-primary" 
-                                                                    ng-disabled="rankingTableCollapsed || !container.worldstates || !container.worldstates.length ||
-                                                                                !container.decisionStrategies || !container.decisionStrategies.length"
-                                                                    ng-click="screenshot('worldstate-ranking-table', ('Worldstate Ranking Table - ' + (showTableIndicators ? 'Indicator' : 'Radar Charts')));">
-                                                                Include in Report</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel-body" 
-                                                 collapse="rankingTableCollapsed">
-                                                <worldstate-ranking-table 
-                                                    id="worldstate-ranking-table"
-                                                    worldstates="container.worldstates"
-                                                    criteria-function="container.selectedCriteriaFunction"
-                                                    decision-strategy="container.selectedDecisionStrategy"
-                                                    show-indicators="showTableIndicators"
-                                                    show-radar-chart="showTableRadarChart">  
-                                                </worldstate-ranking-table>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <!-- Indicator / Criteria Table ####################################################### -->
                                     <div class="row">
                                         <div class="panel panel-default">
@@ -251,6 +194,65 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <!-- Worldstate Ranking Table ####################################################### -->
+                                    <div class="row">
+                                        <div class="panel panel-default" role="tablist">
+                                            <div class="panel-heading" role="tab" id="rankingTableHeading"
+                                                 style="display:table;width:100%">
+                                                <h3 style="display:table-cell;vertical-align: middle" 
+                                                    class="panel-title">
+                                                    <a  ng-init="rankingTableCollapsed = true"
+                                                        ng-click="rankingTableCollapsed = !rankingTableCollapsed">
+                                                        <i ng-if="!rankingTableCollapsed" class="glyphicon glyphicon-chevron-up"></i>
+                                                        <i ng-if="rankingTableCollapsed" class="glyphicon glyphicon-chevron-down"></i>
+                                                        Worldstate Ranking Table
+                                                    </a>
+                                                </h3>
+                                                <div class="pull-right">-
+                                                    <div class="input-group">
+                                                        <div class="input-group-btn " style="display: block">
+                                                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" 
+                                                                    ng-click="open = !open" ng-disabled="disabled">
+                                                                Change Mode <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu" role="menu">
+                                                                <li><a ng-click="showTableIndicators = true; showTableRadarChart = false;">
+                                                                        <i ng-show="showTableIndicators" class="glyphicon glyphicon-ok-circle"></i> 
+                                                                        <span ng-style="{'padding-left' : showTableIndicators? '0px': '19px'}">Show Indicators</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a ng-click="showTableRadarChart = true; showTableIndicators = false">
+                                                                        <i ng-show="showTableRadarChart" class="glyphicon glyphicon-ok-circle"></i>  
+                                                                        <span ng-style="{'padding-left': showTableRadarChart? '0px': '19px'}">Show radar chart</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                            <!-- #3 Report Button -->
+                                                            <button type="button" class="btn btn-sm btn-primary" 
+                                                                    ng-disabled="rankingTableCollapsed || !container.worldstates || !container.worldstates.length ||
+                                                                                !container.decisionStrategies || !container.decisionStrategies.length"
+                                                                    ng-click="screenshot('worldstate-ranking-table', ('Worldstate Ranking Table - ' + (showTableIndicators ? 'Indicator' : 'Radar Charts')));">
+                                                                Include in Report</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body" 
+                                                 collapse="rankingTableCollapsed">
+                                                <worldstate-ranking-table 
+                                                    id="worldstate-ranking-table"
+                                                    worldstates="container.worldstates"
+                                                    criteria-function="container.selectedCriteriaFunction"
+                                                    decision-strategy="container.selectedDecisionStrategy"
+                                                    show-indicators="showTableIndicators"
+                                                    show-radar-chart="showTableRadarChart">  
+                                                </worldstate-ranking-table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <!-- Worldstate Relation Analysis Chart  ####################################################### -->
                                     <div class="row">
                                         <div class="panel panel-default">
@@ -259,6 +261,7 @@
                                                  style="display:table;width:100%">
                                                 <h3 style="display:table-cell;vertical-align: middle" class="panel-title"> 
                                                     <a style="color:#000" 
+                                                       ng-init="relationAnalysisChartCollapsed = true"
                                                        ng-click="relationAnalysisChartCollapsed = !relationAnalysisChartCollapsed">
                                                         <i ng-if="!relationAnalysisChartCollapsed" class="glyphicon glyphicon-chevron-up"></i>
                                                         <i ng-if="relationAnalysisChartCollapsed" class="glyphicon glyphicon-chevron-down"></i>
@@ -301,6 +304,7 @@
                                                  style="display:table;width:100%">
                                                 <h3 style="display:table-cell;vertical-align: middle" class="panel-title"> 
                                                     <a style="color:#000" 
+                                                       ng-init="criteriaRadarCollapsed = true"
                                                        ng-click="criteriaRadarCollapsed = !criteriaRadarCollapsed">
                                                         <i ng-if="!criteriaRadarCollapsed" class="glyphicon glyphicon-chevron-up"></i>
                                                         <i ng-if="criteriaRadarCollapsed" class="glyphicon glyphicon-chevron-down"></i>
@@ -481,7 +485,6 @@
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
         <script src="bower_components/ng-table/ng-table.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>

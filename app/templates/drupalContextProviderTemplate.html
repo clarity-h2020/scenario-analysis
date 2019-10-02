@@ -12,7 +12,8 @@
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" >
                             <h4 class="panel-title">
-                                <a ng-click="indicatorFileCollapsed = !indicatorFileCollapsed">
+                                <a ng-init="indicatorFileCollapsed = true"
+                                    ng-click="indicatorFileCollapsed = !indicatorFileCollapsed">
                                     <i ng-if="!indicatorFileCollapsed" class="glyphicon glyphicon-chevron-up"></i>
                                     <i ng-if="indicatorFileCollapsed" class="glyphicon glyphicon-chevron-down"></i>
                                     Indicator files
@@ -99,7 +100,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- Load Criteria Function ======================================== --> 
+        <!--<div class="row">
             <div class="col-lg-12">
                 <label>Criteria function file</label>
             </div>
@@ -127,9 +129,10 @@
                     Loaded File: {{loadedCfFile}}
                 </div>
             </div>
-        </div>
+        </div>-->
         
-        <div class="row">
+        <!-- Load Decision strategy Function =============================== --> 
+        <!--<div class="row">
             <div class="col-lg-12">
                 <label>Decision strategy file</label>
             </div>
@@ -156,6 +159,6 @@
                     Loaded File: {{loadedDsfFile}}
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>

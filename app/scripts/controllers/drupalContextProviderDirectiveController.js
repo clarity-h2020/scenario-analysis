@@ -17,6 +17,14 @@ angular.module(
                         damageClasses;
                 var drupalRestApi = drupalService.drupalRestApi;
                 var emikatRestApi = drupalService.emikatRestApi;
+                /**
+                 * This is the EMIKAT View 
+                 * 
+                 * FIXME: should be loaded from the Data Package .... YAGNI!
+                 * 
+                 * @type Integer
+                 */
+                var EMIKAT_VIEW = 2994;
 
                 // TODO: Load this kind of information from the Data Package
                 $http.get('samples/populationDamageClasses.json').success(function (data) {
@@ -30,9 +38,9 @@ angular.module(
                 // Receive a message, this only works when the parent window calls send(...) 
                 // inside the onConnect() method, otherwise the event is not recieved (race condition?)
                 // strangley, the onConnect callback is called twice. See comment in nodeConncetor.js
-                parent.receive(function (data) {
-                    console.log('parent.receive:' + data);
-                    onSeamlessEvent(data);
+                parent.receive(function (studyInfo) {
+                    //console.log('parent.receive:' + data);
+                    onSeamlessEvent(studyInfo);
                 });
 
                 //initialize the bindings
@@ -273,8 +281,8 @@ angular.module(
                                     }
                                 }
                                 if (!containsIndicator) {
-                                    msg = 'Could not load indicator file. It contains no indicator data for ' + indicator;
-                                    console.error(msg);
+                                    msg = 'Could not load indicator file ' + worldstateDummy.name + '. It contains no indicator data for ' + indicator;
+                                    console.error(msg, worldstateDummy);
                                     showIndicatorFileLoadingError(msg);
                                     return;
                                 }
@@ -500,14 +508,29 @@ angular.module(
                 };
                 // </editor-fold>
 
-                onSeamlessEvent = function (eventData) {
-                    console.log('load node from node id: ' + eventData.nodeId);
-
-                    drupalRestApi.eventData = eventData;
+                onSeamlessEvent = function (studyInfo) {
+                    console.log('onSeamlessEvent called =====================================================================');
+                    
+                    if (window.emikatProperties) {
+                        console.error('please remove _local.js');
+                        return false;
+                    }
+                    
+                    if(!studyInfo) {
+                        console.error('no study info object recived from seamless iFrame event, cannot load study impact data');
+                        // bail out
+                        return false;
+                    } else if(!studyInfo.study_emikat_id || studyInfo.study_emikat_id === null || studyInfo.study_emikat_id === -1) {
+                        console.error('No EMIKAT ID available for study ' + studyInfo.id + '!');
+                        return false;
+                    }
+                    
+                    console.log('load criteria function and decision strategy from study ' + studyInfo.id + ' and GL-Step ' + studyInfo.step);
+                    drupalRestApi.studyInfo = studyInfo;
 
                     // FIXME: This is only for testing purposes! We load load the CriteriaFunction and DecisionStrategy JSON from the 
                     // IA/RA EU-GL step, but it should come from the Data Package or EMIKAT REST API!
-                    drupalRestApi.getNode(eventData.nodeId).then(function (node) {
+                    drupalRestApi.getNode(studyInfo.step).then(function (node) {
                         //var indicatorArray = drupalService.nodeHelper.getIndicatorArray(node);
                         var criteriaFunctionArray = drupalService.nodeHelper.getCriteriaFunction(node);
                         var decisionStrategyArray = drupalService.nodeHelper.getDecisionStrategy(node);
@@ -522,14 +545,17 @@ angular.module(
                     // full glStepResource is needed, even if we use PATCH method! -> data/glStepTemplate.json
                     // PATCH replaces the field_report_images.data[] array completely, so we have to obtain the original array and add 
                     // our report images on top of it :-/
-                    drupalRestApi.initGlStepResource(eventData.stepUuid).then(function (glStepResource) {
-                        console.log('glStepResource ' + eventData.stepUuid + ' loaded: ' + glStepResource.data.attributes.title);
+                    drupalRestApi.initGlStepResource(studyInfo.step_uuid).then(function (glStepResource) {
+                        console.log('glStepResource ' + studyInfo.step_uuid + ' loaded: ' + glStepResource.data.attributes.title);
                     }, function (error) {
                         console.log('could not load glStepResource:' + error);
                     });
 
-                    // FIXME: get scenario and view ids from Data Package / API
-                    emikatRestApi.getImpactScenario(2846, 2994).then(function (impactScenario) {
+                    /**
+                     * FIXME: get  view ids from Data Package / API -> YAGNI
+                     * TODO: Support for addtional processing variables, see https://github.com/clarity-h2020/scenario-analysis/issues/16 -> YAGNI
+                     */
+                    emikatRestApi.getImpactScenario(studyInfo.study_emikat_id, EMIKAT_VIEW).then(function (impactScenario) {
                         //console.log(impactScenario);
                         var worldstates = drupalService.emikatHelper.transformImpactScenario(impactScenario, damageClasses, true);
 
@@ -538,7 +564,7 @@ angular.module(
 
                         loadIndicatorObjects(worldstates);
                     }, function (error) {
-                        console.log(error.message);
+                        console.error(error.message, error);
                     });
                 };
 
@@ -623,7 +649,8 @@ angular.module(
 
                 // if local file /scripts/.local.js exists, load some test data
                 if (window.emikatProperties) {
-                    console.warn('/scripts/.local.js found, loading test data');
+                    console.warn('/scripts/.local.js found, loading test data for scenario ' + 
+                            window.emikatProperties.scenarioId + ' and view ' + window.emikatProperties.viewId);
                     emikatRestApi.getImpactScenario(
                             window.emikatProperties.scenarioId,
                             window.emikatProperties.viewId,

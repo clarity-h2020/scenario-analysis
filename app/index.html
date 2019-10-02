@@ -143,11 +143,11 @@
                                                             'padding-left'
                                                                 : forCriteriaTable? '0px': '19px'}">Criteria</span></a></li>
                                                             </ul>
-                                                            <!-- #3 Report Button -->
+                                                            <!-- #3 Report Button 
                                                             <button type="button" class="btn btn-sm btn-primary" 
                                                                     ng-disabled="indicatorCriteriaTableCollapsed || !container.worldstates || !container.worldstates.length"
                                                                     ng-click="screenshot('indicator-criteria-table', (forCriteriaTable ? 'Criteria Table' : 'Indicator Table'));">
-                                                                Include in Report</button>
+                                                                Include in Report</button> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,13 +177,13 @@
                                                         Indicator Bar Charts
                                                     </a>
                                                 </h3>
+                                                <!-- #3 Report Button
                                                 <div class="btn-group pull-right">
-                                                    <!-- #3 Report Button -->
                                                     <button type="button" class="btn btn-sm btn-primary" 
                                                             ng-disabled="indicatorBarChartsCollapsed || !container.worldstates || !container.worldstates.length"
                                                             ng-click="screenshot('indicator-bar-charts', 'Indicator Bar Charts');">
                                                         Include in Report</button>
-                                                </div>
+                                                </div>-->
                                             </div>
                                             <div collapse="indicatorBarChartsCollapsed"
                                                  class="panel-body" >
@@ -209,7 +209,7 @@
                                                         Worldstate Ranking Table
                                                     </a>
                                                 </h3>
-                                                <div class="pull-right">-
+                                                <div class="pull-right">
                                                     <div class="input-group">
                                                         <div class="input-group-btn " style="display: block">
                                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" 
@@ -229,12 +229,12 @@
                                                                     </a>
                                                                 </li>
                                                             </ul>
-                                                            <!-- #3 Report Button -->
+                                                            <!-- #3 Report Button 
                                                             <button type="button" class="btn btn-sm btn-primary" 
                                                                     ng-disabled="rankingTableCollapsed || !container.worldstates || !container.worldstates.length ||
                                                                                 !container.decisionStrategies || !container.decisionStrategies.length"
                                                                     ng-click="screenshot('worldstate-ranking-table', ('Worldstate Ranking Table - ' + (showTableIndicators ? 'Indicator' : 'Radar Charts')));">
-                                                                Include in Report</button>
+                                                                Include in Report</button>-->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -278,11 +278,11 @@
                                                         <li><a ng-click="isCriteria = true"><i ng-show="isCriteria" class="glyphicon glyphicon-ok-circle"> </i>  <span ng-style="{
                                                             'padding-left' : isCriteria? '0px': '19px'}">Criteria</span></a></li>
                                                     </ul>
-                                                    <!-- #3 Report Button -->
+                                                    <!-- #3 Report Button 
                                                     <button type="button" class="btn btn-sm btn-primary" 
                                                             ng-disabled="relationAnalysisChartCollapsed || !container.worldstates || !container.worldstates.length"
                                                             ng-click="screenshot('relation-analysis-chart', 'Worldstate Relation Analysis Chart - ' + (isCriteria ? 'Criteria' : 'Indicator'));">
-                                                        Include in Report</button>
+                                                        Include in Report</button> -->
                                                 </div>
                                             </div>
                                             <div collapse="relationAnalysisChartCollapsed"
@@ -311,12 +311,13 @@
                                                         Criteria Radar Chart Comparison
                                                     </a>
                                                 </h3>
+                                                <!-- #3 Report Button
                                                 <div class="btn-group pull-right">
                                                     <button type="button" class="btn btn-sm btn-primary" 
                                                             ng-disabled="criteriaRadarCollapsed || !container.worldstates || !container.worldstates.length"
                                                             ng-click="screenshot('criteria-radar-chart-comparison', 'Criteria Radar Chart Comparison');">
                                                         Include in Report</button>
-                                                </div>
+                                                </div>-->
                                             </div>
                                             <div collapse="criteriaRadarCollapsed"
                                                  class="panel-body"

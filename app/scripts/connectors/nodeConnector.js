@@ -23,6 +23,12 @@ window.Drupal.behaviors.myBehavior = {
             } else {
                 console.error('no global csisHelpers object found, probably not connected to Drupal!');
             }
+            
+            // ugly workaround for https://github.com/clarity-h2020/csis-helpers-module/issues/9#issuecomment-539436236
+            //var baseTag = document.createElement('base');
+            //var prependURL = 'https://csis.myclimateservice.eu/apps/scenario-analysis/app/';
+            //baseTag.href = prependURL ;
+            //$('#scenario-analysis').contents().find('head').append(baseTag);
 
             var connectCount = 0;
             // for some unknown the reason angular directive controler of the embedded child iframe

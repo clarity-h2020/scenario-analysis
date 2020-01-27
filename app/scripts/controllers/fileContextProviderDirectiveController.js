@@ -219,7 +219,11 @@ angular.module(
                                 if (!containsIndicator) {
                                     msg = 'Could not load indicator file ' + file.name + '. It contains no indicator data for ' + indicator;
                                     console.error(msg);
-                                    showIndicatorFileLoadingError(msg);
+                                    /**
+                                     * Silently ignore. It's not a bug - it's a feature! ;-)
+                                     * See https://github.com/clarity-h2020/scenario-analysis/issues/19
+                                     */
+                                    // showIndicatorFileLoadingError(msg);
                                     return;
                                 }
                             }
@@ -254,7 +258,10 @@ angular.module(
                         // when indicator objects are added we want them to be selected by default
                         $scope.selectedWorldstates.splice(0, $scope.selectedWorldstates.length);
                         $scope.worldstates.forEach(function (object, index) {
-                            $scope.toggleSelection(index);
+                            // but not more than 5 indicators!
+                            if(index < 5) {
+                                $scope.toggleSelection(index);
+                            }
                         });
 
                         $scope.$apply();

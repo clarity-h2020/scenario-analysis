@@ -153,12 +153,12 @@ angular.module(
                                     });
                         } else
                         {
-                            console.log('error retrieving meta.links.me: null from ' + apiResponse.data.meta.links.me.href);
+                            console.error('error retrieving meta.links.me: null from ' + $this.drupalRestApi.host + '/jsonapi/', apiResponse);
                             $q.reject(apiResponse);
                         }
                     }, function error(apiErrorResponse) {
                         $this.emikatRestApi.emikatCredentials = undefined;
-                        console.log('error retrieving meta.links.me from ' + apiErrorResponse.data.meta.links.me.href + ': ' + apiErrorResponse);
+                        console.error('error retrieving meta.links.me from ' + $this.drupalRestApi.host + '/jsonapi/', apiErrorResponse);
                         $q.reject(apiErrorResponse);
                     });
                 };

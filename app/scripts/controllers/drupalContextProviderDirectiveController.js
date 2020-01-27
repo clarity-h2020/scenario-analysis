@@ -283,7 +283,11 @@ angular.module(
                                 if (!containsIndicator) {
                                     msg = 'Could not load indicator file ' + worldstateDummy.name + '. It contains no indicator data for ' + indicator;
                                     console.error(msg, worldstateDummy);
-                                    showIndicatorFileLoadingError(msg);
+                                    /**
+                                     * Silently ignore. It's not a bug - it's a feature! ;-)
+                                     * See https://github.com/clarity-h2020/scenario-analysis/issues/19
+                                     */
+                                    // showIndicatorFileLoadingError(msg);
                                     return;
                                 }
                             }
@@ -564,7 +568,8 @@ angular.module(
 
                         loadIndicatorObjects(worldstates);
                     }, function (error) {
-                        console.error(error.message, error);
+                        showIndicatorFileLoadingError(error);
+                        console.error(error);
                     });
                 };
 

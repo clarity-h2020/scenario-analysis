@@ -24,9 +24,6 @@ angular.module(
             function ($window, $scope, $resource, $http, $timeout, $q, IcmmPersistanceService, FilesPersistanceService, drupalService, ngDialog) {
                 'use strict';
 
-                var restApi = drupalService.restApi;
-
-
                 var createChartModels;
                 // we bind to the container object since the provider directives are nested in angular-bootstrap tabs
                 // tabs create a own scope and thus override every "simple" property. using an container object the binding

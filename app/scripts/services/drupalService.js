@@ -131,7 +131,10 @@ angular.module(
 
                 $this.drupalRestApi.initEmikatCredentials = function () {
                     return $http({method: 'GET', url: $this.drupalRestApi.host + '/jsonapi/'}).then(function success(apiResponse) {
-                        if (apiResponse !== null && apiResponse.data !== null && apiResponse.data.meta.links.me !== null &&
+                        // FIXME: this will throw an exception, if no user is logged in. -> meta.links is null
+                        // TypeError: Cannot read property 'links' of undefined
+                        if (apiResponse !== null && apiResponse.data !== null && apiResponse.data.meta && apiResponse.data.meta.links && 
+                                apiResponse.data.meta.links.me !== null &&
                                 apiResponse.data.meta.links.me.meta !== null && apiResponse.data.meta.links.me.meta.id !== null) {
                             // FIXME: Ugly workaround for https://github.com/clarity-h2020/docker-drupal/issues/57
                             apiResponse.data.meta.links.me.href = $this.drupalRestApi.host + '/jsonapi/user/user/' + apiResponse.data.meta.links.me.meta.id;
@@ -154,7 +157,7 @@ angular.module(
                         } else
                         {
                             console.error('error retrieving meta.links.me: null from ' + $this.drupalRestApi.host + '/jsonapi/', apiResponse);
-                            $q.reject(apiResponse);
+                            return $q.reject('error retrieving meta.links.me: null from ' + $this.drupalRestApi.host + '/jsonapi/');
                         }
                     }, function error(apiErrorResponse) {
                         $this.emikatRestApi.emikatCredentials = undefined;
@@ -170,6 +173,7 @@ angular.module(
                     if (!$this.drupalRestApi.emikatCredentials || $this.drupalRestApi.emikatCredentials === null || $this.drupalRestApi.emikatCredentials === undefined) {
                         return $this.drupalRestApi.initEmikatCredentials();
                     } else {
+                        // Calling $q.when takes a promise or any other type, if it is not a promise then it will wrap it in a promise and call resolve. 
                         $q.when($this.drupalRestApi.emikatCredentials);
                     }
                 };
@@ -246,7 +250,7 @@ angular.module(
                                 },
                                 function credentialsErrorCallback(response) {
                                     console.error(response);
-                                    return $q.reject(response);
+                                    return $q.reject('You are not logged-in in CSIS and EMIKAT, respectively.');
                                 });
                     } else {
                         console.debug('emikat credentials already avilable, loading Impact Scenario Data for scenario ' + scenarioId + ' and view ' + viewId);
@@ -302,7 +306,12 @@ angular.module(
                  * @param {type} icon
                  * @returns {Array}
                  */
-                $this.emikatHelper.transformImpactScenario = function (scenarioData, damageClasses, aggregate = false, icon = 'flower_injured_16.png') {
+                $this.emikatHelper.transformImpactScenario = function (scenarioData, damageClasses, aggregate, icon) {
+                    // Yes, NetBeans will yell at function(aggregate = false, icon = 'flower_injured_16.png') 
+                    // See https://stackoverflow.com/questions/45562266/expected-but-found-in-warning-in-netbeans-for-js-function-with-default-param
+                    aggregate = (typeof aggregate !== 'undefined') ? aggregate : false;
+                    icon = (typeof icon !== 'undefined') ? icon : 'flower_injured_16.png';
+                    
                     damageClasses = null;
                     aggregate = false;
 
@@ -335,9 +344,14 @@ angular.module(
                                 TIME_PERIODS[column[criteriaMap['TIME_PERIOD']]] + ')';
 
 
+                        /**
+                         * Don't make functions within a loop.
+                         */
+                        /* jshint ignore:start */
                         var worldstate = worldstates.find(function (ws) {
                             return ws.name === scenarioName;
                         });
+                        /* jshint ignore:end */
 
                         if (!worldstate || worldstate === null) {
                             worldstate = {};
@@ -431,8 +445,8 @@ angular.module(
                  * @param {type} imageName
                  * @returns {unresolved}
                  */
-                var createReportImageFileResource = function (token, imageName = 'scenario-analysis.png') {
-
+                var createReportImageFileResource = function (token, imageName) {
+                    imageName = (typeof imageName !== 'undefined') ? imageName : 'scenario-analysis.png';
                     return $resource($this.drupalRestApi.host + '/jsonapi/node/report_image/field_image',
                             {
                                 //_format: 'hal_json'
@@ -460,11 +474,16 @@ angular.module(
                  * @param {type} foreignObjectRendering
                  * @returns {undefined}
                  */
-                $this.screenshotHelper.uploadScreenshot = function (elementId, title = elementId, imageName = elementId + '.png', comment = title, foreignObjectRendering = false) {
-
+                $this.screenshotHelper.uploadScreenshot = function (elementId, title, comment, foreignObjectRendering) {
+                    // ARGH. See https://stackoverflow.com/questions/45562266/expected-but-found-in-warning-in-netbeans-for-js-function-with-default-param
+                    title = (typeof title !== 'undefined') ? title : elementId;
+                    imageName = (typeof imageName !== 'undefined') ? imageName : elementId + '.png';
+                    comment = (typeof comment !== 'undefined') ? comment : title;
+                    foreignObjectRendering = (typeof foreignObjectRendering !== 'undefined') ? foreignObjectRendering : false;
+                    
                     // STEP #1:
                     // html2canvas screenshot function: take snapshot of HTML element $elementId (e.g. <div id="inlcudeInReport">
-                    $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(canvas => {
+                    $window.html2canvas(document.getElementById(elementId), {logging: true, foreignObjectRendering: foreignObjectRendering}).then(function(canvas) {
                         canvas.toBlob(function uploadImage(imageBlob) {
                             // function is invoked on button press, so we can safely assume that the token promise was resolved.
                             // TODO: add some error checking before going live
@@ -515,7 +534,7 @@ angular.module(
                                                             },
                                                             data: glStepTemplate
                                                         }
-                                                ).then(function successCallback(glStepResponse) {
+                                                ).then(function successCallback() {
                                                     console.log('report image ' + reportImageResponse.data.id + ' successfully assigned to GL Step ' + $this.drupalRestApi.studyInfo.step_uuid);
                                                 }, function errorCallback(glStepErrorResponse) {
                                                     console.log('error updating GL Step ' + $this.drupalRestApi.studyInfo.step_uuid + ': ' + glStepErrorResponse);

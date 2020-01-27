@@ -215,7 +215,6 @@ angular.module(
                     try {
 
                         /*
-                         * 
                          * accept two differnt kind of files. 
                          * 1. A plain icc data object.
                          * In that case we apply a standard name to this object
@@ -228,7 +227,7 @@ angular.module(
                             origLoadedIndicators = indicatorObject.iccdata;
                             worldstateDummy.iccdata = {
                                 // this is a total mess: serialise the deserialized icc data again
-                                // so that it can be deserilaized by icmm helper library
+                                // so that it can be deserialized by icmm helper library
                                 actualaccessinfo: JSON.stringify(worldstateDummy.iccdata)
                             };
                         } else {
@@ -308,8 +307,8 @@ angular.module(
                         }
 
                         // an excellent example on technical debt and accidental complexity:
-                        // instead of adressing the root cause of the problem, we
-                        // introduce additional inadequateness and ambiguity
+                        // instead of adressing the root cause of the problem, sb
+                        // introduced additional inadequateness and ambiguity
                         Icmm.convertToCorrectIccDataFormat(worldstateDummy);
 
                         if ($scope.worldstates) {
@@ -324,7 +323,10 @@ angular.module(
                         // when indicator objects are added we want them to be selected by default
                         $scope.selectedWorldstates.splice(0, $scope.selectedWorldstates.length);
                         $scope.worldstates.forEach(function (object, index) {
-                            $scope.toggleSelection(index);
+                            // but not more than 5 indicators!
+                            if(index < 5) {
+                                $scope.toggleSelection(index);
+                            }
                         });
 
                         //$scope.$apply();

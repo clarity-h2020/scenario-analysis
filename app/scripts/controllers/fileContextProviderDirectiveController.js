@@ -258,7 +258,10 @@ angular.module(
                         // when indicator objects are added we want them to be selected by default
                         $scope.selectedWorldstates.splice(0, $scope.selectedWorldstates.length);
                         $scope.worldstates.forEach(function (object, index) {
-                            $scope.toggleSelection(index);
+                            // but not more than 5 indicators!
+                            if(index < 5) {
+                                $scope.toggleSelection(index);
+                            }
                         });
 
                         $scope.$apply();

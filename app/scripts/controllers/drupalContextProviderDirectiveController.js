@@ -39,7 +39,7 @@ angular.module(
                 // inside the onConnect() method, otherwise the event is not recieved (race condition?)
                 // strangley, the onConnect callback is called twice. See comment in nodeConncetor.js
                 parent.receive(function (studyInfo) {
-                    //console.log('parent.receive:' + data);
+                    console.log('parent.receive:' + studyInfo);
                     onSeamlessEvent(studyInfo);
                 });
 

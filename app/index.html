@@ -62,7 +62,7 @@
                                      border-right: 1px solid #ddd;
                                      border-bottom: 1px solid #ddd;
                                      padding: 20px 30px;">
-                                    <div class="row" style="margin-bottom: 20px;">
+                                    <div class="row" style="margin-bottom: 20px;" ng-hide="true">
                                         <div class="col-lg-12" style="margin-top: 15px;">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6">
@@ -116,7 +116,7 @@
                                     </div>
 
                                     <!-- Indicator / Criteria Table ####################################################### -->
-                                    <div class="row">
+                                    <div class="row" id="indicatorCriteriaTable" name="indicatorCriteriaTable">
                                         <div class="panel panel-default">
                                             <div class="panel-heading" 
                                                  style="display:table;width:100%">
@@ -128,7 +128,7 @@
                                                         {{forCriteriaTable ? 'Criteria' : 'Indicator'}} table
                                                     </a>
                                                 </h3>
-                                                <div class="pull-right">
+                                                <div class="pull-right" ng-hide="true">
                                                     <div class="input-group">
                                                         <div class="input-group-btn " style="display: block">
                                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" 
@@ -165,7 +165,7 @@
                                         </div>
                                     </div>
                                     <!-- Indicator Bar Charts  ####################################################### -->
-                                    <div class="row">
+                                    <div class="row" id="indicatorBarCharts" name="indicatorBarCharts">
                                         <div class="panel panel-default">
                                             <div class="panel-heading"
                                                  style="display:table;width:100%">
@@ -196,7 +196,7 @@
                                     </div>
                                     
                                     <!-- Worldstate Ranking Table ####################################################### -->
-                                    <div class="row">
+                                    <div class="row" ng-hide="true">
                                         <div class="panel panel-default" role="tablist">
                                             <div class="panel-heading" role="tab" id="rankingTableHeading"
                                                  style="display:table;width:100%">
@@ -209,7 +209,7 @@
                                                         Worldstate Ranking Table
                                                     </a>
                                                 </h3>
-                                                <div class="pull-right">
+                                                <div class="pull-right" ng-hide="true">
                                                     <div class="input-group">
                                                         <div class="input-group-btn " style="display: block">
                                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" 
@@ -268,7 +268,7 @@
                                                         Worldstate Relation Analysis Chart
                                                     </a>
                                                 </h3>
-                                                <div class="btn-group pull-right">
+                                                <div class="btn-group pull-right" ng-hide="true">
                                                     <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" ng-disabled="disabled">
                                                         Change Mode <span class="caret"></span>
                                                     </button>
@@ -298,7 +298,7 @@
                                         </div>
                                     </div>
                                     <!-- Criteria Radar Chart Comparison  ####################################################### -->    
-                                    <div class="row">
+                                    <div class="row" ng-hide="true">
                                         <div class="panel panel-default">
                                             <div class="panel-heading"
                                                  style="display:table;width:100%">
@@ -377,7 +377,7 @@
                         </tab>
                         <!--end analysis tab-->
                         <!--start criteria function manager tab-->
-                        <tab>
+                        <tab ng-hide="true">
                             <tab-heading>
                                 Edit criteria functions
                             </tab-heading>
@@ -423,7 +423,7 @@
                         </tab>
                         <!--start criteria function manager tab-->
                         <!--start decision strategy manager tab-->
-                        <tab>
+                        <tab ng-hide="true">
                             <tab-heading>
                                 Edit decision strategies
                             </tab-heading>
@@ -468,11 +468,8 @@
                         </tab>
                         <!--start decision strategy manager tab-->
                     </tabset>
-
                 </div>
-
             </div>
-
         </div>
 
         <!--[if lt IE 9]>

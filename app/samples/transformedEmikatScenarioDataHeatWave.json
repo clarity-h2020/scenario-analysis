@@ -1,284 +1,516 @@
 [
     {
-        "name": "BASELINE: 20110101-20401231",
+        "name": "ADAPTATION-01: RCP26 (2011-2040)",
         "iccdata": {
-            "indicatorsetrcp26": {
-                "displayName": "rcp26",
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
                 "iconResource": "flower_injured_16.png",
                 "indicatorFrequent": {
                     "displayName": "Frequent",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 555.1291088318005
+                    "unit": "‰",
+                    "value": 0.24892025381131844
                 },
                 "indicatorOccasional": {
                     "displayName": "Occasional",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 839.9304968459024
+                    "unit": "‰",
+                    "value": 0.537143705592845
                 },
                 "indicatorRare": {
                     "displayName": "Rare",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 995.7031514514946
-                }
-            },
-            "indicatorsetrcp45": {
-                "displayName": "rcp45",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 555.1291088318005
-                },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 941.2899693373234
-                },
-                "indicatorRare": {
-                    "displayName": "Rare",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 1052.7106919276198
-                }
-            },
-            "indicatorsetrcp85": {
-                "displayName": "rcp85",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 522.2636669240837
-                },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 792.8238007795861
-                },
-                "indicatorRare": {
-                    "displayName": "Rare",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 1052.7106919276198
+                    "unit": "‰",
+                    "value": 0.7292926734471961
                 }
             }
         }
     },
     {
-        "name": "BASELINE: 20410101-20701231",
+        "name": "ADAPTATION-01: RCP45 (2011-2040)",
         "iccdata": {
-            "indicatorsetrcp26": {
-                "displayName": "rcp26",
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
                 "iconResource": "flower_injured_16.png",
                 "indicatorFrequent": {
                     "displayName": "Frequent",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 555.1291088318005
+                    "unit": "‰",
+                    "value": 0.279489407788147
                 },
                 "indicatorOccasional": {
                     "displayName": "Occasional",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 839.9304968459024
+                    "unit": "‰",
+                    "value": 0.5939149915498124
                 },
                 "indicatorRare": {
                     "displayName": "Rare",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 995.7031514514946
-                }
-            },
-            "indicatorsetrcp45": {
-                "displayName": "rcp45",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 589.7932363010142
-                },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 941.2899693373234
-                },
-                "indicatorRare": {
-                    "displayName": "Rare",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 1112.3898725337249
-                }
-            },
-            "indicatorsetrcp85": {
-                "displayName": "rcp85",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 664.82624352689
-                },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 995.7031514514946
-                },
-                "indicatorRare": {
-                    "displayName": "Rare",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 1174.816042363951
+                    "unit": "‰",
+                    "value": 0.8865054653280289
                 }
             }
         }
     },
     {
-        "name": "BASELINE: 20710101-21001231",
+        "name": "ADAPTATION-01: RCP85 (2011-2040)",
         "iccdata": {
-            "indicatorsetrcp26": {
-                "displayName": "rcp26",
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
                 "iconResource": "flower_injured_16.png",
                 "indicatorFrequent": {
                     "displayName": "Frequent",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 522.2636669240837
+                    "unit": "‰",
+                    "value": 0.279489407788147
                 },
                 "indicatorOccasional": {
                     "displayName": "Occasional",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 839.9304968459024
+                    "unit": "‰",
+                    "value": 0.5939149915498124
                 },
                 "indicatorRare": {
                     "displayName": "Rare",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 1694.41590035684
-                }
-            },
-            "indicatorsetrcp45": {
-                "displayName": "rcp45",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 626.3329098199712
-                },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 995.7031514514946
-                },
-                "indicatorRare": {
-                    "displayName": "Rare",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 1112.3898725337249
-                }
-            },
-            "indicatorsetrcp85": {
-                "displayName": "rcp85",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 792.8238007795861
-                },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 1240.0621555770836
-                },
-                "indicatorRare": {
-                    "displayName": "Rare",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 1781.1375944046993
+                    "unit": "‰",
+                    "value": 0.7292926734471961
                 }
             }
         }
     },
     {
-        "name": "BASELINE: Baseline",
+        "name": "ADAPTATION-01: RCP26 (2041-2070)",
         "iccdata": {
-            "indicatorsetrcp26": {
-                "displayName": "Baseline",
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
                 "iconResource": "flower_injured_16.png",
                 "indicatorFrequent": {
                     "displayName": "Frequent",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 491.1214782010352
+                    "unit": "‰",
+                    "value": 0.3144255837616654
                 },
                 "indicatorOccasional": {
                     "displayName": "Occasional",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 664.82624352689
-                },
-                "indicatorRare": {
-                    "displayName": "Rare",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 995.7031514514946
+                    "unit": "‰",
+                    "value": 0.6594203215001594
                 }
-            },
-            "indicatorsetrcp45": {
-                "displayName": "Baseline",
+            }
+        }
+    },
+    {
+        "name": "ADAPTATION-01: RCP45 (2041-2070)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
                 "iconResource": "flower_injured_16.png",
                 "indicatorFrequent": {
                     "displayName": "Frequent",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 491.1214782010352
+                    "unit": "‰",
+                    "value": 0.388664957705392
                 },
                 "indicatorOccasional": {
                     "displayName": "Occasional",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 664.82624352689
-                },
-                "indicatorRare": {
-                    "displayName": "Rare",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 995.7031514514946
+                    "unit": "‰",
+                    "value": 0.7292926734471961
                 }
-            },
-            "indicatorsetrcp85": {
-                "displayName": "Baseline",
+            }
+        }
+    },
+    {
+        "name": "ADAPTATION-01: RCP85 (2041-2070)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
                 "iconResource": "flower_injured_16.png",
                 "indicatorFrequent": {
                     "displayName": "Frequent",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 491.1214782010352
+                    "unit": "‰",
+                    "value": 0.537143705592845
                 },
                 "indicatorOccasional": {
                     "displayName": "Occasional",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 664.82624352689
+                    "unit": "‰",
+                    "value": 0.8865054653280289
                 },
                 "indicatorRare": {
                     "displayName": "Rare",
                     "iconResource": "flower_injured_16.png",
-                    "unit": "#DEAD",
-                    "value": 995.7031514514946
+                    "unit": "‰",
+                    "value": 0.9738459052618248
+                }
+            }
+        }
+    },
+    {
+        "name": "ADAPTATION-01: RCP26 (2071-2100)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.24892025381131844
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.5939149915498124
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.6594203215001594
+                }
+            }
+        }
+    },
+    {
+        "name": "ADAPTATION-01: RCP45 (2071-2100)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.48473944163256755
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.7292926734471961
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.8035320473909227
+                }
+            }
+        }
+    },
+    {
+        "name": "ADAPTATION-01: RCP85 (2071-2100)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.8865054653280289
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 1.2795374450301107
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 1.6463672927520536
+                }
+            }
+        }
+    },
+    {
+        "name": "ADAPTATION-01: BASELINE (1971-2000)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.20088301184773066
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.388664957705392
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.5939149915498124
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: RCP26 (2011-2040)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.24018620981793887
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.5153085956093961
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.7030905414670574
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: RCP45 (2011-2040)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.26638834179807763
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.5720798815663635
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.8559363113512003
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: RCP85 (2011-2040)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.26638834179807763
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.5720798815663635
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.7030905414670574
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: RCP26 (2041-2070)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.2969574957749062
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.6332181895200206
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: RCP45 (2041-2070)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.3711968697186328
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.7030905414670574
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: RCP85 (2041-2070)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.5153085956093961
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.8559363113512003
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.9389097292883064
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: RCP26 (2071-2100)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.24018620981793887
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.5720798815663635
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.6332181895200206
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: RCP45 (2071-2100)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.46290433164911854
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.7030905414670574
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.7729628934140941
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: RCP85 (2071-2100)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.8559363113512003
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 1.2402342470599024
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 1.598330050788466
+                }
+            }
+        }
+    },
+    {
+        "name": "BASELINE: BASELINE (1971-2000)",
+        "iccdata": {
+            "indicatorset": {
+                "displayName": "Mortality Rate following Heat Wave Events",
+                "iconResource": "flower_injured_16.png",
+                "indicatorFrequent": {
+                    "displayName": "Frequent",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.18778194585766128
+                },
+                "indicatorOccasional": {
+                    "displayName": "Occasional",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.3711968697186328
+                },
+                "indicatorRare": {
+                    "displayName": "Rare",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.5720798815663635
                 }
             }
         }

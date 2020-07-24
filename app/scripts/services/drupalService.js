@@ -366,40 +366,158 @@ angular.module(
                             console.debug('transformImpactScenario: creating new worldstate ' + worldstate.name);
                         }
 
-                        var indicatorSetKey = 'indicatorset';// + column[criteriaMap['EMISSIONS_SCENARIO']];
-                        // indicator set (group of indicators)
-                        var indicatorSet = worldstate.iccdata[indicatorSetKey];
-                        if (!indicatorSet || indicatorSet === null) {
-                            indicatorSet = {};
-                            // FIXME: Heavily hardcoded indicator sez
-                            indicatorSet.displayName = 'Mortality Rate following Heat Wave Events';
+                        // Support for HW + PV Indicators
+                        // See https://github.com/clarity-h2020/scenario-analysis/issues/24
+                        var indicatorsetKeyHeatWave = 'indicatorsetHeatWave';// + column[criteriaMap['EMISSIONS_SCENARIO']];
+                        //indicator set (group of indicators)
+                        var indicatorsetHeatWave = worldstate.iccdata[indicatorsetKeyHeatWave];
+                        if (!indicatorsetHeatWave || indicatorsetHeatWave === null) {
+                            indicatorsetHeatWave = {};
+                            // FIXME: Heavily hardcoded indicator set
+                            indicatorsetHeatWave.displayName = 'Impact following Heat Wave Events';
                             //console.debug('transformImpactScenario: creating new Indicator Set ' + indicatorSet.displayName);
                             /*if (aggregate === false) {
-                             indicatorSet.displayName += ': ' + column[criteriaMap['EVENT_FREQUENCY']];
+                             indicatorsetHeatWave.displayName += ': ' + column[criteriaMap['EVENT_FREQUENCY']];
                              }*/
 
+                             indicatorsetHeatWave.iconResource = 'fire.png';
+                             worldstate.iccdata[indicatorsetKeyHeatWave] = indicatorsetHeatWave;
+                         }
+
+                        var indicatorsetKeyPluvialFlood = 'indicatorsetPluvialFlood';// + column[criteriaMap['EMISSIONS_SCENARIO']];
+                        //indicator set (group of indicators)
+                        var indicatorsetPluvialFlood = worldstate.iccdata[indicatorsetKeyPluvialFlood];
+                        if (!indicatorsetPluvialFlood || indicatorsetPluvialFlood === null) {
+                            indicatorsetPluvialFlood = {};
+                            indicatorsetPluvialFlood.displayName = 'Impact following Pluvial Flood Events';
+                            indicatorsetPluvialFlood.iconResource = 'rain.png';
+                            worldstate.iccdata[indicatorsetKeyPluvialFlood] = indicatorsetPluvialFlood;
+                         }
+
+                        var indicatorsetKeyAdaptationCost = 'indicatorsetAdaptationCost';// + column[criteriaMap['EMISSIONS_SCENARIO']];
+                        var indicatorsetAdaptationCost = worldstate.iccdata[indicatorsetKeyAdaptationCost];
+                        if (!indicatorsetAdaptationCost || indicatorsetAdaptationCost === null) {
+                            indicatorsetAdaptationCost = {};
+                            indicatorsetAdaptationCost.displayName = 'Adaptation Costs';
+                            indicatorsetAdaptationCost.iconResource = 'money_total_evac_16.png';
+                            worldstate.iccdata[indicatorsetKeyAdaptationCost] = indicatorsetAdaptationCost;
+                         }
+
+
+                        // EXPOSEDQUANTITY / DAMAGEQUANTITY = MortalityRate 
+                        //var indicatorSetKey = 'indicatorsetMortalityRate';// + column[criteriaMap['EMISSIONS_SCENARIO']];
+                        // indicator set (group of indicators)
+                        /*var indicatorSet = worldstate.iccdata[indicatorSetKey];
+                        if (!indicatorSet || indicatorSet === null) {
+                            indicatorSet = {};
+                            indicatorSet.displayName = 'Mortality Rate following Heat Wave Events';
                             indicatorSet.iconResource = icon;
                             worldstate.iccdata[indicatorSetKey] = indicatorSet;
-                        }
+                        }*/
 
-                        var indicatorKey = 'indicator' + column[criteriaMap['EVENT_FREQUENCY']];
-                        var indicator = indicatorSet[indicatorKey];
+                        var indicatorKey = 'indicatorMortalityRate' + column[criteriaMap['EVENT_FREQUENCY']];
+                        var indicator = indicatorsetHeatWave[indicatorKey];
                         if (!indicator || indicator === null) {
                             indicator = {};
-                            indicator.displayName = column[criteriaMap['EVENT_FREQUENCY']];
+                            indicator.displayName = 'Mortality Rate (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
                             indicator.iconResource = icon;
                             indicator.unit = '‰'; //column[criteriaMap['QUANTITYUNIT']];
                             indicator.value = 0;
-                            indicatorSet[indicatorKey] = indicator;
+                            indicatorsetHeatWave[indicatorKey] = indicator;
                         } else {
                             console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
 
                         // FIXME: Heavily hardcoded calculation of indicator value
                         indicator.value = (parseInt(column[criteriaMap['DAMAGEQUANTITY']]) / parseInt(column[criteriaMap['EXPOSEDQUANTITY']]) * 1000);
+
+                        // DISCOMFORT_LEVEL DiscomfortLevel ........................................................
+                        //indicatorSetKey = 'indicatorsetDiscomfortLevel';
+                        /*indicatorSet = worldstate.iccdata[indicatorSetKey];
+                        if (!indicatorSet || indicatorSet === null) {
+                            indicatorSet = {};
+                            indicatorSet.displayName = 'Discomfort Level';
+                            indicatorSet.iconResource = icon;
+                            worldstate.iccdata[indicatorSetKey] = indicatorSet;
+                        }*/
+
+                        indicatorKey = 'indicatorDiscomfortLevel' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetHeatWave[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Discomfort Level (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'flower_homeless_16.png';
+                            indicator.unit = ''; 
+                            indicator.value = 0;
+                            indicatorsetHeatWave[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['DISCOMFORT_LEVEL']];
+
+                        // HEAT_WAVE_IMPACT HeatWaveImpact........................................................
+                        indicatorKey = 'indicatorHeatWaveImpact' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetHeatWave[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Heat Wave Impact (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'temperature_hot.png';
+                            indicator.unit = '???'; 
+                            indicator.value = 0;
+                            indicatorsetHeatWave[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['HEAT_WAVE_IMPACT']];
+
+                        // COST_DEVELOPMENT CostDevelopment ........................................................
+                        indicatorKey = 'indicatorCostDevelopment' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetAdaptationCost[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Cost Development (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            // Dollar? it's €!!  -> it's really hard to name things
+                            indicator.iconResource = 'dollar_16.png';
+                            indicator.unit = '€'; 
+                            indicator.value = 0;
+                            indicatorsetAdaptationCost[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['COST_DEVELOPMENT']];
+
+                        // COST_MAINTENANCE CostMaintenance ........................................................
+                        indicatorKey = 'indicatorCostMaintenance' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetAdaptationCost[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Cost Maintenance (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'dollar_16.png';
+                            indicator.unit = '€'; 
+                            indicator.value = 0;
+                            indicatorsetAdaptationCost[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['COST_MAINTENANCE']];
+
+                        // COST_RETROFITTING CostRetrofitting ........................................................
+                        indicatorKey = 'indicatorCostRetrofitting' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetAdaptationCost[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Cost Retrofitting (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'dollar_16.png';
+                            indicator.unit = '€'; 
+                            indicator.value = 0;
+                            indicatorsetAdaptationCost[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['COST_RETROFITTING']];
                     }
 
-                    //console.log(JSON.stringify(worldstates));
+                    console.log(JSON.stringify(worldstates));
                     return worldstates.sort(function (a, b) {
                         var nameA = a.name.toUpperCase(); // Groß-/Kleinschreibung ignorieren
                         var nameB = b.name.toUpperCase(); // Groß-/Kleinschreibung ignorieren

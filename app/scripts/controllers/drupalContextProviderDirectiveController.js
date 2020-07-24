@@ -559,7 +559,7 @@ angular.module(
 
                     /**
                      * FIXME: get  view ids from Data Package / API -> YAGNI
-                     * TODO: Support for addtional processing variables, see https://github.com/clarity-h2020/scenario-analysis/issues/16 -> YAGNI
+                     * TODO: Support for additional processing variables, see https://github.com/clarity-h2020/scenario-analysis/issues/16 -> YAGNI
                      */
                     emikatRestApi.getImpactScenario(studyInfo.study_emikat_id, EMIKAT_VIEW).then(function (impactScenario) {
                         //console.log(impactScenario);

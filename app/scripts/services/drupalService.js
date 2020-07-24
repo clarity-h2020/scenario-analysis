@@ -178,6 +178,10 @@ angular.module(
                     }
                 };
 
+               /**
+                * Get Drupal 'Node' by its id.
+                * @param {*} nodeId 
+                */
                 $this.drupalRestApi.getNode = function (nodeId) {
 
                     return $this.drupalRestApi.getToken().then(function tokenSuccessCallback(token) {
@@ -338,8 +342,9 @@ angular.module(
                         // here we define the grouping into worldstates
                         // TODO: we have to create  worldstates for each TIME_PERIOD / RCP combination
 
+                        // STUDY_VARIANT -> https://github.com/clarity-h2020/scenario-analysis/issues/25
                         var scenarioName =
-                                //column[criteriaMap['STUDY_VARIANT']] + ': ' +
+                                column[criteriaMap['STUDY_VARIANT']] + ': ' +
                                 column[criteriaMap['EMISSIONS_SCENARIO']].toUpperCase() + ' (' +
                                 TIME_PERIODS[column[criteriaMap['TIME_PERIOD']]] + ')';
 

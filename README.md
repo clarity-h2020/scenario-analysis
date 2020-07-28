@@ -1,11 +1,11 @@
 Scenario Analysis Component  [![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.3862012.svg)](https://zenodo.org/record/3862012)
 ===========================
 
-The AngularJS implementation of the Scenario Comparison and Analysis and the Multi-Criteria-Analysis and Decision Support Functional Building Block based on [CRISMA Worldstate Analysis Widgets](https://github.com/crismaproject/worldstate-analysis-widgets).
+This is the [AngularJS (version 1.x)](https://angularjs.org/) implementation of the Scenario Comparison and Analysis and the Multi-Criteria-Analysis and Decision Support Functional Building Block based on [CRISMA Worldstate Analysis Widgets](https://github.com/crismaproject/worldstate-analysis-widgets).
 
 ## Description
 
-The Multi Criteria Decision Analysis Tool supports the analysis and comparison of (adaptation) scenarios regarding performance indicators that can be defined by the end user and thus leverages what-if decision support to investigate the effects of adaptation measures and risk reduction options in the specific project context, and allows the comparison of alternative strategies. Thereby the tool provides multi-criteria ranking functions to compare and rank different scenarios and corresponding adaptation plans according to different criteria and their relative weight and level of importance. 
+The Multi Criteria Decision Analysis Tool supports the analysis and comparison of (adaptation) scenarios regarding performance indicators that can be defined by the end user and thus leverages what-if decision support to investigate the effects of adaptation measures and risk reduction options in the specific project context, and allows the comparison of alternative strategies. Thereby the tool provides multi-criteria ranking functions to compare and rank different scenarios and corresponding adaptation plans according to different criteria and their relative weight and level of importance. More information can be found [here](https://clarity-h2020.github.io/csis-architecture/docs/building-blocks/Multi-Criteria-Decision-Analysis-Tool).
 
 ## Implementation
 
@@ -76,14 +76,14 @@ The Scenario Analysis Component exposes a JavaScript "API" which is fed by [seam
 
 ### Drupal REST API
 
-We just need to access the [Drupal REST API](https://csis-dev.myclimateservice.eu/jsonapi/user/user/) to retrieve the Basic Auth Credentials for accessing the EMIKAT REST API. The credentials are stored in the user profile in field `field_basic_auth_credentials`. The request will fail if the user is not logged-in in CSIS. The relevant in code is in operation `drupalRestApi.initEmikatCredentials` in [drupalService.js](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/scripts/services/drupalService.js). 
+We just need to access the [Drupal REST API](https://csis-dev.myclimateservice.eu/jsonapi/user/user/) to retrieve the Basic Auth Credentials for accessing the EMIKAT REST API. The credentials are stored in the user profile in field `field_basic_auth_credentials`. The request will fail if the user is not logged-in in CSIS. The relevant code is in operation `drupalRestApi.initEmikatCredentials` in [drupalService.js](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/scripts/services/drupalService.js). 
 
 ### EMIKAT API
 
-EMIKAT defines one table view for **aggregated** heat wave and pluvial flood impact. The id of the view is `2994`. An Example *request* for scenario `3183` looks like:
+EMIKAT defines one table view for **aggregated** heat wave and pluvial flood impact scenarios. The id of the view is `2994`. An Example *request* for scenario `3183` looks like:
 [https://service.emikat.at/EmiKatTst/api/scenarios/3183/feature/view.2994/table/data?rownum=1000&filter=SZ_ID=3183](https://service.emikat.at/EmiKatTst/api/scenarios/3183/feature/view.2994/table/data?rownum=1000&filter=SZ_ID=3183)
 
-The respective response looks like:
+The respective *response* looks like:
 
 ```JSON
 {
@@ -129,9 +129,11 @@ The respective response looks like:
         },
 ```
 
+The request is made in method `emikatRestApi.getImpactScenario` in [drupalService.js](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/scripts/services/drupalService.js).
+
 ###  ICC DATA Vector
 
-The "ICC DATA Vector" (Indicators, Criteria and Cost) is the internal JSON data format of the scenario analysis application. The method `emikatHelper.transformImpactScenario` in [drupalService.js](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/scripts/services/drupalService.js) is responsible for transforming the proprietary EMIKAT API response to an "ICC DATA Vector". If the EMIKAT format changes or new indicators are added, the code has to be updated accordingly. Also the Indicator Groups, the units, the format of values, the icons, etc. are defined in this method. An example of a transformed EMIKAT response into the ICC JSON format looks like:
+The "ICC DATA Vector" (Indicators, Criteria and Cost) is the internal JSON data format of the scenario analysis application. The method `emikatHelper.transformImpactScenario` in [drupalService.js](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/scripts/services/drupalService.js) is responsible for transforming the proprietary EMIKAT API response to an "ICC DATA Vector". **If the EMIKAT format changes or new indicators are added, the code has to be updated accordingly.** Also the Indicator Groups, the units, the format of values, the icons, etc. are defined in this method. An example of a transformed EMIKAT response into the ICC JSON format looks like:
 
 ```JSON
 [
@@ -173,7 +175,7 @@ The "ICC DATA Vector" (Indicators, Criteria and Cost) is the internal JSON data 
 
 ### User Interface
 
-Several UI components that are not needed or are not working due to the absence of **Criteria Functions** and **Decision Strategies** have been disabled so that they do not interfere with [report generation](https://github.com/clarity-h2020/csis-helpers-module/issues/13). If such functions and strategies are defined in the future, they can be re-enabled by removing the `ng-if` directives in [index.html](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/index.html):
+Several UI components, in particular criteria and ranking diagrams, that are not needed or are not working due to the absence of **Criteria Functions** and **Decision Strategies** had to be disabled so that they do not interfere with [report generation](https://github.com/clarity-h2020/csis-helpers-module/issues/13). If such functions and strategies become avilable in the future, the ui components can be re-enabled by removing the `ng-if` directives in [index.html](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/index.html):
 
 `<div class="row" ng-if="false">`
 
@@ -181,7 +183,7 @@ Several UI components that are not needed or are not working due to the absence 
 
 ### Development Environment
 
-The application uses an outdated /deprecated build process based on `bower` and `grunt`. Furthermore, the build process will only work with Node **v6.11.4**. 
+The application uses an outdated / deprecated build process based on `bower` and `grunt`. Furthermore, the build process will only work with Node **v6.11.4**. 
 However, there is no need to build the application since minification, obfuscation, cdn-dification, etc. are not needed. The source code can directly be deployed.
 
 ### Dependencies
@@ -193,11 +195,11 @@ npm install
 bower install
 ```
 
-Please note that installation may fail, e.g. if deprecated bower registry is finally shut down. In this case, the dependencies can be downloaded from [GiutHub](https://github.com/clarity-h2020/scenario-analysis/releases/tag/2.2). `node_modules.zip` has to be extracted into the repository root and `bower_components.zip` into the `/apps` directory. 
+Please note that installation may fail, e.g. if deprecated bower registry is finally shut down. In this case, the dependencies can be downloaded from [GiutHub](https://github.com/clarity-h2020/scenario-analysis/releases/tag/2.2): `node_modules.zip` has to be extracted into the repository root and `bower_components.zip` into the `/apps` directory. 
 
 ### Build Process
 
-The application be be built with `grunt build`, however this is not needed as mentioned avove.
+The application can be built with `grunt build`, however this is not needed as mentioned avove.
 
 ### Deployment on CSIS 
 
@@ -218,6 +220,6 @@ On [CSIS-DEV](https://csis-dev.myclimateservice.eu/) usually the `dev` branch is
 
 ### Integration in CSIS
 
-The application is integrated with help of [seamless.js](https://github.com/travist/seamless.js/) as *"Extended iFrame"* in [CSIS Drupal System](https://csis-dev.myclimateservice.eu/). The respective Drupal *Node* that contains the iFrame is the "[Extended iFrame MCDA Component: Scenario Analysis](https://csis-dev.myclimateservice.eu/node/21/edit)". The source code of the  iFrame and the needed Drupal Java Script helper function (`window.Drupal.behaviors`) is also available in [nodeConnector.js](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/scripts/connectors/nodeConnector.js). 
+The application is integrated with help of [seamless.js](https://github.com/travist/seamless.js/) as *"Extended iFrame"* in [CSIS Drupal System](https://csis-dev.myclimateservice.eu/). The respective Drupal *Node* that contains the [iFrame](https://csis-dev.myclimateservice.eu/apps/scenario-analysis/app/index.html) is the "[Extended iFrame MCDA Component: Scenario Analysis](https://csis-dev.myclimateservice.eu/node/21/edit)". The source code of the  iFrame and the needed Drupal Java Script helper function (`window.Drupal.behaviors`) is also available in [nodeConnector.js](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/scripts/connectors/nodeConnector.js). 
 
-The *"Extended iFrame"* node itself is used in several [EU-GL Step Templates](https://csis-dev.myclimateservice.eu/admin/content?title=Template&type=gl_step&status=1&langcode=All) as **Scenario Analysis Application** in EU-GL Steps Risk Assessment and Adaptation Options Appraisal.
+The *"Extended iFrame"* node itself is used in several [EU-GL Step Templates](https://csis-dev.myclimateservice.eu/admin/content?title=Template&type=gl_step&status=1&langcode=All) as **Scenario Analysis Application**, e.g. in EU-GL Steps Impact/Risk Assessment and Adaptation Options Appraisal.

@@ -2,26 +2,178 @@
     {
         "name": "ADAPTATION-01: RCP26 (2011-2040)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.24892025381131844
+                    "value": 0.367047308319739
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.537143705592845
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 18
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.7292926734471961
+                    "value": 0.7748776508972267
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.8564437194127243
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 84
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 171679683.76976
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
                 }
             }
         }
@@ -29,26 +181,178 @@
     {
         "name": "ADAPTATION-01: RCP45 (2011-2040)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.279489407788147
+                    "value": 0.3262642740619902
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.5939149915498124
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 17
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.8865054653280289
+                    "value": 0.5709624796084829
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.8564437194127243
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
                 }
             }
         }
@@ -56,26 +360,124 @@
     {
         "name": "ADAPTATION-01: RCP85 (2011-2040)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.279489407788147
+                    "value": 0.367047308319739
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.5939149915498124
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 18
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.7292926734471961
+                    "value": 0.6991377301328362
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 99
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 172129998.35216
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
                 }
             }
         }
@@ -83,20 +485,178 @@
     {
         "name": "ADAPTATION-01: RCP26 (2041-2070)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.3144255837616654
+                    "value": 0.4136564903285947
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 19
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.6594203215001594
+                    "value": 0.6292239571195526
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.6991377301328362
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
                 }
             }
         }
@@ -104,20 +664,178 @@
     {
         "name": "ADAPTATION-01: RCP45 (2041-2070)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.388664957705392
+                    "value": 0.5127010020974132
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.7292926734471961
+                    "value": 0.6991377301328362
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.9438359356793288
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 99
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 172129998.35216
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
                 }
             }
         }
@@ -125,26 +843,124 @@
     {
         "name": "ADAPTATION-01: RCP85 (2041-2070)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.537143705592845
+                    "value": 0.5709624796084829
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.8865054653280289
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.9738459052618248
+                    "value": 0.9438359356793288
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
                 }
             }
         }
@@ -152,26 +968,178 @@
     {
         "name": "ADAPTATION-01: RCP26 (2071-2100)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.24892025381131844
+                    "value": 0.2913073875553484
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.5939149915498124
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 17
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.6594203215001594
+                    "value": 0.5709624796084829
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.6292239571195526
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 84
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 171679683.76976
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
                 }
             }
         }
@@ -179,26 +1147,178 @@
     {
         "name": "ADAPTATION-01: RCP45 (2071-2100)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.48473944163256755
+                    "value": 0.5127010020974132
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.7292926734471961
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.8035320473909227
+                    "value": 0.8564437194127243
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 1.5905383360522023
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
                 }
             }
         }
@@ -206,26 +1326,178 @@
     {
         "name": "ADAPTATION-01: RCP85 (2071-2100)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.8865054653280289
+                    "value": 0.8564437194127243
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 1.2795374450301107
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 1.6463672927520536
+                    "value": 1.468189233278956
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 1.5905383360522023
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
                 }
             }
         }
@@ -233,26 +1505,178 @@
     {
         "name": "ADAPTATION-01: BASELINE (1971-2000)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.20088301184773066
+                    "value": 0.26217664879981356
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.388664957705392
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 17
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.5939149915498124
+                    "value": 0.46026567233745047
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.5709624796084829
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 1229608
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 614794
                 }
             }
         }
@@ -260,26 +1684,178 @@
     {
         "name": "BASELINE: RCP26 (2011-2040)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.24018620981793887
+                    "value": 0.367047308319739
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.5153085956093961
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 18
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.7030905414670574
+                    "value": 0.7748776508972267
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.8564437194127243
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 84
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 171679683.76976
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
                 }
             }
         }
@@ -287,26 +1863,178 @@
     {
         "name": "BASELINE: RCP45 (2011-2040)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.26638834179807763
+                    "value": 0.3262642740619902
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.5720798815663635
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 17
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.8559363113512003
+                    "value": 0.5709624796084829
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.8564437194127243
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
                 }
             }
         }
@@ -314,26 +2042,124 @@
     {
         "name": "BASELINE: RCP85 (2011-2040)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.26638834179807763
+                    "value": 0.367047308319739
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.5720798815663635
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 18
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.7030905414670574
+                    "value": 0.6991377301328362
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 99
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 172129998.35216
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
                 }
             }
         }
@@ -341,20 +2167,178 @@
     {
         "name": "BASELINE: RCP26 (2041-2070)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.2969574957749062
+                    "value": 0.4136564903285947
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 19
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.6332181895200206
+                    "value": 0.6292239571195526
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.6991377301328362
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
                 }
             }
         }
@@ -362,20 +2346,178 @@
     {
         "name": "BASELINE: RCP45 (2041-2070)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.3711968697186328
+                    "value": 0.5127010020974132
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.7030905414670574
+                    "value": 0.6991377301328362
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.9438359356793288
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 99
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 172129998.35216
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
                 }
             }
         }
@@ -383,26 +2525,124 @@
     {
         "name": "BASELINE: RCP85 (2041-2070)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.5153085956093961
+                    "value": 0.5709624796084829
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.8559363113512003
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.9389097292883064
+                    "value": 0.9438359356793288
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
                 }
             }
         }
@@ -410,26 +2650,178 @@
     {
         "name": "BASELINE: RCP26 (2071-2100)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.24018620981793887
+                    "value": 0.2913073875553484
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.5720798815663635
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 17
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.6332181895200206
+                    "value": 0.5709624796084829
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.6292239571195526
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 84
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 171679683.76976
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
                 }
             }
         }
@@ -437,26 +2829,178 @@
     {
         "name": "BASELINE: RCP45 (2071-2100)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.46290433164911854
+                    "value": 0.5127010020974132
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.7030905414670574
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.7729628934140941
+                    "value": 0.8564437194127243
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 1.5905383360522023
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
                 }
             }
         }
@@ -464,26 +3008,178 @@
     {
         "name": "BASELINE: RCP85 (2071-2100)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.8559363113512003
+                    "value": 0.8564437194127243
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 1.2402342470599024
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 1.598330050788466
+                    "value": 1.468189233278956
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 1.5905383360522023
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 21
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
                 }
             }
         }
@@ -491,26 +3187,178 @@
     {
         "name": "BASELINE: BASELINE (1971-2000)",
         "iccdata": {
-            "indicatorset": {
-                "displayName": "Mortality Rate following Heat Wave Events",
-                "iconResource": "flower_injured_16.png",
-                "indicatorFrequent": {
-                    "displayName": "Frequent",
+            "indicatorsetHeatWave": {
+                "displayName": "Impact following Heat Wave Events",
+                "iconResource": "fire.png",
+                "indicatorMortalityRateFrequent": {
+                    "displayName": "Increase in Mortality Rate (Frequent)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.18778194585766128
+                    "value": 0.26217664879981356
                 },
-                "indicatorOccasional": {
-                    "displayName": "Occasional",
-                    "iconResource": "flower_injured_16.png",
-                    "unit": "‰",
-                    "value": 0.3711968697186328
+                "indicatorDiscomfortLevelFrequent": {
+                    "displayName": "Discomfort Level (Frequent)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 4
                 },
-                "indicatorRare": {
-                    "displayName": "Rare",
+                "indicatorHeatWaveImpactFrequent": {
+                    "displayName": "Heat Wave Impact (Frequent)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 17
+                },
+                "indicatorMortalityRateOccasional": {
+                    "displayName": "Increase in Mortality Rate (Occasional)",
                     "iconResource": "flower_injured_16.png",
                     "unit": "‰",
-                    "value": 0.5720798815663635
+                    "value": 0.46026567233745047
+                },
+                "indicatorDiscomfortLevelOccasional": {
+                    "displayName": "Discomfort Level (Occasional)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactOccasional": {
+                    "displayName": "Heat Wave Impact (Occasional)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                },
+                "indicatorMortalityRateRare": {
+                    "displayName": "Increase in Mortality Rate (Rare)",
+                    "iconResource": "flower_injured_16.png",
+                    "unit": "‰",
+                    "value": 0.5709624796084829
+                },
+                "indicatorDiscomfortLevelRare": {
+                    "displayName": "Discomfort Level (Rare)",
+                    "iconResource": "flower_homeless_16.png",
+                    "unit": "",
+                    "value": 5
+                },
+                "indicatorHeatWaveImpactRare": {
+                    "displayName": "Heat Wave Impact (Rare)",
+                    "iconResource": "temperature_hot.png",
+                    "unit": "",
+                    "value": 20
+                }
+            },
+            "indicatorsetPluvialFlood": {
+                "displayName": "Impact following Pluvial Flood Events",
+                "iconResource": "rain.png",
+                "indicatorPluvialFloodDamageProbabilityFrequent": {
+                    "displayName": "Damage Probability (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassFrequent": {
+                    "displayName": "Damage Class (Frequent)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactFrequent": {
+                    "displayName": "Impact (Frequent)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityOccasional": {
+                    "displayName": "Damage Probability (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 54
+                },
+                "indicatorPluvialFloodDamageClassOccasional": {
+                    "displayName": "Damage Class (Occasional)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactOccasional": {
+                    "displayName": "Impact (Occasional)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                },
+                "indicatorPluvialFloodDamageProbabilityRare": {
+                    "displayName": "Damage Probability (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 69
+                },
+                "indicatorPluvialFloodDamageClassRare": {
+                    "displayName": "Damage Class (Rare)",
+                    "iconResource": "rain.png",
+                    "unit": "",
+                    "value": 4
+                },
+                "indicatorPluvialFloodImpactRare": {
+                    "displayName": "Impact (Rare)",
+                    "iconResource": "money_total_evac_16.png",
+                    "unit": "€",
+                    "value": 43389722.11625
+                }
+            },
+            "indicatorsetAdaptationCost": {
+                "displayName": "Adaptation Costs",
+                "iconResource": "money_total_evac_16.png",
+                "indicatorCostDevelopmentFrequent": {
+                    "displayName": "Cost Development (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceFrequent": {
+                    "displayName": "Cost Maintenance (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingFrequent": {
+                    "displayName": "Cost Retrofitting (Frequent)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentOccasional": {
+                    "displayName": "Cost Development (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceOccasional": {
+                    "displayName": "Cost Maintenance (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingOccasional": {
+                    "displayName": "Cost Retrofitting (Occasional)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostDevelopmentRare": {
+                    "displayName": "Cost Development (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostMaintenanceRare": {
+                    "displayName": "Cost Maintenance (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
+                },
+                "indicatorCostRetrofittingRare": {
+                    "displayName": "Cost Retrofitting (Rare)",
+                    "iconResource": "dollar_16.png",
+                    "unit": "€",
+                    "value": 0
                 }
             }
         }

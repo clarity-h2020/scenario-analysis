@@ -23,7 +23,7 @@ window.Drupal.behaviors.myBehavior = {
             } else {
                 console.error('no global csisHelpers object found, probably not connected to Drupal!');
             }
-            
+
             // ugly workaround for https://github.com/clarity-h2020/csis-helpers-module/issues/9#issuecomment-539436236
             //var baseTag = document.createElement('base');
             //var prependURL = 'https://csis.myclimateservice.eu/apps/scenario-analysis/app/';
@@ -34,17 +34,19 @@ window.Drupal.behaviors.myBehavior = {
             // for some unknown the reason angular directive controler of the embedded child iframe
             // does not recieve the event when it's not fired from the onConnect method.
             var scenarioAnalysisApp = window.seamless(document.getElementById('scenario-analysis'),
-                    {onConnect: function () {
-                            // FIXME: for some unknown reason, onConnect is called if no child frame has actively connected
-                            // by invoking seamless.connect() resulting in the onConnect function called twice!
-                            if (connectCount === 1) {
-                                scenarioAnalysisApp.send(studyInfo);
-                            } else {
-                                //ignore
-                                console.log('ignoring pre/re connection #:' + connectCount);
-                            }
-                            connectCount++;
-                        }});
+                {
+                    onConnect: function () {
+                        // FIXME: for some unknown reason, onConnect is called if no child frame has actively connected
+                        // by invoking seamless.connect() resulting in the onConnect function called twice!
+                        if (connectCount === 1) {
+                            scenarioAnalysisApp.send(studyInfo);
+                        } else {
+                            //ignore
+                            console.log('ignoring pre/re connection #:' + connectCount);
+                        }
+                        connectCount++;
+                    }
+                });
         });
     }
 };

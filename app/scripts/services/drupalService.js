@@ -32,7 +32,7 @@ angular.module(
                 };
                 $this = this;
                 nodePath = '/node/:nodeId';
-                emikatPath = '/scenarios/:scenarioId/feature/view.:viewId/table/data';
+                emikatPath = '/scenarios/:scenarioId/feature/view.:viewId/table/data?&filter=SZ_ID=:scenarioId';
                 nodeFields = [];
                 //nodeFields['indicators'] = 'field_mcda_indicators'
                 nodeFields['indicators'] = 'field_mcda_indicators';
@@ -40,8 +40,14 @@ angular.module(
                 nodeFields['decisionStrategy'] = 'field_mcda_decision_strategy';
 
                 // FIXME: retrieve from JSON:API ?      
+                /**
+                 * @deprecated
+                 */
                 taxonomyTermUuid = '1ce9180e-8439-45a8-8e80-23161b76c2b9';
 
+                /**
+                 * @deprecated
+                 */
                 initReportImageTemplate = function () {
                     return $http({method: 'GET', url: 'data/reportImageTemplate.json'})
                             .then(function successCallback(response) {
@@ -55,6 +61,9 @@ angular.module(
                             });
                 };
 
+                /**
+                 * @deprecated
+                 */
                 initGlStepTemplate = function () {
                     return $http({method: 'GET', url: 'data/glStepTemplate.json'})
                             .then(function successCallback(response) {
@@ -68,8 +77,8 @@ angular.module(
                             });
                 };
 
-                initReportImageTemplate();
-                initGlStepTemplate();
+                //initReportImageTemplate();
+                //initGlStepTemplate();
 
                 // <editor-fold defaultstate="closed" desc="=== drupalRestApi ===========================">
                 $this.drupalRestApi = {};
@@ -79,6 +88,9 @@ angular.module(
                 $this.drupalRestApi.glStepInstance = null;
                 $this.drupalRestApi.studyInfo = null;
 
+                /**
+                 * @deprecated
+                 */
                 $this.drupalRestApi.initToken = function () {
                     return $http({method: 'GET', url: $this.drupalRestApi.host + '/rest/session/token'})
                             .then(function tokenSuccessCallback(response) {
@@ -92,6 +104,9 @@ angular.module(
                             });
                 };
 
+                /**
+                 * @deprecated
+                 */
                 $this.drupalRestApi.initGlStepResource = function (stepUuid) {
 
                     return $this.drupalRestApi.getToken().then(function tokenSuccessCallback(token) {
@@ -120,6 +135,7 @@ angular.module(
 
                 /**
                  * return a promise!
+                 * @deprecated
                  */
                 $this.drupalRestApi.getToken = function () {
                     if (!$this.drupalRestApi.token || $this.drupalRestApi.token === null || $this.drupalRestApi.token === undefined) {
@@ -129,6 +145,10 @@ angular.module(
                     }
                 };
 
+                /**
+                 * Get the Basic Auth Credentials from Drupla REST API for accessing EMIKAT API.
+                 * The credentials are stored in the user profile in `field_basic_auth_credentials`
+                 */
                 $this.drupalRestApi.initEmikatCredentials = function () {
                     return $http({method: 'GET', url: $this.drupalRestApi.host + '/jsonapi/'}).then(function success(apiResponse) {
                         // FIXME: this will throw an exception, if no user is logged in. -> meta.links is null
@@ -181,6 +201,7 @@ angular.module(
                /**
                 * Get Drupal 'Node' by its id.
                 * @param {*} nodeId 
+                * @deprecated
                 */
                 $this.drupalRestApi.getNode = function (nodeId) {
 
@@ -339,10 +360,8 @@ angular.module(
                         // value:index
                         var column = scenarioData.rows[i].values;
                         // yes, they start at 1 not at 0! :o
-                        // here we define the grouping into worldstates
-                        // TODO: we have to create  worldstates for each TIME_PERIOD / RCP combination
-
-                        // STUDY_VARIANT -> https://github.com/clarity-h2020/scenario-analysis/issues/25
+                        // here we define the grouping into worldstates for each TIME_PERIOD / EMISSIONS_SCENARIO / STUDY_VARIANT combination.
+                        // See also https://github.com/clarity-h2020/scenario-analysis/issues/25
                         var scenarioName =
                                 column[criteriaMap['STUDY_VARIANT']] + ': ' +
                                 column[criteriaMap['EMISSIONS_SCENARIO']].toUpperCase() + ' (' +
@@ -367,7 +386,10 @@ angular.module(
                         }
 
                         // Support for HW + PV Indicators
+                        // 1st create the groups and then add the respective indicators to the groups.
                         // See https://github.com/clarity-h2020/scenario-analysis/issues/24
+                        
+                        // HeatWave #######################################################################################
                         var indicatorsetKeyHeatWave = 'indicatorsetHeatWave';// + column[criteriaMap['EMISSIONS_SCENARIO']];
                         //indicator set (group of indicators)
                         var indicatorsetHeatWave = worldstate.iccdata[indicatorsetKeyHeatWave];
@@ -384,42 +406,14 @@ angular.module(
                              worldstate.iccdata[indicatorsetKeyHeatWave] = indicatorsetHeatWave;
                          }
 
-                        var indicatorsetKeyPluvialFlood = 'indicatorsetPluvialFlood';// + column[criteriaMap['EMISSIONS_SCENARIO']];
-                        //indicator set (group of indicators)
-                        var indicatorsetPluvialFlood = worldstate.iccdata[indicatorsetKeyPluvialFlood];
-                        if (!indicatorsetPluvialFlood || indicatorsetPluvialFlood === null) {
-                            indicatorsetPluvialFlood = {};
-                            indicatorsetPluvialFlood.displayName = 'Impact following Pluvial Flood Events';
-                            indicatorsetPluvialFlood.iconResource = 'rain.png';
-                            worldstate.iccdata[indicatorsetKeyPluvialFlood] = indicatorsetPluvialFlood;
-                         }
-
-                        var indicatorsetKeyAdaptationCost = 'indicatorsetAdaptationCost';// + column[criteriaMap['EMISSIONS_SCENARIO']];
-                        var indicatorsetAdaptationCost = worldstate.iccdata[indicatorsetKeyAdaptationCost];
-                        if (!indicatorsetAdaptationCost || indicatorsetAdaptationCost === null) {
-                            indicatorsetAdaptationCost = {};
-                            indicatorsetAdaptationCost.displayName = 'Adaptation Costs';
-                            indicatorsetAdaptationCost.iconResource = 'money_total_evac_16.png';
-                            worldstate.iccdata[indicatorsetKeyAdaptationCost] = indicatorsetAdaptationCost;
-                         }
-
-
-                        // EXPOSEDQUANTITY / DAMAGEQUANTITY = MortalityRate 
-                        //var indicatorSetKey = 'indicatorsetMortalityRate';// + column[criteriaMap['EMISSIONS_SCENARIO']];
-                        // indicator set (group of indicators)
-                        /*var indicatorSet = worldstate.iccdata[indicatorSetKey];
-                        if (!indicatorSet || indicatorSet === null) {
-                            indicatorSet = {};
-                            indicatorSet.displayName = 'Mortality Rate following Heat Wave Events';
-                            indicatorSet.iconResource = icon;
-                            worldstate.iccdata[indicatorSetKey] = indicatorSet;
-                        }*/
-
+                        /**
+                         * This is a 'virtual' indicator that has to be calculated based on DAMAGEQUANTITY and EXPOSEDQUANTITY
+                         */
                         var indicatorKey = 'indicatorMortalityRate' + column[criteriaMap['EVENT_FREQUENCY']];
                         var indicator = indicatorsetHeatWave[indicatorKey];
                         if (!indicator || indicator === null) {
                             indicator = {};
-                            indicator.displayName = 'Mortality Rate (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.displayName = 'Increase in Mortality Rate (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
                             indicator.iconResource = icon;
                             indicator.unit = '‰'; //column[criteriaMap['QUANTITYUNIT']];
                             indicator.value = 0;
@@ -429,18 +423,9 @@ angular.module(
                         }
 
                         // FIXME: Heavily hardcoded calculation of indicator value
-                        indicator.value = (parseInt(column[criteriaMap['DAMAGEQUANTITY']]) / parseInt(column[criteriaMap['EXPOSEDQUANTITY']]) * 1000);
+                        indicator.value = (parseInt(column[criteriaMap['HW_DAMAGEQUANTITY']]) / parseInt(column[criteriaMap['HW_EXPOSEDQUANTITY']]) * 1000);
 
                         // DISCOMFORT_LEVEL DiscomfortLevel ........................................................
-                        //indicatorSetKey = 'indicatorsetDiscomfortLevel';
-                        /*indicatorSet = worldstate.iccdata[indicatorSetKey];
-                        if (!indicatorSet || indicatorSet === null) {
-                            indicatorSet = {};
-                            indicatorSet.displayName = 'Discomfort Level';
-                            indicatorSet.iconResource = icon;
-                            worldstate.iccdata[indicatorSetKey] = indicatorSet;
-                        }*/
-
                         indicatorKey = 'indicatorDiscomfortLevel' + column[criteriaMap['EVENT_FREQUENCY']];
                         indicator = indicatorsetHeatWave[indicatorKey];
                         if (!indicator || indicator === null) {
@@ -453,7 +438,7 @@ angular.module(
                         } else {
                             console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
-                        indicator.value = column[criteriaMap['DISCOMFORT_LEVEL']];
+                        indicator.value = column[criteriaMap['HW_DISCOMFORT_LEVEL']];
 
                         // HEAT_WAVE_IMPACT HeatWaveImpact........................................................
                         indicatorKey = 'indicatorHeatWaveImpact' + column[criteriaMap['EVENT_FREQUENCY']];
@@ -462,16 +447,83 @@ angular.module(
                             indicator = {};
                             indicator.displayName = 'Heat Wave Impact (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
                             indicator.iconResource = 'temperature_hot.png';
-                            indicator.unit = '???'; 
+                            indicator.unit = ''; 
                             indicator.value = 0;
                             indicatorsetHeatWave[indicatorKey] = indicator;
                         } else {
                             console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
-                        indicator.value = column[criteriaMap['HEAT_WAVE_IMPACT']];
+                        indicator.value = column[criteriaMap['HW_HEAT_WAVE_IMPACT']];
+
+                        // PluvialFlood #######################################################################################
+                        var indicatorsetKeyPluvialFlood = 'indicatorsetPluvialFlood';// + column[criteriaMap['EMISSIONS_SCENARIO']];
+                        //indicator set (group of indicators)
+                        var indicatorsetPluvialFlood = worldstate.iccdata[indicatorsetKeyPluvialFlood];
+                        if (!indicatorsetPluvialFlood || indicatorsetPluvialFlood === null) {
+                            indicatorsetPluvialFlood = {};
+                            indicatorsetPluvialFlood.displayName = 'Impact following Pluvial Flood Events';
+                            indicatorsetPluvialFlood.iconResource = 'rain.png';
+                            worldstate.iccdata[indicatorsetKeyPluvialFlood] = indicatorsetPluvialFlood;
+                         }
+
+                        // PF_DAMAGEPROBABILITY PluvialFloodDamageProbability........................................................
+                        indicatorKey = 'indicatorPluvialFloodDamageProbability' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetPluvialFlood[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Damage Probability (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'rain.png';
+                            indicator.unit = ''; 
+                            indicator.value = 0;
+                            indicatorsetPluvialFlood[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['PF_DAMAGEPROBABILITY']];
+
+                        // PF_DAMAGE_CLASS PluvialFloodDamageClass........................................................
+                        indicatorKey = 'indicatorPluvialFloodDamageClass' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetPluvialFlood[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Damage Class (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'rain.png';
+                            indicator.unit = ''; 
+                            indicator.value = 0;
+                            indicatorsetPluvialFlood[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['PF_DAMAGE_CLASS']];
+
+                        // PF_DAMAGE_CLASS PluvialFloodImpact........................................................
+                        indicatorKey = 'indicatorPluvialFloodImpact' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetPluvialFlood[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Impact (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'money_total_evac_16.png';
+                            indicator.unit = '€'; 
+                            indicator.value = 0;
+                            indicatorsetPluvialFlood[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['PF_FLOOD_IMPACT_EURO']];
+
+                        // Bot needed ATM!
+                        // EconomicIndicators #######################################################################################
+                        /*var indicatorsetKeyAdaptationCost = 'indicatorsetAdaptationCost';// + column[criteriaMap['EMISSIONS_SCENARIO']];
+                        var indicatorsetAdaptationCost = worldstate.iccdata[indicatorsetKeyAdaptationCost];
+                        if (!indicatorsetAdaptationCost || indicatorsetAdaptationCost === null) {
+                            indicatorsetAdaptationCost = {};
+                            indicatorsetAdaptationCost.displayName = 'Adaptation Costs';
+                            indicatorsetAdaptationCost.iconResource = 'money_total_evac_16.png';
+                            worldstate.iccdata[indicatorsetKeyAdaptationCost] = indicatorsetAdaptationCost;
+                         }*/
 
                         // COST_DEVELOPMENT CostDevelopment ........................................................
-                        indicatorKey = 'indicatorCostDevelopment' + column[criteriaMap['EVENT_FREQUENCY']];
+                        /*indicatorKey = 'indicatorCostDevelopment' + column[criteriaMap['EVENT_FREQUENCY']];
                         indicator = indicatorsetAdaptationCost[indicatorKey];
                         if (!indicator || indicator === null) {
                             indicator = {};
@@ -484,10 +536,10 @@ angular.module(
                         } else {
                             console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
-                        indicator.value = column[criteriaMap['COST_DEVELOPMENT']];
+                        indicator.value = column[criteriaMap['AO_COST_DEVELOPMENT']];*/
 
                         // COST_MAINTENANCE CostMaintenance ........................................................
-                        indicatorKey = 'indicatorCostMaintenance' + column[criteriaMap['EVENT_FREQUENCY']];
+                        /*indicatorKey = 'indicatorCostMaintenance' + column[criteriaMap['EVENT_FREQUENCY']];
                         indicator = indicatorsetAdaptationCost[indicatorKey];
                         if (!indicator || indicator === null) {
                             indicator = {};
@@ -499,10 +551,10 @@ angular.module(
                         } else {
                             console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
-                        indicator.value = column[criteriaMap['COST_MAINTENANCE']];
+                        indicator.value = column[criteriaMap['AO_COST_MAINTENANCE']];*/
 
                         // COST_RETROFITTING CostRetrofitting ........................................................
-                        indicatorKey = 'indicatorCostRetrofitting' + column[criteriaMap['EVENT_FREQUENCY']];
+                        /*indicatorKey = 'indicatorCostRetrofitting' + column[criteriaMap['EVENT_FREQUENCY']];
                         indicator = indicatorsetAdaptationCost[indicatorKey];
                         if (!indicator || indicator === null) {
                             indicator = {};
@@ -514,10 +566,10 @@ angular.module(
                         } else {
                             console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
-                        indicator.value = column[criteriaMap['COST_RETROFITTING']];
+                        indicator.value = column[criteriaMap['AO_COST_RETROFITTING']];*/
                     }
 
-                    console.log(JSON.stringify(worldstates));
+                    //console.log(JSON.stringify(worldstates));
                     return worldstates.sort(function (a, b) {
                         var nameA = a.name.toUpperCase(); // Groß-/Kleinschreibung ignorieren
                         var nameB = b.name.toUpperCase(); // Groß-/Kleinschreibung ignorieren

@@ -514,6 +514,9 @@ angular.module(
                 };
                 // </editor-fold>
 
+                /**
+                 * Here we process the `studyInfo` recived from Drupal.
+                 */
                 onSeamlessEvent = function (studyInfo) {
                     console.log('onSeamlessEvent called =====================================================================');
                     

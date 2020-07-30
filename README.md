@@ -7,6 +7,8 @@ This is the [AngularJS (version 1.x)](https://angularjs.org/) implementation of 
 
 The Multi Criteria Decision Analysis Tool supports the analysis and comparison of (adaptation) scenarios regarding performance indicators that can be defined by the end user and thus leverages what-if decision support to investigate the effects of adaptation measures and risk reduction options in the specific project context, and allows the comparison of alternative strategies. Thereby the tool provides multi-criteria ranking functions to compare and rank different scenarios and corresponding adaptation plans according to different criteria and their relative weight and level of importance. More information can be found [here](https://clarity-h2020.github.io/csis-architecture/docs/building-blocks/Multi-Criteria-Decision-Analysis-Tool).
 
+![image](https://user-images.githubusercontent.com/1788226/88678018-495f5600-d0ee-11ea-9a3e-5a43e780710f.png)
+
 ## Implementation
 
 ### JavaScript API
@@ -72,7 +74,6 @@ The Scenario Analysis Component exposes a JavaScript "API" which is fed by [seam
   "__id": "MPPTOBJBTA1QBVI9OQ70SF9BCTP1A5C6"
 }
 ```
-
 
 ### Drupal REST API
 
@@ -175,9 +176,13 @@ The "ICC DATA Vector" (Indicators, Criteria and Cost) is the internal JSON data 
 
 ### User Interface
 
-Several UI components, in particular criteria and ranking diagrams, that are not needed or are not working due to the absence of **Criteria Functions** and **Decision Strategies** had to be disabled so that they do not interfere with [report generation](https://github.com/clarity-h2020/csis-helpers-module/issues/13). If such functions and strategies become avilable in the future, the ui components can be re-enabled by removing the `ng-if` directives in [index.html](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/index.html):
+Several UI components, in particular criteria and ranking diagrams, that are not needed or are not working due to the absence of **Criteria Functions** and **Decision Strategies** had to be disabled so that they do not interfere with [report generation](https://github.com/clarity-h2020/csis-helpers-module/issues/13). If such functions and strategies become available in the future, the UI components can be re-enabled by removing the `ng-if` directives in [index.html](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/index.html):
 
 `<div class="row" ng-if="false">`
+
+Currently the only diagram that is enabled is the Indicator Bar Chart Diagram:
+
+![image](https://user-images.githubusercontent.com/1788226/88929084-edc1d380-d279-11ea-84fe-55591441715d.png)
 
 ## Installation
 
@@ -199,7 +204,7 @@ Please note that installation may fail, e.g. if deprecated bower registry is fin
 
 ### Build Process
 
-The application can be built with `grunt build`, however this is not needed as mentioned avove.
+The application can be built with `grunt build`, however this is not needed as mentioned above.
 
 ### Deployment on CSIS 
 
@@ -218,8 +223,14 @@ docker exec --user 999 csis-drupal drush cr
 
 On [CSIS-DEV](https://csis-dev.myclimateservice.eu/) usually the `dev` branch is used while on [CSIS-PROD](https://csis.myclimateservice.eu/) the `master` branch or a particular [release](https://github.com/clarity-h2020/scenario-analysis/releases) tag is used.
 
+## Usage
+
 ### Integration in CSIS
 
 The application is integrated with help of [seamless.js](https://github.com/travist/seamless.js/) as *"Extended iFrame"* in [CSIS Drupal System](https://csis-dev.myclimateservice.eu/). The respective Drupal *Node* that contains the [iFrame](https://csis-dev.myclimateservice.eu/apps/scenario-analysis/app/index.html) is the "[Extended iFrame MCDA Component: Scenario Analysis](https://csis-dev.myclimateservice.eu/node/21/edit)". The source code of the  iFrame and the needed Drupal Java Script helper function (`window.Drupal.behaviors`) is also available in [nodeConnector.js](https://github.com/clarity-h2020/scenario-analysis/blob/dev/app/scripts/connectors/nodeConnector.js). 
 
 The *"Extended iFrame"* node itself is used in several [EU-GL Step Templates](https://csis-dev.myclimateservice.eu/admin/content?title=Template&type=gl_step&status=1&langcode=All) as **Scenario Analysis Application**, e.g. in EU-GL Steps Impact/Risk Assessment and Adaptation Options Appraisal.
+
+## License
+ 
+MIT © [cismet GmbH](https://github.com/cismet)

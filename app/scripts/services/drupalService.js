@@ -406,6 +406,7 @@ angular.module(
                              worldstate.iccdata[indicatorsetKeyHeatWave] = indicatorsetHeatWave;
                          }
 
+                        // DISCOMFORT_LEVEL  Mortality Rate ........................................................
                         /**
                          * This is a 'virtual' indicator that has to be calculated based on DAMAGEQUANTITY and EXPOSEDQUANTITY
                          */
@@ -419,7 +420,7 @@ angular.module(
                             indicator.value = 0;
                             indicatorsetHeatWave[indicatorKey] = indicator;
                         } else {
-                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                            console.warn(worldstate.name + '/' + indicatorsetHeatWave.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
 
                         // FIXME: Heavily hardcoded calculation of indicator value
@@ -436,7 +437,7 @@ angular.module(
                             indicator.value = 0;
                             indicatorsetHeatWave[indicatorKey] = indicator;
                         } else {
-                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                            console.warn(worldstate.name + '/' + indicatorsetHeatWave.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
                         indicator.value = column[criteriaMap['HW_DISCOMFORT_LEVEL']];
 
@@ -451,9 +452,54 @@ angular.module(
                             indicator.value = 0;
                             indicatorsetHeatWave[indicatorKey] = indicator;
                         } else {
-                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                            console.warn(worldstate.name + '/' + indicatorsetHeatWave.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
                         indicator.value = column[criteriaMap['HW_HEAT_WAVE_IMPACT']];
+
+                        // HW_ECO_IMPACT_DIRECT HWImpact........................................................
+                        indicatorKey = 'indicatorHeatWaveEconimicImpactDirect' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetHeatWave[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Direct Economic Impact (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'dollar_direct_16.png';
+                            indicator.unit = '€'; 
+                            indicator.value = 0;
+                            indicatorsetHeatWave[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorsetHeatWave.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['HW_ECO_IMPACT_DIRECT']];
+
+                        // HW_ECO_IMPACT_DIRECT HWImpact........................................................
+                        indicatorKey = 'indicatorHeatWaveEconimicImpactIndirect' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetHeatWave[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Indirect Economic Impact (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'dollar_direct_16.png';
+                            indicator.unit = '€'; 
+                            indicator.value = 0;
+                            indicatorsetHeatWave[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorsetHeatWave.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['HW_ECO_IMPACT_INDIRECT']];
+
+                        // HW_ECO_IMPACT_DIRECT HWImpact........................................................
+                        indicatorKey = 'indicatorHeatWaveEconimicImpactLife' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetHeatWave[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Economic Impact on Life (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'dollar_direct_16.png';
+                            indicator.unit = '€'; 
+                            indicator.value = 0;
+                            indicatorsetHeatWave[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorsetHeatWave.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['HW_ECO_IMPACT_LIFE']];
 
                         // PluvialFlood #######################################################################################
                         var indicatorsetKeyPluvialFlood = 'indicatorsetPluvialFlood';// + column[criteriaMap['EMISSIONS_SCENARIO']];
@@ -467,7 +513,7 @@ angular.module(
                          }
 
                         // PF_DAMAGEPROBABILITY PluvialFloodDamageProbability........................................................
-                        indicatorKey = 'indicatorPluvialFloodDamageProbability' + column[criteriaMap['EVENT_FREQUENCY']];
+                        /*indicatorKey = 'indicatorPluvialFloodDamageProbability' + column[criteriaMap['EVENT_FREQUENCY']];
                         indicator = indicatorsetPluvialFlood[indicatorKey];
                         if (!indicator || indicator === null) {
                             indicator = {};
@@ -477,9 +523,9 @@ angular.module(
                             indicator.value = 0;
                             indicatorsetPluvialFlood[indicatorKey] = indicator;
                         } else {
-                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                            console.warn(worldstate.name + '/' + indicatorsetPluvialFlood.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
-                        indicator.value = column[criteriaMap['PF_DAMAGEPROBABILITY']];
+                        indicator.value = column[criteriaMap['PF_DAMAGEPROBABILITY']];*/
 
                         // PF_DAMAGE_CLASS PluvialFloodDamageClass........................................................
                         indicatorKey = 'indicatorPluvialFloodDamageClass' + column[criteriaMap['EVENT_FREQUENCY']];
@@ -492,12 +538,58 @@ angular.module(
                             indicator.value = 0;
                             indicatorsetPluvialFlood[indicatorKey] = indicator;
                         } else {
-                            console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                            console.warn(worldstate.name + '/' + indicatorsetPluvialFlood.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
                         indicator.value = column[criteriaMap['PF_DAMAGE_CLASS']];
 
-                        // PF_DAMAGE_CLASS PluvialFloodImpact........................................................
-                        indicatorKey = 'indicatorPluvialFloodImpact' + column[criteriaMap['EVENT_FREQUENCY']];
+                        // PF_ECO_IMPACT_RESIDENTAL_BLDG PluvialFloodImpact........................................................
+                        indicatorKey = 'indicatorPluvialFloodImpactResidentialBuildings' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetPluvialFlood[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Economic Impact: residential Buildings (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'dollar_direct_16.png';
+                            indicator.unit = '€'; 
+                            indicator.value = 0;
+                            indicatorsetPluvialFlood[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorsetPluvialFlood.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['PF_ECO_IMPACT_RESIDENTAL_BLDG']];
+
+                        // PF_ECO_IMPACT_NONRESIDENT_BLDG PluvialFloodImpact........................................................
+                        indicatorKey = 'indicatorPluvialFloodImpactNonresidentialBuildings' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetPluvialFlood[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Economic Impact: non-residential Buildings (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'dollar_direct_16.png';
+                            indicator.unit = '€'; 
+                            indicator.value = 0;
+                            indicatorsetPluvialFlood[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorsetPluvialFlood.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['PF_ECO_IMPACT_NONRESIDENT_BLDG']];
+
+                        // PF_ECO_IMPACT_ROAD PluvialFloodImpact........................................................
+                        indicatorKey = 'indicatorPluvialFloodImpactRods' + column[criteriaMap['EVENT_FREQUENCY']];
+                        indicator = indicatorsetPluvialFlood[indicatorKey];
+                        if (!indicator || indicator === null) {
+                            indicator = {};
+                            indicator.displayName = 'Economic Impact: Roads (' + column[criteriaMap['EVENT_FREQUENCY']] + ')';
+                            indicator.iconResource = 'dollar_direct_16.png';
+                            indicator.unit = '€'; 
+                            indicator.value = 0;
+                            indicatorsetPluvialFlood[indicatorKey] = indicator;
+                        } else {
+                            console.warn(worldstate.name + '/' + indicatorsetPluvialFlood.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
+                        }
+                        indicator.value = column[criteriaMap['PF_ECO_IMPACT_ROAD']];
+
+
+                        // PF_FLOOD_IMPACT_EURO PluvialFloodImpact........................................................
+                        /*indicatorKey = 'indicatorPluvialFloodImpact' + column[criteriaMap['EVENT_FREQUENCY']];
                         indicator = indicatorsetPluvialFlood[indicatorKey];
                         if (!indicator || indicator === null) {
                             indicator = {};
@@ -509,9 +601,9 @@ angular.module(
                         } else {
                             console.warn(worldstate.name + '/' + indicatorSet.name + '/' + indicator.displayName + ' = ' + indicator.value + ' already exists!');
                         }
-                        indicator.value = column[criteriaMap['PF_FLOOD_IMPACT_EURO']];
+                        indicator.value = column[criteriaMap['PF_FLOOD_IMPACT_EURO']];*/
 
-                        // Bot needed ATM!
+                        // Not needed ATM!
                         // EconomicIndicators #######################################################################################
                         /*var indicatorsetKeyAdaptationCost = 'indicatorsetAdaptationCost';// + column[criteriaMap['EMISSIONS_SCENARIO']];
                         var indicatorsetAdaptationCost = worldstate.iccdata[indicatorsetKeyAdaptationCost];
